@@ -31,9 +31,8 @@ function AddTag() {
             },
             body: JSON.stringify(values)
         })
-            .then(response => response.status)
-            .then((status) => {
-                if (status === 201) {
+            .then(response => {
+                if (response.status >= 200 && response.status <= 299) {
                     resetForm({values: ''})
                 }
             })

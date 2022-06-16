@@ -5,10 +5,14 @@ import {Button, Box} from '@mui/material';
 import {TextField} from 'formik-mui';
 import axios from 'axios';
 import {useState, useEffect} from "react";
+import ImageCard from "../../ui/ImageCard";
 
 
 function AddImage() {
-    const [tagOptions, setTagOptions] = useState([])
+    const [tagOptions, setTagOptions] = useState([{
+        key: null,
+        name: "-----------"
+    }])
     const initialValues = {
         name: '',
         description: '',
@@ -16,7 +20,7 @@ function AddImage() {
 
     const validationSchema = Yup.object({
         name: Yup.string()
-            .max(15, "Must be 15 characters or less")
+            .max(100, "Must be 100 characters or less")
             .required("First Name Required"),
         description: Yup.string(),
         // image: Yup.object().shape({
@@ -27,45 +31,37 @@ function AddImage() {
 
     const onSubmit = (values, {resetForm}) => {
         let form_data = new FormData();
+        console.log(form_data.get('tag'))
         form_data.append('name', values.name);
         form_data.append('description', values.description);
-        form_data.append('image', values.file, values.file.name);
         form_data.append('tag', values.tag);
+        form_data.append('image', values.file, values.file.name);
         let url = 'http://localhost:8000/api/images/';
         axios.post(url, form_data, {
             headers: {
                 'content-type': 'multipart/form-data'
             }
         })
-            .then(response => response.status)
-            .then((status) => {
-                if (status === 201) {
-                    resetForm({values: ''})
+            .then((response) => {
+                if (response.status >= 200 && response.status <= 299) {
+                    resetForm({values: null})
                 }
             })
             .catch(err => console.log(err))
     };
 
-    const createTagOptions = () => {
-        let items = [];
-        for (const tagOption of tagOptions) {
-            items.push(
-                <option
-                    key={tagOption.id}
-                    value={tagOption.name}
-                >
-                    {tagOption.name}
-                </option>)
-        }
-        return items
-    }
-
     useEffect(() => {
         let url = `http://localhost:8000/api/tags/`;
         fetch(url)
             .then(response => response.json())
-            .then(json => setTagOptions(json))
-            .then(() => createTagOptions())
+            .then(tags => {
+                for (let tag of tags) {
+                    setTagOptions(prevState => ({
+                        ...prevState, tag
+                    }))
+                }
+            })
+            .then(() => console.log(tagOptions))
     }, [])
 
     return (
@@ -112,7 +108,7 @@ function AddImage() {
                                 <br/>
 
                                 <Box margin={2}>
-                                    <input
+                                    <Field
                                         id="image"
                                         name="image"
                                         type="file"
@@ -121,14 +117,22 @@ function AddImage() {
                                     />
                                 </Box>
 
-                                <Box margin={2}>
-                                    <Field as="select"
-                                           name="tag"
-                                           id="tag"
-                                    >
-                                        {createTagOptions}
-                                    </Field>
-                                </Box>
+                                {/*<Box margin={2}>*/}
+                                {/*    <Field as="select"*/}
+                                {/*           name="tag"*/}
+                                {/*           id="tag"*/}
+                                {/*    >*/}
+                                {/*        {tagOptions.map(*/}
+                                {/*            tagOption =>*/}
+                                {/*                <option*/}
+                                {/*                    key={tagOption.id}*/}
+                                {/*                    value={tagOption.name}*/}
+                                {/*                >*/}
+                                {/*                    {tagOption.name}*/}
+                                {/*                </option>*/}
+                                {/*        )}*/}
+                                {/*    </Field>*/}
+                                {/*</Box>*/}
                                 <br/>
                             </div>
                             <Button type="submit">Submit</Button>
