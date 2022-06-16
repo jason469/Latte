@@ -1,0 +1,4 @@
+.idea/
+backend/__pycache__/
+image_app/__pycache__/
+backend/migrations/__pycache__/__init__.cpython-39.pyc
