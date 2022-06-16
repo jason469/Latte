@@ -1,0 +1,13 @@
+.navbar {
+    display: flex;
+}
+
+.navbar > .brand {
+}
+
+.navbar > .image {
+}
+
+.navbar > .profile {
+    margin-left: auto;
+}
