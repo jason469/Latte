@@ -1,6 +1,11 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
+from rest_framework import routers
+
+router = routers.SimpleRouter()
+router.register(r'tags', views.TagViewSet)
+router.register(r'images', views.ImageViewSet)
 
 urlpatterns = [
-    path('images/', views.ImageView.as_view(), name='all_images'),
+    path('', include(router.urls)),
 ]

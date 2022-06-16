@@ -10,13 +10,13 @@ function ImageCard({data}) {
                 <Card>
                     < Card.Img
                         variant="top"
-                        src={data.url}
-                        key={data.id}
-                        alt={data.title}
+                        src={data.image}
+                        key={data.image_id}
+                        alt={data.name}
                         className={classes.image}
                     />
                     <Card.Body>
-                        <Card.Title variant="primary">{data.title}</Card.Title>
+                        <Card.Title variant="primary">{data.name}</Card.Title>
                     </Card.Body>
                 </Card>
             </Nav.Link>

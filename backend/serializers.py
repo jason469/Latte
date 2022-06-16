@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Image
+from .models import *
 
 
 class ImageSerializer(serializers.ModelSerializer):
@@ -15,3 +15,9 @@ class ImageSerializer(serializers.ModelSerializer):
         )
         image.save()
         return image
+
+
+class TagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = '__all__'

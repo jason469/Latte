@@ -4,8 +4,7 @@ import ImageCard from "../ui/ImageCard";
 import classes from "./Pagination.module.css";
 
 
-function Pagination({itemsPerPage, data}) {
-    const [currentItems, setCurrentItems] = useState([]);
+function Pagination({itemsPerPage, data, pull_function}) {
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
 
@@ -16,16 +15,14 @@ function Pagination({itemsPerPage, data}) {
 
     useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
-        setCurrentItems(data.slice(itemOffset, endOffset));
+        const currentItems = data.slice(itemOffset, endOffset);
         setPageCount(Math.ceil(data.length / itemsPerPage));
+        pull_function(currentItems);
     }, [itemOffset, itemsPerPage, data])
 
 
     return (
         <>
-            <div className={classes.images}>
-                {currentItems.map(item => <ImageCard data={item}/>)}
-            </div>
             <ReactPaginate
                 breakLabel="..."
                 nextLabel=">"

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import classes from "../ui/ImageCard.module.css";
+import classes from "../images/ImageDetailPage.module.css";
 
 function ImageDetailPage() {
     const imageId = useParams().imageId
@@ -8,20 +8,22 @@ function ImageDetailPage() {
 
 
     useEffect(() => {
-        fetch(`https://jsonplaceholder.typicode.com/photos/?id=${imageId}`)
+        let url = `http://localhost:8000/api/images/${imageId}`;
+        fetch(url)
             .then(response => response.json())
-            .then(json => setCurrentImage(json[0]))
+            .then(data => setCurrentImage(data))
     }, [])
 
     return (
         <div>
             <img
-                src={currentImage.url}
-                key={currentImage.id}
-                alt={currentImage.title}
+                src={currentImage.image}
+                key={currentImage.image_id}
+                alt={currentImage.name}
                 className={classes.image}
             />
-            <h3>{currentImage.title}</h3>
+            <h3>{currentImage.name}</h3>
+            <p>{currentImage.description}</p>
 
         </div>
     )
