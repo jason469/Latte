@@ -31,7 +31,12 @@ function AddTag() {
             },
             body: JSON.stringify(values)
         })
-            .then(resetForm({values: ''}))
+            .then(response => response.status)
+            .then((status) => {
+                if (status === 201) {
+                    resetForm({values: ''})
+                }
+            })
             .catch(err => console.log(err))
     };
 

@@ -37,7 +37,12 @@ function AddImage() {
                 'content-type': 'multipart/form-data'
             }
         })
-            .then(() => resetForm({values: ''}))
+            .then(response => response.status)
+            .then((status) => {
+                if (status === 201) {
+                    resetForm({values: ''})
+                }
+            })
             .catch(err => console.log(err))
     };
 
