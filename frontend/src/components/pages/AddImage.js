@@ -3,6 +3,7 @@ import {Formik, Form, Field, ErrorMessage, useFormik} from 'formik';
 import * as Yup from "yup"
 import {Button, LinearProgress, Box} from '@mui/material';
 import {TextField} from 'formik-mui';
+import axios from 'axios';
 
 
 function AddImage() {
@@ -15,23 +16,22 @@ function AddImage() {
         name: Yup.string()
             .max(15, "Must be 15 characters or less")
             .required("First Name Required"),
-        description: Yup.string()
+        description: Yup.string(),
+        // image: Yup.object().shape({
+        //     file: Yup.mixed().required('File is required'),
+        // })
     })
 
 
     const onSubmit = (values) => {
-        console.log(values.name)
         let form_data = new FormData();
-        form_data.append('name', String(values.name));
+        form_data.append('name', values.name);
         form_data.append('description', values.description);
         form_data.append('image', values.file, values.file.name);
         let url = 'http://localhost:8000/api/images/';
-        console.log(form_data.getAll('image'))
-        fetch(url, {
-            method: 'POST',
-            body: form_data,
+        axios.post(url, form_data, {
             headers: {
-                'Content-type': 'multipart/form-data',
+                'content-type': 'multipart/form-data'
             }
         })
             .then(res => {

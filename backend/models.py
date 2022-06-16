@@ -8,5 +8,5 @@ class Image(models.Model):
     image = models.ImageField(upload_to='post_images', blank=True, null=True)
 
     def save(self, *args, **kwargs):
-        self.priority_id = self.id
+        self.image_id = self.id
         return super().save(*args, **kwargs)
