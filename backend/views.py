@@ -1,13 +1,15 @@
 from .serializers import *
 from .models import *
-from rest_framework.views import APIView
-from rest_framework import generics, mixins, viewsets
+from rest_framework import viewsets
 from rest_framework.parsers import MultiPartParser, FormParser
-from rest_framework.response import Response
-from rest_framework import status
+from rest_framework.authentication import BasicAuthentication
+
+from knox.views import LoginView as KnoxLoginView
 
 
-# Create your views here.
+class LoginView(KnoxLoginView):
+    authentication_classes = [BasicAuthentication]
+
 
 class ImageViewSet(viewsets.ModelViewSet):
     queryset = Image.objects.all()
@@ -24,5 +26,3 @@ class AlbumViewSet(viewsets.ModelViewSet):
     queryset = Album.objects.all()
     serializer_class = AlbumSerializer
     parser_classes = (MultiPartParser, FormParser)
-
-
