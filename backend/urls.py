@@ -4,6 +4,7 @@ from rest_framework import routers
 
 router = routers.SimpleRouter()
 router.register(r'tags', views.TagViewSet)
+router.register(r'albums', views.AlbumViewSet)
 router.register(r'images', views.ImageViewSet)
 
 urlpatterns = [

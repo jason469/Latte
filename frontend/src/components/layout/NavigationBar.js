@@ -16,9 +16,9 @@ function NavigationBar() {
                         <Nav.Link as={Link} to="/add-image">Add</Nav.Link>
                     </NavDropdown.Item>
                     <NavDropdown.Divider/>
-                    <NavDropdown.Item>
-                        <Nav.Link as={Link} to="/albums">Albums</Nav.Link>
-                    </NavDropdown.Item>
+                    {/*<NavDropdown.Item>*/}
+                    {/*    <Nav.Link as={Link} to="/albums">Albums</Nav.Link>*/}
+                    {/*</NavDropdown.Item>*/}
                 </NavDropdown>
 
                 <NavDropdown title="Tags" id="tag-dropdown" className={classes.tags}>
@@ -30,7 +30,16 @@ function NavigationBar() {
                     </NavDropdown.Item>
                 </NavDropdown>
 
-                <NavDropdown title="Profile" id="profile-dropdown" className="ml-auto" className={classes.profile}>
+                <NavDropdown title="Albums" id="album-dropdown" className={classes.albums}>
+                    <NavDropdown.Item>
+                        <Nav.Link as={Link} to="/albums">All Albums</Nav.Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                        <Nav.Link as={Link} to="/add-album">Add</Nav.Link>
+                    </NavDropdown.Item>
+                </NavDropdown>
+
+                <NavDropdown title="Profile" id="profile-dropdown" className="ml-auto">
                     <NavDropdown.Item>
                         <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
                     </NavDropdown.Item>

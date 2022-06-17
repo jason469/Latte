@@ -19,13 +19,10 @@ class TagViewSet(viewsets.ModelViewSet):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
 
-    def create(self, request, *args, **kwargs):
-        serializer = self.serializer_class(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response({'message': 'Tag created successfully'}, status=status.HTTP_201_CREATED)
-        elif serializer.error_messages.get('required'):
-            return Response({'message': 'Tag already exists'}, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class AlbumViewSet(viewsets.ModelViewSet):
+    queryset = Album.objects.all()
+    serializer_class = AlbumSerializer
+    parser_classes = (MultiPartParser, FormParser)
 
 

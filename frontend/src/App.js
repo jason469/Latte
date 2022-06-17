@@ -6,15 +6,19 @@ import Layout from './components/layout/Layout'
 import ListOfImages from "./components/pages/images/ListOfImages";
 import AddImage from "./components/pages/images/AddImage";
 import ImageDetailPage from "./components/pages/images/ImageDetailPage"
-import ListOfAlbums from "./components/pages/images/ListOfAlbums";
 
 import ListOfTags from "./components/pages/tags/ListOfTags";
 import AddTag from "./components/pages/tags/AddTag";
 import TagDetailPage from "./components/pages/tags/TagDetailPage";
 
+import ListOfAlbums from "./components/pages/albums/ListOfAlbums";
+import AlbumDetailPage from "./components/pages/albums/AlbumDetailPage";
+import AddAlbum from "./components/pages/albums/AddAlbum";
+
 import HomePage from "./components/pages/website/Homepage";
 import Profile from "./components/pages/website/Profile";
 import API from "./components/pages/website/API";
+
 
 function App() {
     return (
@@ -31,6 +35,9 @@ function App() {
                 <Route path='/add-tag' element={<AddTag/>}/>
 
                 <Route path='/albums' element={<ListOfAlbums/>}/>
+                <Route path='/albums/:albumId' element={<AlbumDetailPage/>}/>
+                <Route path='/add-album' element={<AddAlbum/>}/>
+
                 <Route path='/profile' element={<Profile/>}/>
                 <Route path='/api' element={<API/>}/>
             </Routes>

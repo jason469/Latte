@@ -3,20 +3,20 @@ import {Nav, Card} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
 
-function ImageCard({data}) {
+function AlbumCard({data}) {
     return (
         <div>
-            <Nav.Link as={Link} to={`/images/${data.id}`}>
+            <Nav.Link as={Link} to={`/albums/${data.id}`}>
                 <Card>
-                    < Card.Img
-                        variant="top"
-                        src={data.url}
-                        key={data.id}
-                        alt={data.title}
-                        className={classes.image}
-                    />
+                    {/*< Card.Img*/}
+                    {/*    variant="top"*/}
+                    {/*    src={data.image}*/}
+                    {/*    key={data.id}*/}
+                    {/*    alt={data.name}*/}
+                    {/*    className={classes.image}*/}
+                    {/*/>*/}
                     <Card.Body>
-                        <Card.Title variant="primary">{data.title}</Card.Title>
+                        <Card.Title variant="primary">{data.name}</Card.Title>
                     </Card.Body>
                 </Card>
             </Nav.Link>
@@ -24,4 +24,4 @@ function ImageCard({data}) {
     );
 }
 
-export default ImageCard
+export default AlbumCard
