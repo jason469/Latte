@@ -17,7 +17,7 @@ function AlbumDetailPage() {
     return (
         <div>
             <img
-                src={currentAlbum.image}
+                src={currentAlbum.cover_image}
                 key={currentAlbum.image_id}
                 alt={currentAlbum.name}
                 className={classes.image}

@@ -46,16 +46,15 @@ function AddImage() {
             .then((response) => {
                 if (response.status >= 200 && response.status <= 299) {
                     resetForm({values: null})
-                    document.getElementById("image").val(null)
                 }
             })
-            .then(response => console.log(response))
+            .then(document)
             .catch(err => console.log(err))
     };
 
     useEffect(() => {
-        let tag_url = `http://localhost:8000/api/tags/`;
-        fetch(tag_url)
+        let url = `http://localhost:8000/api/tags/`;
+        fetch(url)
             .then(response => response.json())
             .then(tags => setTagOptions(tags))
     }, [])
@@ -124,7 +123,6 @@ function AddImage() {
                                     <Field as="select"
                                            name="tag"
                                            id="tag"
-                                           label="Tag"
                                     >
                                         {tagOptions.map(
                                             tagOption =>
@@ -137,8 +135,6 @@ function AddImage() {
                                         )}
                                     </Field>
                                 </Box>
-                                <br/>
-
                                 <Box margin={2}>
                                     <Field as="select"
                                            name="album"
@@ -158,7 +154,7 @@ function AddImage() {
                                 </Box>
                                 <br/>
                             </div>
-                            <Button type="reset">Submit</Button>
+                            <Button type="submit">Submit</Button>
                         </Form>
                     )
                 }}

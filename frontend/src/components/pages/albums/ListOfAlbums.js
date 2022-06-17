@@ -22,7 +22,7 @@ function ListOfAlbums() {
 
     return (
         <div>
-            <div className={classes.tags}>
+            <div className={classes.images}>
                 {currentItems.map(item => <AlbumCard data={item}/>)}
             </div>
             <Pagination

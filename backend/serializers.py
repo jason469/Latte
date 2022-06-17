@@ -21,7 +21,7 @@ class ImageSerializer(serializers.ModelSerializer):
 
     def run_validation(self, data):
         tag = Tag.objects.filter(name=data['tag'])
-        album = Tag.objects.filter(name=data['album'])
+        album = Album.objects.filter(name=data['album'])
         if not tag:
             data['tag'] = None
         else:
@@ -30,7 +30,7 @@ class ImageSerializer(serializers.ModelSerializer):
         if not album:
             data['album'] = None
         else:
-            data['album'] = Tag.objects.get(name=data['album'])
+            data['album'] = Album.objects.get(name=data['album'])
         return data
 
     def create(self, validated_data):

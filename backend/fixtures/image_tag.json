@@ -1,0 +1,26 @@
+[
+{
+    "model": "backend.image_tag",
+    "pk": 1,
+    "fields": {
+        "image": 1,
+        "tag": 2
+    }
+},
+{
+    "model": "backend.image_tag",
+    "pk": 2,
+    "fields": {
+        "image": 2,
+        "tag": 5
+    }
+},
+{
+    "model": "backend.image_tag",
+    "pk": 3,
+    "fields": {
+        "image": 3,
+        "tag": 4
+    }
+}
+]

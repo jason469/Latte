@@ -1,0 +1,26 @@
+[
+{
+    "model": "backend.image_album",
+    "pk": 1,
+    "fields": {
+        "image": 1,
+        "album": 1
+    }
+},
+{
+    "model": "backend.image_album",
+    "pk": 2,
+    "fields": {
+        "image": 2,
+        "album": 3
+    }
+},
+{
+    "model": "backend.image_album",
+    "pk": 3,
+    "fields": {
+        "image": 3,
+        "album": 2
+    }
+}
+]

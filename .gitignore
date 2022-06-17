@@ -33,3 +33,4 @@ frontend/yarn-error.log*
 ################ PROJECT ################
 media
 node_modules
+db.sqlite3
