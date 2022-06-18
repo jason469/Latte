@@ -1,11 +1,14 @@
 import classes from './ListOfImages.module.css'
 import Pagination from "../../layout/Pagination";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import ImageCard from "../../ui/ImageCard";
+import AuthContext from "../../../contexts/AuthContext";
+import {GetItems} from "../../../utils/GetItems";
 
 function ListOfImages() {
     const [imageData, setImageData] = useState([])
     const [currentItems, setCurrentItems] = useState([]);
+    let {authTokens, logoutUser} = useContext(AuthContext)
 
     // Fetch current items
     const pull_images = (images) => {
@@ -14,10 +17,12 @@ function ListOfImages() {
 
     //Fetch photos
     useEffect(() => {
-        let url = 'http://localhost:8000/api/images/';
-        fetch(url)
-            .then(response => response.json())
-            .then(data => setImageData(data))
+        GetItems({
+            endpoint: 'images',
+            setFunction: setImageData,
+            authTokens: authTokens,
+            logoutUser: logoutUser
+        })
     }, [])
 
     return (

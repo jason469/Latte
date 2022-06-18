@@ -1,23 +1,29 @@
 import classes from './ListOfAlbums.module.css'
 import Pagination from "../../layout/Pagination";
-import {useEffect, useState} from "react";
+import {useEffect, useState, useContext} from "react";
 import AlbumCard from "../../ui/AlbumCard";
+import AuthContext from "../../../contexts/AuthContext";
+import {GetItems} from "../../../utils/GetItems";
+import addImage from "../images/AddImage";
 
 function ListOfAlbums() {
     const [albumData, setAlbumData] = useState([])
     const [currentItems, setCurrentItems] = useState([]);
+    let {authTokens, logoutUser} = useContext(AuthContext)
 
     // Fetch current items
     const pull_albums = (albums) => {
         setCurrentItems(albums);
     }
 
-    //Fetch tags
+    //Fetch Images
     useEffect(() => {
-        let url = 'http://localhost:8000/api/albums/';
-        fetch(url)
-            .then(response => response.json())
-            .then(data => setAlbumData(data))
+        GetItems({
+            endpoint: 'albums',
+            setFunction: setAlbumData,
+            authTokens: authTokens,
+            logoutUser: logoutUser
+        })
     }, [])
 
     return (

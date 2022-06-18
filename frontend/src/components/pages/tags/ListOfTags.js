@@ -1,11 +1,15 @@
+import React, {useContext, useEffect, useState} from "react";
+import AuthContext, {AuthProvider} from "../../../contexts/AuthContext";
+
 import classes from './ListOfTags.module.css'
 import Pagination from "../../layout/Pagination";
-import {useEffect, useState} from "react";
 import TagCard from "../../ui/TagCard";
+import {GetItems} from "../../../utils/GetItems";
 
 function ListOfTags() {
     const [tagData, setTagData] = useState([])
     const [currentItems, setCurrentItems] = useState([]);
+    let {authTokens, logoutUser} = useContext(AuthContext)
 
     // Fetch current items
     const pull_tags = (tags) => {
@@ -14,10 +18,12 @@ function ListOfTags() {
 
     //Fetch tags
     useEffect(() => {
-        let url = 'http://localhost:8000/api/tags/';
-        fetch(url)
-            .then(response => response.json())
-            .then(data => setTagData(data))
+        GetItems({
+            endpoint: 'tags',
+            setFunction: setTagData,
+            authTokens: authTokens,
+            logoutUser: logoutUser
+        })
     }, [])
 
     return (

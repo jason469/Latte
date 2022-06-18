@@ -1,9 +1,13 @@
 import classes from './NavigationBar.module.css'
 import {Container, Nav, NavDropdown, Navbar} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import {useContext} from "react";
+import AuthContext from "../../contexts/AuthContext";
 
 
 function NavigationBar() {
+    let {user, logoutUser} = useContext(AuthContext)
+
     return (
         <Navbar bg="light" expand="lg">
             <Container className={classes.navbar}>
@@ -45,6 +49,9 @@ function NavigationBar() {
                     </NavDropdown.Item>
                     <NavDropdown.Item>
                         <Nav.Link as={Link} to="/api">API</Nav.Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                        <Nav.Item onClick={() => logoutUser()}>Logout</Nav.Item>
                     </NavDropdown.Item>
                 </NavDropdown>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>

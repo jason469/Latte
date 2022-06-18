@@ -11,6 +11,7 @@
     "bootstrap4": "^0.0.1-security",
     "formik": "^2.2.9",
     "formik-mui": "^4.0.0-alpha.3",
+    "jwt-decode": "^3.1.2",
     "mdbreact": "^5.2.0",
     "react": "^18.2.0",
     "react-bootstrap": "^1.6.1",
