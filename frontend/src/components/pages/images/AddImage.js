@@ -4,13 +4,15 @@ import * as Yup from "yup"
 import {Button, Box} from '@mui/material';
 import {TextField} from 'formik-mui';
 import axios from 'axios';
-import {useState, useEffect} from "react";
-import ImageCard from "../../ui/ImageCard";
+import {useState, useEffect, useContext} from "react";
+import AuthContext from "../../../contexts/AuthContext";
+import {GetItems} from "../../../utils/GetItems";
 
 
 function AddImage() {
     const [tagOptions, setTagOptions] = useState([])
     const [albumOptions, setAlbumOptions] = useState([])
+    let {authTokens, logoutUser} = useContext(AuthContext)
 
     const initialValues = {
         name: '',
@@ -53,17 +55,21 @@ function AddImage() {
     };
 
     useEffect(() => {
-        let url = `http://localhost:8000/api/tags/`;
-        fetch(url)
-            .then(response => response.json())
-            .then(tags => setTagOptions(tags))
+        GetItems({
+            endpoint: 'tags',
+            setFunction: setTagOptions,
+            authTokens: authTokens,
+            logoutUser: logoutUser
+        })
     }, [])
 
     useEffect(() => {
-        let album_url = `http://localhost:8000/api/albums/`;
-        fetch(album_url)
-            .then(response => response.json())
-            .then(albums => setAlbumOptions(albums))
+        GetItems({
+            endpoint: 'albums',
+            setFunction: setAlbumOptions,
+            authTokens: authTokens,
+            logoutUser: logoutUser
+        })
     }, [])
 
     return (

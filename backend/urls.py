@@ -1,6 +1,8 @@
 from django.urls import path, include
 from rest_framework import routers
-from knox import views as knox_views
+from rest_framework_simplejwt.views import (
+    TokenRefreshView,
+)
 
 from . import views
 
@@ -11,7 +13,6 @@ router.register(r'images', views.ImageViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path(r'auth/login/', views.LoginView.as_view(), name='knox_login'),
-    path(r'auth/logout/', knox_views.LogoutView.as_view(), name='knox_logout'),
-    path(r'auth/logoutall/', knox_views.LogoutAllView.as_view(), name='knox_logoutall'),
+    path('auth/token/', views.MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]

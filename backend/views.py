@@ -2,13 +2,12 @@ from .serializers import *
 from .models import *
 from rest_framework import viewsets
 from rest_framework.parsers import MultiPartParser, FormParser
-from rest_framework.authentication import BasicAuthentication
 
-from knox.views import LoginView as KnoxLoginView
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 
-class LoginView(KnoxLoginView):
-    authentication_classes = [BasicAuthentication]
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
 
 
 class ImageViewSet(viewsets.ModelViewSet):
