@@ -4,10 +4,12 @@ import * as Yup from "yup"
 import {Button, Box} from '@mui/material';
 import {TextField} from 'formik-mui';
 import axios from 'axios';
-import {useState, useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
+import AuthContext from "../../../contexts/AuthContext";
 
 
 function AddTag() {
+    let {authTokens} = useContext(AuthContext)
     const initialValues = {
         name: '',
         description: '',
@@ -22,12 +24,14 @@ function AddTag() {
 
 
     const onSubmit = (values, {resetForm}) => {
-        let url = 'http://localhost:8000/api/tags/';
+        console.log(authTokens.access)
+        let url = 'tags/';
         fetch(url, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + String(authTokens.access)
             },
             body: JSON.stringify(values)
         })

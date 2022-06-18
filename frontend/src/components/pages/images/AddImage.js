@@ -39,10 +39,11 @@ function AddImage() {
         if (values.file) {
             form_data.append('image', values.file, values.file.name);
         }
-        let url = 'http://localhost:8000/api/images/';
+        let url = 'images/';
         axios.post(url, form_data, {
             headers: {
-                'content-type': 'multipart/form-data'
+                'content-type': 'multipart/form-data',
+                'Authorization': 'Bearer ' + String(authTokens.access)
             }
         })
             .then((response) => {

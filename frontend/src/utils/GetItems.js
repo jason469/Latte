@@ -1,5 +1,5 @@
 export async function GetItems({endpoint, setFunction, authTokens, logoutUser}) {
-    let url = `http://localhost:9000/api/${endpoint}/`;
+    let url = `${endpoint}/`;
     let response = await fetch(url, {
         method: "GET",
         headers: {

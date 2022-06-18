@@ -4,10 +4,12 @@ import * as Yup from "yup"
 import {Button, Box} from '@mui/material';
 import {TextField} from 'formik-mui';
 import axios from 'axios';
-import {useState, useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
+import AuthContext from "../../../contexts/AuthContext";
 
 
 function AddAlbum() {
+    let {authTokens} = useContext(AuthContext)
     const initialValues = {
         name: '',
         description: '',
@@ -29,10 +31,11 @@ function AddAlbum() {
             form_data.append('cover_image', values.file, values.file.name);
         }
         console.log(form_data.get('cover_image'))
-        let url = 'http://localhost:8000/api/albums/';
+        let url = 'albums/';
         axios.post(url, form_data, {
             headers: {
-                'content-type': 'multipart/form-data'
+                'content-type': 'multipart/form-data',
+                'Authorization': 'Bearer ' + String(authTokens.access)
             }
         })
             .then((response) => {
