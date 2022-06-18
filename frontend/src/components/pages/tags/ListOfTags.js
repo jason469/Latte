@@ -5,6 +5,7 @@ import classes from './ListOfTags.module.css'
 import Pagination from "../../layout/Pagination";
 import TagCard from "../../ui/TagCard";
 import {GetItems} from "../../../utils/GetItems";
+import EmptyPage from "../website/EmptyPage";
 
 function ListOfTags() {
     const [tagData, setTagData] = useState([])
@@ -26,18 +27,26 @@ function ListOfTags() {
         })
     }, [])
 
-    return (
-        <div>
-            <div className={classes.tags}>
-                {currentItems.map(item => <TagCard data={item}/>)}
-            </div>
-            <Pagination
-                itemsPerPage={12}
-                data={tagData}
-                pull_function={pull_tags}
-            />
-        </div>
-    )
+
+    switch (tagData.length !== 0) {
+        case true:
+            return (
+                <div>
+                    <div className={classes.tags}>
+                        {currentItems.map(item => <TagCard data={item}/>)}
+                    </div>
+                    <Pagination
+                        itemsPerPage={12}
+                        data={tagData}
+                        pull_function={pull_tags}
+                    />
+                </div>
+            )
+        case false:
+            return (
+                <EmptyPage item="Tags"/>
+            )
+    }
 }
 
 export default ListOfTags;

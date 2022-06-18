@@ -19,10 +19,6 @@ function NavigationBar() {
                     <NavDropdown.Item>
                         <Nav.Link as={Link} to="/add-image">Add</Nav.Link>
                     </NavDropdown.Item>
-                    <NavDropdown.Divider/>
-                    {/*<NavDropdown.Item>*/}
-                    {/*    <Nav.Link as={Link} to="/albums">Albums</Nav.Link>*/}
-                    {/*</NavDropdown.Item>*/}
                 </NavDropdown>
 
                 <NavDropdown title="Tags" id="tag-dropdown" className={classes.tags}>

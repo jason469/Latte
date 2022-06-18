@@ -4,6 +4,7 @@ import {useContext, useEffect, useState} from "react";
 import ImageCard from "../../ui/ImageCard";
 import AuthContext from "../../../contexts/AuthContext";
 import {GetItems} from "../../../utils/GetItems";
+import EmptyPage from "../website/EmptyPage";
 
 function ListOfImages() {
     const [imageData, setImageData] = useState([])
@@ -25,18 +26,25 @@ function ListOfImages() {
         })
     }, [])
 
-    return (
-        <div>
-            <div className={classes.images}>
-                {currentItems.map(item => <ImageCard data={item}/>)}
-            </div>
-            <Pagination
-                itemsPerPage={12}
-                data={imageData}
-                pull_function={pull_images}
-            />
-        </div>
-    )
+    switch (imageData.length !== 0) {
+        case true:
+            return (
+                <div>
+                    <div className={classes.images}>
+                        {currentItems.map(item => <ImageCard data={item}/>)}
+                    </div>
+                    <Pagination
+                        itemsPerPage={12}
+                        data={imageData}
+                        pull_function={pull_images}
+                    />
+                </div>
+            )
+        case false:
+            return (
+                <EmptyPage item="Images"/>
+            )
+    }
 }
 
 export default ListOfImages;

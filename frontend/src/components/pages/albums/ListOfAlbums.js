@@ -5,6 +5,7 @@ import AlbumCard from "../../ui/AlbumCard";
 import AuthContext from "../../../contexts/AuthContext";
 import {GetItems} from "../../../utils/GetItems";
 import addImage from "../images/AddImage";
+import EmptyPage from "../website/EmptyPage";
 
 function ListOfAlbums() {
     const [albumData, setAlbumData] = useState([])
@@ -26,18 +27,25 @@ function ListOfAlbums() {
         })
     }, [])
 
-    return (
-        <div>
-            <div className={classes.images}>
-                {currentItems.map(item => <AlbumCard data={item}/>)}
-            </div>
-            <Pagination
-                itemsPerPage={12}
-                data={albumData}
-                pull_function={pull_albums}
-            />
-        </div>
-    )
+    switch (albumData.length !== 0) {
+        case true:
+            return (
+                <div>
+                    <div className={classes.images}>
+                        {currentItems.map(item => <AlbumCard data={item}/>)}
+                    </div>
+                    <Pagination
+                        itemsPerPage={12}
+                        data={albumData}
+                        pull_function={pull_albums}
+                    />
+                </div>
+            )
+        case false:
+            return (
+                <EmptyPage item="Albums" />
+            )
+    }
 }
 
 export default ListOfAlbums;

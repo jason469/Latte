@@ -21,14 +21,15 @@ export const AuthProvider = props => {
 
     let loginUser = async (e) => {
         e.preventDefault()
+        console.log(e)
         let response = await fetch(`http://localhost:9000/api/auth/token/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                "username": e.target.children.username.value,
-                "password": e.target.children.password.value
+                "username": e.target.elements.username.value,
+                "password": e.target.elements.password.value
             })
         })
         let data = await response.json()
@@ -50,22 +51,25 @@ export const AuthProvider = props => {
     }
 
     let updateToken = async () => {
-        let response = await fetch(`http://localhost:9000/api/auth/token/refresh/`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                "refresh": authTokens?.refresh
+        if (authTokens !== null) {
+            let response = await fetch(`http://localhost:9000/api/auth/token/refresh/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    "refresh": authTokens?.refresh
+                })
             })
-        })
-        let data = await response.json()
+            let data = await response.json()
 
-        if (response.status >= 200 && response.status <= 300) {
-            setAuthTokens(data)
-            setUser(jwtDecode(data.access))
-            localStorage.setItem('authTokens', JSON.stringify(data))
+            if (response.status >= 200 && response.status <= 300) {
+                setAuthTokens(data)
+                setUser(jwtDecode(data.access))
+                localStorage.setItem('authTokens', JSON.stringify(data))
+            }
         } else {
+            console.log('failed')
             logoutUser()
         }
 
@@ -83,7 +87,6 @@ export const AuthProvider = props => {
     }
 
     useEffect(() => {
-
         if (loading) {
             updateToken()
         }
