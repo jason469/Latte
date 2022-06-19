@@ -29,7 +29,7 @@ function ListOfImages() {
         case true:
             return (
                 <div>
-                    <div className="images">
+                    <div className="list-of-items">
                         {currentItems.map(item => <ImageCard data={item}/>)}
                     </div>
                     <Pagination

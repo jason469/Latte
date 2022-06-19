@@ -44,7 +44,6 @@ function App() {
                         <Route path='/add-album' element={<AddAlbum/>}/>
 
                         <Route path='/profile' element={<Profile/>}/>
-                        <Route path='/api' element={<API/>}/>
                     </Route>
                 </Routes>
             </Layout>

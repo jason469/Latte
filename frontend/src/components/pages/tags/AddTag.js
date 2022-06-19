@@ -1,13 +1,14 @@
 import {Formik, Form, Field} from 'formik';
 import * as Yup from "yup"
-import {Button, Box} from '@mui/material';
+import {Button, Box, Alert} from '@mui/material';
 import {TextField} from 'formik-mui';
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import AuthContext from "../../../contexts/AuthContext";
 
 
 function AddTag() {
     let {authTokens} = useContext(AuthContext)
+    const [successStatus, setSuccessStatus] = useState(null);
     const initialValues = {
         name: '',
         description: '',
@@ -22,7 +23,6 @@ function AddTag() {
 
 
     const onSubmit = (values, {resetForm}) => {
-        console.log(authTokens.access)
         let url = 'tags/';
         fetch(url, {
             method: 'POST',
@@ -36,9 +36,14 @@ function AddTag() {
             .then(response => {
                 if (response.status >= 200 && response.status <= 299) {
                     resetForm({values: ''})
+                    setSuccessStatus(true);
+                } else {
+                    setSuccessStatus(false);
                 }
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err)
+            })
     };
 
     return (
@@ -59,6 +64,15 @@ function AddTag() {
                     return (
                         <Form>
                             <h1>Add Tags</h1>
+                            {successStatus === true &&
+                                <Alert variant="outlined" severity="success">
+                                    Tag has been successfully added!
+                                </Alert>}
+                            {successStatus === false && (
+                                <Alert variant="outlined" severity="error">
+                                    Unable to add tag
+                                </Alert>
+                            )}
                             <div>
                                 <Box margin={2}>
                                     <Field

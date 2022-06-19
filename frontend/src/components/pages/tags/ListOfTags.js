@@ -31,7 +31,7 @@ function ListOfTags() {
         case true:
             return (
                 <div>
-                    <div className="tags">
+                    <div className="list-of-items">
                         {currentItems.map(item => <TagCard data={item}/>)}
                     </div>
                     <Pagination

@@ -30,7 +30,7 @@ function ListOfAlbums() {
         case true:
             return (
                 <div>
-                    <div className="images">
+                    <div className="list-of-items">
                         {currentItems.map(item => <AlbumCard data={item}/>)}
                     </div>
                     <Pagination

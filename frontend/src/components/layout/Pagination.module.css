@@ -3,9 +3,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 5rem;
     font-size: 1.2rem;
-    gap: 5px;
+    align-self: flex-start;
 }
 
 .page_num{
