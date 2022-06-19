@@ -31,7 +31,7 @@ function ListOfAlbums() {
             return (
                 <div>
                     <div className="list-of-items">
-                        {currentItems.map(item => <AlbumCard data={item}/>)}
+                        {currentItems.map(item => <AlbumCard key={item.id} data={item}/>)}
                     </div>
                     <Pagination
                         itemsPerPage={12}

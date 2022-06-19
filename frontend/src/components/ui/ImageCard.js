@@ -10,7 +10,6 @@ function ImageCard({data}) {
                     < Card.Img
                         variant="top"
                         src={data.image}
-                        key={data.image_id}
                         alt={data.name}
                         className="card-img"
                     />

@@ -30,7 +30,7 @@ function ListOfImages() {
             return (
                 <div>
                     <div className="list-of-items">
-                        {currentItems.map(item => <ImageCard data={item}/>)}
+                        {currentItems.map(item => <ImageCard key={item.id} data={item}/>)}
                     </div>
                     <Pagination
                         itemsPerPage={12}

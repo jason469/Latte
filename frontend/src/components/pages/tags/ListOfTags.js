@@ -32,7 +32,7 @@ function ListOfTags() {
             return (
                 <div>
                     <div className="list-of-items">
-                        {currentItems.map(item => <TagCard data={item}/>)}
+                        {currentItems.map(item => <TagCard key={item.id} data={item}/>)}
                     </div>
                     <Pagination
                         itemsPerPage={12}

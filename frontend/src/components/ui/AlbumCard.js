@@ -11,7 +11,6 @@ function AlbumCard({data}) {
                         < Card.Img
                             variant="top"
                             src={data.cover_image}
-                            key={data.id}
                             alt={data.name}
                             className="card-img"
                         />

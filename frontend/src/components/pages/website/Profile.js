@@ -1,6 +1,12 @@
+import {useContext} from "react";
+import AuthContext from "../../../contexts/AuthContext";
+
 function Profile() {
+    let {user} = useContext(AuthContext)
+    console.log(user)
+
     return (
-        <h1>This is the Profile</h1>
+        <h1>Hi {user.first_name} {user.last_name}</h1>
     );
 }
 

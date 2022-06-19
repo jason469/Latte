@@ -68,7 +68,6 @@ export const AuthProvider = props => {
                 localStorage.setItem('authTokens', JSON.stringify(data))
             }
         } else {
-            console.log('failed')
             logoutUser()
         }
 
