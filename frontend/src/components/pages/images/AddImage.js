@@ -6,11 +6,14 @@ import axios from 'axios';
 import {useState, useEffect, useContext} from "react";
 import AuthContext from "../../../contexts/AuthContext";
 import {GetItems} from "../../../utils/GetItems";
+import FormSubmitMessage from "../../ui/FormSubmitMessage";
 
 
 function AddImage() {
     const [tagOptions, setTagOptions] = useState([])
     const [albumOptions, setAlbumOptions] = useState([])
+    const [formSuccess, setFormSuccess] = useState(null);
+
     let {authTokens, logoutUser} = useContext(AuthContext)
 
     const initialValues = {
@@ -48,9 +51,11 @@ function AddImage() {
             .then((response) => {
                 if (response.status >= 200 && response.status <= 299) {
                     resetForm({values: null})
+                    setFormSuccess(true);
+                } else {
+                    setFormSuccess(false);
                 }
             })
-            .then(document)
             .catch(err => console.log(err))
     };
 
@@ -90,6 +95,10 @@ function AddImage() {
                     return (
                         <Form>
                             <h1>Add Image</h1>
+                            <FormSubmitMessage
+                                successStatus={formSuccess}
+                                item="Image"
+                            />
                             <div>
                                 <Box margin={2}>
                                     <Field

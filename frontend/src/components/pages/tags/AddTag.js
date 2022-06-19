@@ -4,11 +4,13 @@ import {Button, Box, Alert} from '@mui/material';
 import {TextField} from 'formik-mui';
 import {useContext, useState} from "react";
 import AuthContext from "../../../contexts/AuthContext";
+import FormSubmitMessage from "../../ui/FormSubmitMessage";
 
 
 function AddTag() {
     let {authTokens} = useContext(AuthContext)
-    const [successStatus, setSuccessStatus] = useState(null);
+    const [formSuccess, setFormSuccess] = useState(null);
+
     const initialValues = {
         name: '',
         description: '',
@@ -36,14 +38,12 @@ function AddTag() {
             .then(response => {
                 if (response.status >= 200 && response.status <= 299) {
                     resetForm({values: ''})
-                    setSuccessStatus(true);
+                    setFormSuccess(true);
                 } else {
-                    setSuccessStatus(false);
+                    setFormSuccess(false);
                 }
             })
-            .catch(err => {
-                console.log(err)
-            })
+            .catch(err => console.log(err))
     };
 
     return (
@@ -64,15 +64,10 @@ function AddTag() {
                     return (
                         <Form>
                             <h1>Add Tags</h1>
-                            {successStatus === true &&
-                                <Alert variant="outlined" severity="success">
-                                    Tag has been successfully added!
-                                </Alert>}
-                            {successStatus === false && (
-                                <Alert variant="outlined" severity="error">
-                                    Unable to add tag
-                                </Alert>
-                            )}
+                            <FormSubmitMessage
+                                successStatus={formSuccess}
+                                item = "Tag"
+                            />
                             <div>
                                 <Box margin={2}>
                                     <Field

@@ -3,11 +3,13 @@ import * as Yup from "yup"
 import {Button, Box} from '@mui/material';
 import {TextField} from 'formik-mui';
 import axios from 'axios';
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import AuthContext from "../../../contexts/AuthContext";
+import FormSubmitMessage from "../../ui/FormSubmitMessage";
 
 
 function AddAlbum() {
+    const [formSuccess, setFormSuccess] = useState(null);
     let {authTokens} = useContext(AuthContext)
     const initialValues = {
         name: '',
@@ -29,7 +31,6 @@ function AddAlbum() {
         if (values.file) {
             form_data.append('cover_image', values.file, values.file.name);
         }
-        console.log(form_data.get('cover_image'))
         let url = 'albums/';
         axios.post(url, form_data, {
             headers: {
@@ -40,7 +41,9 @@ function AddAlbum() {
             .then((response) => {
                 if (response.status >= 200 && response.status <= 299) {
                     resetForm({values: null})
-                    document.getElementById("image").val(null)
+                    setFormSuccess(true);
+                } else {
+                    setFormSuccess(false);
                 }
             })
             .catch(err => console.log(err))
@@ -64,6 +67,10 @@ function AddAlbum() {
                     return (
                         <Form>
                             <h1>Add Albums</h1>
+                            <FormSubmitMessage
+                                successStatus={formSuccess}
+                                item="Album"
+                            />
                             <div>
                                 <Box margin={2}>
                                     <Field

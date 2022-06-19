@@ -14,38 +14,38 @@ function NavigationBar() {
         <Navbar bg="light" expand="lg">
             <Navbar.Brand as={Link} to="/" className="brand">Image App</Navbar.Brand>
             <NavDropdown title={<IoMdImages/>} id="image-dropdown" className="image">
-                <NavDropdown.Item>
-                    <Nav.Link as={Link} to="/images">All Images</Nav.Link>
+                <NavDropdown.Item as={Link} to="/images">
+                    All Images
                 </NavDropdown.Item>
-                <NavDropdown.Item>
-                    <Nav.Link as={Link} to="/add-image">Add</Nav.Link>
+                <NavDropdown.Item as={Link} to="/add-image">
+                    Add
                 </NavDropdown.Item>
             </NavDropdown>
 
             <NavDropdown title={<IoMdPricetags/>} id="tag-dropdown" className="tags">
-                <NavDropdown.Item>
-                    <Nav.Link as={Link} to="/tags">All Tags</Nav.Link>
+                <NavDropdown.Item as={Link} to="/tags">
+                    All Tags
                 </NavDropdown.Item>
-                <NavDropdown.Item>
-                    <Nav.Link as={Link} to="/add-tag">Add</Nav.Link>
+                <NavDropdown.Item as={Link} to="/add-tag">
+                    Add
                 </NavDropdown.Item>
             </NavDropdown>
 
             <NavDropdown title={<IoIosAlbums/>} id="album-dropdown" className="albums">
-                <NavDropdown.Item>
-                    <Nav.Link as={Link} to="/albums">All Albums</Nav.Link>
+                <NavDropdown.Item as={Link} to="/albums">
+                    All Albums
                 </NavDropdown.Item>
-                <NavDropdown.Item>
-                    <Nav.Link as={Link} to="/add-album">Add</Nav.Link>
+                <NavDropdown.Item as={Link} to="/add-album">
+                    Add
                 </NavDropdown.Item>
             </NavDropdown>
 
             <NavDropdown title={<IoPersonSharp/>} id="profile-dropdown" className="ml-auto profile" alignRight={true}>
-                <NavDropdown.Item>
-                    <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
+                <NavDropdown.Item as={Link} to="/profile">
+                    Profile
                 </NavDropdown.Item>
-                <NavDropdown.Item>
-                    <Nav.Item onClick={() => logoutUser()}>Logout</Nav.Item>
+                <NavDropdown.Item onClick={() => logoutUser()}>
+                    Logout
                 </NavDropdown.Item>
             </NavDropdown>
         </Navbar>
