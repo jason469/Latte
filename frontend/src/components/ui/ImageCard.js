@@ -1,4 +1,3 @@
-import classes from "./ImageCard.module.css";
 import {Nav, Card} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
@@ -13,7 +12,7 @@ function ImageCard({data}) {
                         src={data.image}
                         key={data.image_id}
                         alt={data.name}
-                        className={classes.image}
+                        className="card-img"
                     />
                     <Card.Body>
                         <Card.Title variant="primary">{data.name}</Card.Title>

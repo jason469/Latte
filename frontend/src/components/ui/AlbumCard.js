@@ -1,4 +1,3 @@
-import classes from "./AlbumCard.module.css";
 import {Nav, Card} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
@@ -14,7 +13,7 @@ function AlbumCard({data}) {
                             src={data.cover_image}
                             key={data.id}
                             alt={data.name}
-                            className={classes.image}
+                            className="card-img"
                         />
                     }
                     <Card.Body>

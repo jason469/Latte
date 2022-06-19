@@ -6,14 +6,15 @@
 }
 
 .navbar > .image {
+    color: black !important;
 }
 
 .navbar > .tag {
+    color: black !important;
 }
 
 .navbar > .albums {
 }
 
 .navbar > .profile {
-    margin-left: auto;
 }

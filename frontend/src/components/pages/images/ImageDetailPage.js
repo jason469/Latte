@@ -1,17 +1,21 @@
-import React, {useEffect, useState} from "react";
+import {useEffect, useState, useContext} from "react";
 import {useParams} from "react-router-dom";
-import classes from "../images/ImageDetailPage.module.css";
+import {GetItems} from "../../../utils/GetItems";
+import AuthContext from "../../../contexts/AuthContext";
 
 function ImageDetailPage() {
     const imageId = useParams().imageId
     const [currentImage, setCurrentImage] = useState({})
+    let {authTokens, logoutUser} = useContext(AuthContext)
 
 
     useEffect(() => {
-        let url = `http://localhost:8000/api/images/${imageId}`;
-        fetch(url)
-            .then(response => response.json())
-            .then(data => setCurrentImage(data))
+        GetItems({
+            endpoint: `${imageId}`,
+            setFunction: setCurrentImage,
+            authTokens: authTokens,
+            logoutUser: logoutUser
+        })
     }, [])
 
     return (
@@ -20,7 +24,6 @@ function ImageDetailPage() {
                 src={currentImage.image}
                 key={currentImage.image_id}
                 alt={currentImage.name}
-                className={classes.image}
             />
             <h3>{currentImage.name}</h3>
             <p>{currentImage.description}</p>

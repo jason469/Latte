@@ -8,7 +8,7 @@ export async function GetItems({endpoint, setFunction, authTokens, logoutUser}) 
         }
     })
     let data = await response.json()
-    if (response.status === 200) {
+    if (response.status >= 200 && response.status <= 299) {
         setFunction(data)
     } else if (response.statusText === 'Unauthorized') {
         logoutUser()

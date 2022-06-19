@@ -1,7 +1,6 @@
-import React, {useContext, useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import AuthContext, {AuthProvider} from "../../../contexts/AuthContext";
 
-import classes from './ListOfTags.module.css'
 import Pagination from "../../layout/Pagination";
 import TagCard from "../../ui/TagCard";
 import {GetItems} from "../../../utils/GetItems";
@@ -32,7 +31,7 @@ function ListOfTags() {
         case true:
             return (
                 <div>
-                    <div className={classes.tags}>
+                    <div className="tags">
                         {currentItems.map(item => <TagCard data={item}/>)}
                     </div>
                     <Pagination

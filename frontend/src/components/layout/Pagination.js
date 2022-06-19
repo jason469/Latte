@@ -1,6 +1,5 @@
 import {useEffect, useState} from "react";
 import ReactPaginate from "react-paginate";
-import ImageCard from "../ui/ImageCard";
 import classes from "./Pagination.module.css";
 
 

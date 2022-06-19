@@ -1,4 +1,3 @@
-import classes from './ListOfAlbums.module.css'
 import Pagination from "../../layout/Pagination";
 import {useEffect, useState, useContext} from "react";
 import AlbumCard from "../../ui/AlbumCard";
@@ -31,7 +30,7 @@ function ListOfAlbums() {
         case true:
             return (
                 <div>
-                    <div className={classes.images}>
+                    <div className="images">
                         {currentItems.map(item => <AlbumCard data={item}/>)}
                     </div>
                     <Pagination

@@ -1,4 +1,3 @@
-import classes from './AddImage.module.css'
 import {Formik, Form, Field} from 'formik';
 import * as Yup from "yup"
 import {Button, Box} from '@mui/material';

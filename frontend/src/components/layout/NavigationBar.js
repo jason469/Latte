@@ -1,18 +1,20 @@
-import classes from './NavigationBar.module.css'
+import './NavigationBar.module.css'
 import {Container, Nav, NavDropdown, Navbar} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {useContext} from "react";
 import AuthContext from "../../contexts/AuthContext";
+import { IoPersonSharp } from "react-icons/io5";
+import { IoMdImages, IoMdPricetags, IoIosAlbums } from "react-icons/io";
 
 
 function NavigationBar() {
-    let {user, logoutUser} = useContext(AuthContext)
+    let {logoutUser} = useContext(AuthContext)
 
     return (
         <Navbar bg="light" expand="lg">
-            <Container className={classes.navbar}>
-                <Navbar.Brand as={Link} to="/" className={classes.brand}>Image App</Navbar.Brand>
-                <NavDropdown title="Images" id="image-dropdown" className={classes.image}>
+            <Container className="navbar">
+                <Navbar.Brand as={Link} to="/" className="brand">Image App</Navbar.Brand>
+                <NavDropdown title={<IoMdImages />} id="image-dropdown" className="image">
                     <NavDropdown.Item>
                         <Nav.Link as={Link} to="/images">All Images</Nav.Link>
                     </NavDropdown.Item>
@@ -21,7 +23,7 @@ function NavigationBar() {
                     </NavDropdown.Item>
                 </NavDropdown>
 
-                <NavDropdown title="Tags" id="tag-dropdown" className={classes.tags}>
+                <NavDropdown title={<IoMdPricetags />} id="tag-dropdown" className="tags">
                     <NavDropdown.Item>
                         <Nav.Link as={Link} to="/tags">All Tags</Nav.Link>
                     </NavDropdown.Item>
@@ -30,7 +32,7 @@ function NavigationBar() {
                     </NavDropdown.Item>
                 </NavDropdown>
 
-                <NavDropdown title="Albums" id="album-dropdown" className={classes.albums}>
+                <NavDropdown title={<IoIosAlbums />} id="album-dropdown" className="albums">
                     <NavDropdown.Item>
                         <Nav.Link as={Link} to="/albums">All Albums</Nav.Link>
                     </NavDropdown.Item>
@@ -39,7 +41,7 @@ function NavigationBar() {
                     </NavDropdown.Item>
                 </NavDropdown>
 
-                <NavDropdown title="Profile" id="profile-dropdown" className="ml-auto">
+                <NavDropdown title={<IoPersonSharp />} id="profile-dropdown" className="ml-auto profile">
                     <NavDropdown.Item>
                         <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
                     </NavDropdown.Item>

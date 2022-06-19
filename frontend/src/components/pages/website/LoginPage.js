@@ -1,6 +1,5 @@
 import {useContext} from "react";
 import AuthContext from "../../../contexts/AuthContext";
-import classes from "./LoginPage.module.css"
 import {Box, Button, TextField} from "@mui/material";
 
 function LoginPage() {

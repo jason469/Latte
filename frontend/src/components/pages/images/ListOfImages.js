@@ -1,4 +1,3 @@
-import classes from './ListOfImages.module.css'
 import Pagination from "../../layout/Pagination";
 import {useContext, useEffect, useState} from "react";
 import ImageCard from "../../ui/ImageCard";
@@ -30,7 +29,7 @@ function ListOfImages() {
         case true:
             return (
                 <div>
-                    <div className={classes.images}>
+                    <div className="images">
                         {currentItems.map(item => <ImageCard data={item}/>)}
                     </div>
                     <Pagination

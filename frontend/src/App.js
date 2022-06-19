@@ -20,7 +20,6 @@ import AddAlbum from "./components/pages/albums/AddAlbum";
 
 import HomePage from "./components/pages/website/Homepage";
 import Profile from "./components/pages/website/Profile";
-import API from "./components/pages/website/API";
 import LoginPage from "./components/pages/website/LoginPage";
 
 function App() {
