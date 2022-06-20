@@ -18,15 +18,31 @@ function ImageDetailPage() {
         })
     }, [])
 
+    console.log(currentImage)
+
     return (
         <div>
             <img
                 src={currentImage.image}
-                key={currentImage.image_id}
                 alt={currentImage.name}
             />
             <h3>{currentImage.name}</h3>
-            <p>{currentImage.description}</p>
+            <strong>Description</strong>
+            {currentImage.description ?
+                <p>{currentImage.description}</p> :
+                <p>No Description</p>
+            }
+            <strong>Tags</strong>
+            {currentImage.tag ?
+                <p>{currentImage.tag}</p> :
+                <p>No Tags</p>
+            }
+
+            <strong>Albums</strong>
+            {currentImage.album ?
+                <p>{currentImage.album}</p> :
+                <p>No Albums</p>
+            }
 
         </div>
     )

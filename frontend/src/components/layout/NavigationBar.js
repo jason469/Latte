@@ -12,7 +12,7 @@ function NavigationBar() {
 
     return (
         <Navbar bg="light" expand="lg">
-            <Navbar.Brand as={Link} to="/" className="brand">Image App</Navbar.Brand>
+            <Navbar.Brand as={Link} to="/" className="brand">Latte</Navbar.Brand>
             <NavDropdown title={<IoMdImages size={35} color="black"/>} id="image-dropdown" className="image">
                 <NavDropdown.Item as={Link} to="/images">
                     All Images

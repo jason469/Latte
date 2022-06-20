@@ -6,10 +6,11 @@ import axios from 'axios';
 import {useContext, useState} from "react";
 import AuthContext from "../../../contexts/AuthContext";
 import FormSubmitMessage from "../../ui/FormSubmitMessage";
+import {CheckFormOutcome} from "../../../utils/CheckFormOutcome";
 
 
 function AddAlbum() {
-    const [formSuccess, setFormSuccess] = useState(null);
+    const [formOutcome, setFormOutcome] = useState('');
     let {authTokens} = useContext(AuthContext)
     const initialValues = {
         name: '',
@@ -38,15 +39,8 @@ function AddAlbum() {
                 'Authorization': 'Bearer ' + String(authTokens.access)
             }
         })
-            .then((response) => {
-                if (response.status >= 200 && response.status <= 299) {
-                    resetForm({values: null})
-                    setFormSuccess(true);
-                } else {
-                    setFormSuccess(false);
-                }
-            })
-            .catch(err => console.log(err))
+            .then(response => CheckFormOutcome(response.status, resetForm, setFormOutcome))
+            .catch(err => CheckFormOutcome(err.response.status, resetForm, setFormOutcome))
     };
 
     return (
@@ -68,42 +62,36 @@ function AddAlbum() {
                         <Form>
                             <h1>Add Albums</h1>
                             <FormSubmitMessage
-                                successStatus={formSuccess}
+                                formOutcome={formOutcome}
                                 item="Album"
                             />
                             <div>
-                                <Box margin={2}>
-                                    <Field
-                                        id="name"
-                                        name="name"
-                                        type="text"
-                                        label="Name"
-                                        component={TextField}
-                                    />
-                                </Box>
+                                <Field
+                                    id="name"
+                                    name="name"
+                                    type="text"
+                                    label="Name"
+                                    component={TextField}
+                                />
                                 <br/>
-                                <Box margin={2}>
-                                    <Field
-                                        as='textarea'
-                                        id="description"
-                                        name="description"
-                                        type="text"
-                                        label="Description"
-                                        multiline
-                                        rows={4}
-                                        component={TextField}
-                                    />
-                                </Box>
+                                <Field
+                                    as='textarea'
+                                    id="description"
+                                    name="description"
+                                    type="text"
+                                    label="Description"
+                                    multiline
+                                    rows={4}
+                                    component={TextField}
+                                />
                                 <br/>
-                                <Box margin={2}>
-                                    <Field
-                                        id="image"
-                                        name="image"
-                                        type="file"
-                                        className="form-control"
-                                        onChange={event => props.setFieldValue("file", event.currentTarget.files[0])}
-                                    />
-                                </Box>
+                                <Field
+                                    id="image"
+                                    name="image"
+                                    type="file"
+                                    className="form-control"
+                                    onChange={event => props.setFieldValue("file", event.currentTarget.files[0])}
+                                />
                             </div>
                             <Button type="submit">Submit</Button>
                         </Form>

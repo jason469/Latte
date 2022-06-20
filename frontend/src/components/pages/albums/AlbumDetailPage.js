@@ -21,7 +21,6 @@ function AlbumDetailPage() {
         <div>
             <img
                 src={currentAlbum.cover_image}
-                key={currentAlbum.image_id}
                 alt={currentAlbum.name}
             />
             <h3>{currentAlbum.name}</h3>

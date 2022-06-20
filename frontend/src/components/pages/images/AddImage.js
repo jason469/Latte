@@ -7,12 +7,13 @@ import {useState, useEffect, useContext} from "react";
 import AuthContext from "../../../contexts/AuthContext";
 import {GetItems} from "../../../utils/GetItems";
 import FormSubmitMessage from "../../ui/FormSubmitMessage";
+import {CheckFormOutcome} from "../../../utils/CheckFormOutcome";
 
 
 function AddImage() {
     const [tagOptions, setTagOptions] = useState([])
     const [albumOptions, setAlbumOptions] = useState([])
-    const [formSuccess, setFormSuccess] = useState(null);
+    const [formOutcome, setFormOutcome] = useState(null);
 
     let {authTokens, logoutUser} = useContext(AuthContext)
 
@@ -48,15 +49,8 @@ function AddImage() {
                 'Authorization': 'Bearer ' + String(authTokens.access)
             }
         })
-            .then((response) => {
-                if (response.status >= 200 && response.status <= 299) {
-                    resetForm({values: null})
-                    setFormSuccess(true);
-                } else {
-                    setFormSuccess(false);
-                }
-            })
-            .catch(err => console.log(err))
+            .then(response => CheckFormOutcome(response.status, resetForm, setFormOutcome))
+            .catch(err => CheckFormOutcome(err.response.status, resetForm, setFormOutcome))
     };
 
     useEffect(() => {
@@ -96,77 +90,67 @@ function AddImage() {
                         <Form>
                             <h1>Add Image</h1>
                             <FormSubmitMessage
-                                successStatus={formSuccess}
+                                formOutcome={formOutcome}
                                 item="Image"
                             />
                             <div>
-                                <Box margin={2}>
-                                    <Field
-                                        id="name"
-                                        name="name"
-                                        type="text"
-                                        label="Name"
-                                        component={TextField}
-                                    />
-                                </Box>
+                                <Field
+                                    id="name"
+                                    name="name"
+                                    type="text"
+                                    label="Name"
+                                    component={TextField}
+                                />
                                 <br/>
-                                <Box margin={2}>
-                                    <Field
-                                        as='textarea'
-                                        id="description"
-                                        name="description"
-                                        type="text"
-                                        label="Description"
-                                        multiline
-                                        rows={4}
-                                        component={TextField}
-                                    />
-                                </Box>
+                                <Field
+                                    as='textarea'
+                                    id="description"
+                                    name="description"
+                                    type="text"
+                                    label="Description"
+                                    multiline
+                                    rows={4}
+                                    component={TextField}
+                                />
                                 <br/>
 
-                                <Box margin={2}>
-                                    <Field
-                                        id="image"
-                                        name="image"
-                                        type="file"
-                                        className="form-control"
-                                        onChange={event => props.setFieldValue("file", event.currentTarget.files[0])}
-                                    />
-                                </Box>
+                                <Field
+                                    id="image"
+                                    name="image"
+                                    type="file"
+                                    className="form-control"
+                                    onChange={event => props.setFieldValue("file", event.currentTarget.files[0])}
+                                />
 
-                                <Box margin={2}>
-                                    <Field as="select"
-                                           name="tag"
-                                           id="tag"
-                                    >
-                                        {tagOptions.map(
-                                            tagOption =>
-                                                <option
-                                                    key={tagOption.id}
-                                                    value={tagOption.name}
-                                                >
-                                                    {tagOption.name}
-                                                </option>
-                                        )}
-                                    </Field>
-                                </Box>
-                                <Box margin={2}>
-                                    <Field as="select"
-                                           name="album"
-                                           id="album"
-                                           label="Album"
-                                    >
-                                        {albumOptions.map(
-                                            albumOption =>
-                                                <option
-                                                    key={albumOption.id}
-                                                    value={albumOption.name}
-                                                >
-                                                    {albumOption.name}
-                                                </option>
-                                        )}
-                                    </Field>
-                                </Box>
+                                <Field as="select"
+                                       name="tag"
+                                       id="tag"
+                                >
+                                    {tagOptions.map(
+                                        tagOption =>
+                                            <option
+                                                key={tagOption.id}
+                                                value={tagOption.name}
+                                            >
+                                                {tagOption.name}
+                                            </option>
+                                    )}
+                                </Field>
+                                <Field as="select"
+                                       name="album"
+                                       id="album"
+                                       label="Album"
+                                >
+                                    {albumOptions.map(
+                                        albumOption =>
+                                            <option
+                                                key={albumOption.id}
+                                                value={albumOption.name}
+                                            >
+                                                {albumOption.name}
+                                            </option>
+                                    )}
+                                </Field>
                                 <br/>
                             </div>
                             <Button type="submit">Submit</Button>

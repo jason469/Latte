@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from .models import *
@@ -35,16 +36,19 @@ class ImageSerializer(serializers.ModelSerializer):
         return data
 
     def create(self, validated_data):
-        image = Image.objects.create(
-            name=validated_data['name'][0],
-            description=validated_data['description'][0],
-            image=validated_data['image'][0],
-        )
-        image.save()
-        image.tag.add(validated_data['tag'][0])
-        image.album.add(validated_data['album'][0])
-        image.save()
-        return image
+        try:
+            image = Image.objects.create(
+                name=validated_data.get('name'),
+                description=validated_data.get('description'),
+                image=validated_data.get('image'),
+            )
+            image.save()
+            image.tag.add(validated_data.get('tag'))
+            image.album.add(validated_data.get('album'))
+            image.save()
+            return image
+        except Exception as exc:
+            print(Exception)
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):

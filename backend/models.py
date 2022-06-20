@@ -13,6 +13,9 @@ class Tag(models.Model):
         ordering = ['name']
         unique_together = ['name']
 
+    def natural_key(self):
+        return self.name
+
 
 class Album(models.Model):
     name = models.CharField(max_length=255, blank=False, null=False, default='')
@@ -26,6 +29,9 @@ class Album(models.Model):
     class Meta:
         ordering = ['name']
         unique_together = ['name']
+
+    def natural_key(self):
+        return self.name
 
 
 class Image(models.Model):
