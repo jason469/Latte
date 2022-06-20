@@ -22,13 +22,14 @@ class ImageViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         try:
-            instance, created = Image.objects.get_or_create(name=request.data.get('name'),
-                                                            tag__name=request.data.get('tag'),
-                                                            album__name=request.data.get('album'))
-            print(created)
+            image, created = Image.objects.get_or_create(name=request.data.get('name'))
             if created is True:
+                print(Tag.objects.get(name=request.data.get("tag")))
+                image.tag.add(Tag.objects.get(name=request.data.get("tag")))
+                image.album.add(Album.objects.get(name=request.data.get("album")))
                 return HttpResponse(status=201)
             else:
+                print('already created')
                 return HttpResponse(status=406)
         except Exception as exc:
             print(exc)

@@ -35,16 +35,11 @@ class Album(models.Model):
 
 
 class Image(models.Model):
-    image_id = models.PositiveBigIntegerField(blank=True, null=True)
     name = models.CharField(max_length=255, blank=True, null=True)
     description = models.TextField(max_length=255, blank=True, null=True)
     image = models.ImageField(upload_to='post_images', blank=True, null=True)
     tag = models.ManyToManyField(Tag, blank=True, null=True)
     album = models.ManyToManyField(Album, blank=True, null=True)
-
-    def save(self, *args, **kwargs):
-        self.image_id = self.id
-        return super().save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.id} - {self.name}'
