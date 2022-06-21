@@ -14,7 +14,10 @@ class Tag(models.Model):
         unique_together = ['name']
 
     def natural_key(self):
-        return self.name
+        return {
+            "id": self.id,
+            "name": self.name
+        }
 
 
 class Album(models.Model):
@@ -31,7 +34,10 @@ class Album(models.Model):
         unique_together = ['name']
 
     def natural_key(self):
-        return self.name
+        return {
+            "id": self.id,
+            "name": self.name
+        }
 
 
 class Image(models.Model):

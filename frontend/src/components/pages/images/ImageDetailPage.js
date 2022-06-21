@@ -21,24 +21,28 @@ function ImageDetailPage() {
     return (
         <div>
             <img
-                src={currentImage.image}
-                alt={currentImage.name}
+                src={currentImage[0].fields.image}
+                alt={currentImage[0].fields.name}
             />
-            <h3>{currentImage.name}</h3>
+            <h3>{currentImage[0].fields.name}</h3>
             <strong>Description</strong>
-            {currentImage.description ?
-                <p>{currentImage.description}</p> :
+            {currentImage[0].fields.description ?
+                <p>{currentImage[0].fields.description}</p> :
                 <p>No Description</p>
             }
             <strong>Tags</strong>
-            {currentImage.tag ?
-                <p>{currentImage.tag}</p> :
+            {currentImage[0].fields.tag ?
+                currentImage[0].fields.tag.map((tag) => {
+                    return <p>{tag.name}</p>
+                }) :
                 <p>No Tags</p>
             }
 
             <strong>Albums</strong>
-            {currentImage.album ?
-                <p>{currentImage.album}</p> :
+            {currentImage[0].fields.album ?
+                currentImage[0].fields.album.map((album) => {
+                    return <p>{album.name}</p>
+                }) :
                 <p>No Albums</p>
             }
 

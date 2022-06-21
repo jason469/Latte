@@ -2,10 +2,13 @@ import json
 
 from .serializers import *
 from .models import *
-from rest_framework import viewsets
-from rest_framework.parsers import MultiPartParser, FormParser
 
 from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework import viewsets
+from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.mixins import RetrieveModelMixin
+
+from django.core import serializers
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
@@ -21,6 +24,16 @@ class ImageViewSet(viewsets.ModelViewSet):
     queryset = Image.objects.all()
     serializer_class = ImageSerializer
     parser_classes = (MultiPartParser, FormParser)
+
+    def list(self, request, *args, **kwargs):
+        print('hi')
+        return HttpResponse(serializers.serialize('json', Image.objects.all(), use_natural_foreign_keys=True))
+
+    def retrieve(self, request, *args, **kwargs):
+        image_id = self.get_object().id
+        return HttpResponse(
+            serializers.serialize('json', Image.objects.filter(id=image_id), use_natural_foreign_keys=True)
+        )
 
     def create(self, request, *args, **kwargs):
         try:

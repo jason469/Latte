@@ -60,8 +60,8 @@ function ListOfImages() {
                     </div>
                     <div className="list-of-items">
                         {inputText !== ""
-                            ? filteredData.map(item => <ImageCard key={item.id} data={item}/>)
-                            : currentItems.map(item => <ImageCard key={item.id} data={item}/>)
+                            ? filteredData.map(item => <ImageCard key={item.pk} data={item}/>)
+                            : currentItems.map(item => <ImageCard key={item.pk} data={item}/>)
                         }
                     </div>
                     <Pagination

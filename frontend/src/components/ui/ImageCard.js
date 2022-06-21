@@ -5,16 +5,16 @@ import {Link} from "react-router-dom";
 function ImageCard({data}) {
     return (
         <div>
-            <Nav.Link as={Link} to={`/images/${data.id}`}>
+            <Nav.Link as={Link} to={`/images/${data.pk}`}>
                 <Card>
                     < Card.Img
                         variant="top"
-                        src={data.image}
-                        alt={data.name}
+                        src={data.fields.image}
+                        alt={data.fields.name}
                         className="card-img"
                     />
                     <Card.Body>
-                        <Card.Title variant="primary">{data.name}</Card.Title>
+                        <Card.Title variant="primary">{data.fields.name}</Card.Title>
                     </Card.Body>
                 </Card>
             </Nav.Link>
