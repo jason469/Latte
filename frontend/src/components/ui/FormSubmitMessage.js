@@ -1,7 +1,6 @@
 import {Alert} from "@mui/material";
 
 function FormSubmitMessage({formOutcome, item}) {
-    console.log(formOutcome)
     return (
         <>
             {formOutcome === 'created' && (

@@ -1,3 +1,5 @@
+import json
+
 from .serializers import *
 from .models import *
 from rest_framework import viewsets
@@ -24,12 +26,14 @@ class ImageViewSet(viewsets.ModelViewSet):
         try:
             image, created = Image.objects.get_or_create(name=request.data.get('name'))
             if created is True:
-                print(Tag.objects.get(name=request.data.get("tag")))
-                image.tag.add(Tag.objects.get(name=request.data.get("tag")))
-                image.album.add(Album.objects.get(name=request.data.get("album")))
+                tags = json.loads(request.data.get("tags"))
+                albums = json.loads(request.data.get("albums"))
+                for tag in tags:
+                    image.tag.add(Tag.objects.get(name=tag))
+                for album in albums:
+                    image.album.add(Album.objects.get(name=album))
                 return HttpResponse(status=201)
             else:
-                print('already created')
                 return HttpResponse(status=406)
         except Exception as exc:
             print(exc)

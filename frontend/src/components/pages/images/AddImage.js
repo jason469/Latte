@@ -8,6 +8,7 @@ import AuthContext from "../../../contexts/AuthContext";
 import {GetItems} from "../../../utils/GetItems";
 import FormSubmitMessage from "../../ui/FormSubmitMessage";
 import {CheckFormOutcome} from "../../../utils/CheckFormOutcome";
+import {FormikControl} from "../../../utils/FormikControl/FormikControl";
 
 
 function AddImage() {
@@ -20,6 +21,8 @@ function AddImage() {
     const initialValues = {
         name: '',
         description: '',
+        tags: [],
+        albums: []
     }
 
     const validationSchema = Yup.object({
@@ -27,18 +30,16 @@ function AddImage() {
             .max(100, "Must be 100 characters or less")
             .required("First Name Required"),
         description: Yup.string(),
-        // image: Yup.object().shape({
-        //     file: Yup.mixed().required('File is required'),
-        // })
     })
 
 
     const onSubmit = (values, {resetForm}) => {
+        console.log(values.albums)
         let form_data = new FormData();
         form_data.append('name', values.name);
         form_data.append('description', values.description);
-        form_data.append('tag', values.tag);
-        form_data.append('album', values.album);
+        form_data.append('tags', JSON.stringify(values.tags));
+        form_data.append('albums', JSON.stringify(values.albums));
         if (values.file) {
             form_data.append('image', values.file, values.file.name);
         }
@@ -122,36 +123,20 @@ function AddImage() {
                                     onChange={event => props.setFieldValue("file", event.currentTarget.files[0])}
                                 />
 
-                                <Field as="select"
-                                       name="tag"
-                                       id="tag"
-                                >
-                                    {tagOptions.map(
-                                        tagOption =>
-                                            <option
-                                                key={tagOption.id}
-                                                value={tagOption.name}
-                                            >
-                                                {tagOption.name}
-                                            </option>
-                                    )}
-                                </Field>
-                                <Field as="select"
-                                       name="album"
-                                       id="album"
-                                       label="Album"
-                                >
-                                    {albumOptions.map(
-                                        albumOption =>
-                                            <option
-                                                key={albumOption.id}
-                                                value={albumOption.name}
-                                            >
-                                                {albumOption.name}
-                                            </option>
-                                    )}
-                                </Field>
+                                <FormikControl
+                                    control='checkbox'
+                                    label='Tags'
+                                    name='tags'
+                                    options={tagOptions}
+                                />
+
                                 <br/>
+                                <FormikControl
+                                    control='checkbox'
+                                    label='Albums'
+                                    name='albums'
+                                    options={albumOptions}
+                                />
                             </div>
                             <Button type="submit">Submit</Button>
                         </Form>

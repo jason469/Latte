@@ -18,8 +18,6 @@ function ImageDetailPage() {
         })
     }, [])
 
-    console.log(currentImage)
-
     return (
         <div>
             <img
