@@ -24,7 +24,11 @@ class ImageViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         try:
-            image, created = Image.objects.get_or_create(name=request.data.get('name'))
+            image, created = Image.objects.get_or_create(
+                name=request.data.get('name'),
+                description=request.data.get('description'),
+                image=request.data.get('image')
+            )
             if created is True:
                 tags = json.loads(request.data.get("tags"))
                 albums = json.loads(request.data.get("albums"))
@@ -46,7 +50,10 @@ class TagViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         try:
-            instance, created = Tag.objects.get_or_create(name=request.data.get('name'))
+            instance, created = Tag.objects.get_or_create(
+                name=request.data.get('name'),
+                description=request.data.get('description')
+            )
             if created is True:
                 return HttpResponse(status=201)
             else:
@@ -63,7 +70,11 @@ class AlbumViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         try:
-            instance, created = Album.objects.get_or_create(name=request.data.get('name'))
+            instance, created = Album.objects.get_or_create(
+                name=request.data.get('name'),
+                description=request.data.get('description'),
+                cover_image=request.data.get('cover_image')
+            )
             if created is True:
                 return HttpResponse(status=201)
             else:
