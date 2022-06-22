@@ -2,12 +2,10 @@ import Pagination from "../../layout/Pagination";
 import {useEffect, useState, useContext} from "react";
 import AlbumCard from "../../ui/AlbumCard";
 import AuthContext from "../../../contexts/AuthContext";
-import {GetItems} from "../../../utils/GetItems";
-import addImage from "../images/AddImage";
+import {ManageItems} from "../../../utils/ManageItems";
 import EmptyPage from "../website/EmptyPage";
 import TextField from "@mui/material/TextField";
 import {inputHandler} from "../../../utils/searchBarFunctions";
-import TagCard from "../../ui/TagCard";
 
 function ListOfAlbums() {
     const [albumData, setAlbumData] = useState([])
@@ -33,13 +31,14 @@ function ListOfAlbums() {
 
     //Fetch Images
     useEffect(() => {
-        GetItems({
+        ManageItems({
             endpoint: 'albums',
+            method: "GET",
             setFunction: setAlbumData,
             authTokens: authTokens,
             logoutUser: logoutUser
         })
-    }, [])
+    }, [albumData])
 
     switch (albumData.length !== 0) {
         case true:

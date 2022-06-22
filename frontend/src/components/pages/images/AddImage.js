@@ -5,7 +5,7 @@ import {TextField} from 'formik-mui';
 import axios from 'axios';
 import {useState, useEffect, useContext} from "react";
 import AuthContext from "../../../contexts/AuthContext";
-import {GetItems} from "../../../utils/GetItems";
+import {ManageItems} from "../../../utils/ManageItems";
 import FormSubmitMessage from "../../ui/FormSubmitMessage";
 import {CheckFormOutcome} from "../../../utils/CheckFormOutcome";
 import {FormikControl} from "../../../utils/FormikControl/FormikControl";
@@ -34,7 +34,6 @@ function AddImage() {
 
 
     const onSubmit = (values, {resetForm}) => {
-        console.log(values.albums)
         let form_data = new FormData();
         form_data.append('name', values.name);
         form_data.append('description', values.description);
@@ -55,8 +54,9 @@ function AddImage() {
     };
 
     useEffect(() => {
-        GetItems({
+        ManageItems({
             endpoint: 'tags',
+            method: "GET",
             setFunction: setTagOptions,
             authTokens: authTokens,
             logoutUser: logoutUser
@@ -64,8 +64,9 @@ function AddImage() {
     }, [])
 
     useEffect(() => {
-        GetItems({
+        ManageItems({
             endpoint: 'albums',
+            method: "GET",
             setFunction: setAlbumOptions,
             authTokens: authTokens,
             logoutUser: logoutUser

@@ -1,25 +1,39 @@
 import {Nav, Card} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import {ImCross} from "react-icons/im";
+import {ManageItems} from "../../utils/ManageItems";
+import {useContext} from "react";
+import AuthContext from "../../contexts/AuthContext";
 
 
 function AlbumCard({data}) {
+    let {authTokens, logoutUser} = useContext(AuthContext)
+
     return (
         <div>
-            <Nav.Link as={Link} to={`/albums/${data.id}`}>
-                <Card>
-                    {data.cover_image != null &&
-                        < Card.Img
-                            variant="top"
-                            src={data.cover_image}
-                            alt={data.name}
-                            className="card-img"
-                        />
-                    }
-                    <Card.Body>
+            <Card>
+                {data.cover_image != null &&
+                    < Card.Img
+                        variant="top"
+                        src={data.cover_image}
+                        alt={data.name}
+                        className="card-img"
+                    />
+                }
+                <Card.Body>
+                    <Nav.Link as={Link} to={`/albums/${data.id}`}>
                         <Card.Title variant="primary">{data.name}</Card.Title>
-                    </Card.Body>
-                </Card>
-            </Nav.Link>
+                    </Nav.Link>
+                    <ImCross onClick={() => {
+                        ManageItems({
+                            endpoint: `albums/${data.id}`,
+                            method: "DELETE",
+                            authTokens: authTokens,
+                            logoutUser: logoutUser,
+                        })
+                    }}/>
+                </Card.Body>
+            </Card>
         </div>
     );
 }

@@ -1,7 +1,9 @@
 import {useEffect, useState, useContext} from "react";
-import {useParams} from "react-router-dom";
-import {GetItems} from "../../../utils/GetItems";
+import {Link, useParams} from "react-router-dom";
+import {ManageItems} from "../../../utils/ManageItems";
 import AuthContext from "../../../contexts/AuthContext";
+import {Nav} from "react-bootstrap";
+import TagCard from "../../ui/TagCard";
 
 function ImageDetailPage() {
     const imageId = useParams().imageId
@@ -10,42 +12,48 @@ function ImageDetailPage() {
 
 
     useEffect(() => {
-        GetItems({
+        ManageItems({
             endpoint: `${imageId}`,
+            method: "GET",
             setFunction: setCurrentImage,
             authTokens: authTokens,
             logoutUser: logoutUser
         })
+            .then(() => console.log(currentImage))
     }, [])
 
     return (
         <div>
             <img
-                src={currentImage[0].fields.image}
-                alt={currentImage[0].fields.name}
+                src={currentImage.fields.image}
+                alt={currentImage.fields.name}
             />
-            <h3>{currentImage[0].fields.name}</h3>
+            <h3>{currentImage.fields.name}</h3>
             <strong>Description</strong>
-            {currentImage[0].fields.description ?
-                <p>{currentImage[0].fields.description}</p> :
+            {currentImage.fields.description ?
+                <p>{currentImage.fields.description}</p> :
                 <p>No Description</p>
             }
             <strong>Tags</strong>
-            {currentImage[0].fields.tag ?
-                currentImage[0].fields.tag.map((tag) => {
-                    return <p>{tag.name}</p>
+            {currentImage.fields.tag ?
+                currentImage.fields.tag.map((tag) => {
+                    return (
+                        <TagCard data={tag} key={tag.id} image={currentImage}/>
+                    )
                 }) :
                 <p>No Tags</p>
             }
-
             <strong>Albums</strong>
-            {currentImage[0].fields.album ?
-                currentImage[0].fields.album.map((album) => {
-                    return <p>{album.name}</p>
+            {currentImage.fields.album ?
+                currentImage.fields.album.map((album) => {
+                    return (
+                        <Nav.Link as={Link} to={`/albums/${album.id}`}>
+                            <p>{album.name}</p>
+                        </Nav.Link>
+                    )
                 }) :
                 <p>No Albums</p>
             }
-
         </div>
     )
 }

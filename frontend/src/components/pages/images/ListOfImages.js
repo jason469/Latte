@@ -2,11 +2,10 @@ import Pagination from "../../layout/Pagination";
 import {useContext, useEffect, useState} from "react";
 import ImageCard from "../../ui/ImageCard";
 import AuthContext from "../../../contexts/AuthContext";
-import {GetItems} from "../../../utils/GetItems";
+import {ManageItems} from "../../../utils/ManageItems";
 import EmptyPage from "../website/EmptyPage";
 import TextField from "@mui/material/TextField";
 import {inputHandler} from "../../../utils/searchBarFunctions";
-import TagCard from "../../ui/TagCard";
 
 function ListOfImages() {
     const [imageData, setImageData] = useState([])
@@ -35,13 +34,14 @@ function ListOfImages() {
 
     //Fetch photos
     useEffect(() => {
-        GetItems({
+        ManageItems({
             endpoint: 'images',
+            method: "GET",
             setFunction: setImageData,
             authTokens: authTokens,
             logoutUser: logoutUser
         })
-    }, [])
+    }, [imageData])
 
     switch (imageData.length !== 0) {
         case true:

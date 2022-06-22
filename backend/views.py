@@ -1,5 +1,7 @@
 import json
 
+from django.http import Http404
+
 from .serializers import *
 from .models import *
 
@@ -26,7 +28,6 @@ class ImageViewSet(viewsets.ModelViewSet):
     parser_classes = (MultiPartParser, FormParser)
 
     def list(self, request, *args, **kwargs):
-        print('hi')
         return HttpResponse(serializers.serialize('json', Image.objects.all(), use_natural_foreign_keys=True))
 
     def retrieve(self, request, *args, **kwargs):

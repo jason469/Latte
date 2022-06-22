@@ -3,8 +3,8 @@ import AuthContext, {AuthProvider} from "../../../contexts/AuthContext";
 import TextField from "@mui/material/TextField";
 
 import Pagination from "../../layout/Pagination";
-import TagCard from "../../ui/TagCard";
-import {GetItems} from "../../../utils/GetItems";
+import TagDetailedCard from "../../ui/TagCard";
+import {ManageItems} from "../../../utils/ManageItems";
 import EmptyPage from "../website/EmptyPage";
 import {inputHandler} from "../../../utils/searchBarFunctions"
 
@@ -14,7 +14,6 @@ function ListOfTags() {
     const [inputText, setInputText] = useState("");
     let {authTokens, logoutUser} = useContext(AuthContext)
 
-    // Fetch current items
     const pull_tags = (tags) => {
         setCurrentItems(tags);
     }
@@ -23,7 +22,7 @@ function ListOfTags() {
         if (inputText === '' ||
             tag.name.toLowerCase().includes(inputText) ||
             tag.description.toLowerCase().includes(inputText)
-        ){
+        ) {
             return tag;
         } else {
             return null
@@ -32,13 +31,14 @@ function ListOfTags() {
 
     //Fetch tags
     useEffect(() => {
-        GetItems({
+        ManageItems({
             endpoint: 'tags',
+            method: "GET",
             setFunction: setTagData,
             authTokens: authTokens,
             logoutUser: logoutUser
         })
-    }, [])
+    }, [tagData])
 
 
     switch (tagData.length !== 0) {
@@ -58,8 +58,8 @@ function ListOfTags() {
                     </div>
                     <div className="list-of-items">
                         {inputText !== ""
-                            ? filteredData.map(item => <TagCard key={item.id} data={item}/>)
-                            : currentItems.map(item => <TagCard key={item.id} data={item}/>)
+                            ? filteredData.map(item => <TagDetailedCard key={item.id} data={item}/>)
+                            : currentItems.map(item => <TagDetailedCard key={item.id} data={item}/>)
                         }
                     </div>
                     <Pagination

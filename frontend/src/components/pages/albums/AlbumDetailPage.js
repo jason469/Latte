@@ -1,7 +1,7 @@
 import {useEffect, useState, useContext} from "react";
 import {useParams} from "react-router-dom";
 import AuthContext from "../../../contexts/AuthContext";
-import {GetItems} from "../../../utils/GetItems";
+import {ManageItems} from "../../../utils/ManageItems";
 
 function AlbumDetailPage() {
     const albumId = useParams().albumId
@@ -9,8 +9,9 @@ function AlbumDetailPage() {
     let {authTokens, logoutUser} = useContext(AuthContext)
 
     useEffect(() => {
-        GetItems({
+        ManageItems({
             endpoint: `${albumId}`,
+            method: "GET",
             setFunction: setCurrentAlbum,
             authTokens: authTokens,
             logoutUser: logoutUser

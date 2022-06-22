@@ -1,7 +1,7 @@
 import {useEffect, useState, useContext} from "react";
 import {useParams} from "react-router-dom";
 import AuthContext from "../../../contexts/AuthContext";
-import {GetItems} from "../../../utils/GetItems";
+import {ManageItems} from "../../../utils/ManageItems";
 
 function TagDetailPage() {
     const tagId = useParams().tagId
@@ -9,8 +9,9 @@ function TagDetailPage() {
     let {authTokens, logoutUser} = useContext(AuthContext)
 
     useEffect(() => {
-        GetItems({
+        ManageItems({
             endpoint: `${tagId}`,
+            method: "GET",
             setFunction: setCurrentTag,
             authTokens: authTokens,
             logoutUser: logoutUser
