@@ -2,6 +2,7 @@ import {useEffect, useState, useContext} from "react";
 import {useParams} from "react-router-dom";
 import AuthContext from "../../../contexts/AuthContext";
 import {ManageItems} from "../../../utils/ManageItems";
+import TagForm from "../../../utils/FormikForms/TagForm";
 
 function TagDetailPage() {
     const tagId = useParams().tagId
@@ -20,8 +21,13 @@ function TagDetailPage() {
 
     return (
         <div>
-            <h3>{currentTag.name}</h3>
-            <p>{currentTag.description}</p>
+            <TagForm
+                title="Update tags"
+                name={currentTag.name}
+                description={currentTag.description}
+                method='PATCH'
+                endpoint={`${currentTag.id}/`}
+            />
         </div>
     )
 }

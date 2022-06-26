@@ -9,6 +9,7 @@ import {inputHandler} from "../../../utils/searchBarFunctions";
 
 function ListOfAlbums() {
     const [albumData, setAlbumData] = useState([])
+    const [deletedItem, setDeletedItem] = useState(0)
     const [currentItems, setCurrentItems] = useState([]);
     const [inputText, setInputText] = useState("");
     let {authTokens, logoutUser} = useContext(AuthContext)
@@ -38,7 +39,7 @@ function ListOfAlbums() {
             authTokens: authTokens,
             logoutUser: logoutUser
         })
-    }, [albumData])
+    }, [deletedItem])
 
     switch (albumData.length !== 0) {
         case true:
@@ -57,8 +58,8 @@ function ListOfAlbums() {
                     </div>
                     <div className="list-of-items">
                         {inputText !== ""
-                            ? filteredData.map(item => <AlbumCard key={item.id} data={item}/>)
-                            : currentItems.map(item => <AlbumCard key={item.id} data={item}/>)
+                            ? filteredData.map(item => <AlbumCard key={item.id} data={item} setDeletedItem={setDeletedItem}/>)
+                            : currentItems.map(item => <AlbumCard key={item.id} data={item} setDeletedItem={setDeletedItem}/>)
                         }
                     </div>
                     <Pagination

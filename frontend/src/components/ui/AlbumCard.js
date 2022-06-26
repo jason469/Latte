@@ -6,7 +6,7 @@ import {useContext} from "react";
 import AuthContext from "../../contexts/AuthContext";
 
 
-function AlbumCard({data}) {
+function AlbumCard({data, setDeletedItem}) {
     let {authTokens, logoutUser} = useContext(AuthContext)
 
     return (
@@ -31,6 +31,7 @@ function AlbumCard({data}) {
                             authTokens: authTokens,
                             logoutUser: logoutUser,
                         })
+                        setDeletedItem(data.id)
                     }}/>
                 </Card.Body>
             </Card>

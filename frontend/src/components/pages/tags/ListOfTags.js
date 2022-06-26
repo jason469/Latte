@@ -1,17 +1,19 @@
-import {useContext, useEffect, useState} from "react";
+import {useContext, useEffect, useRef, useState} from "react";
 import AuthContext, {AuthProvider} from "../../../contexts/AuthContext";
 import TextField from "@mui/material/TextField";
 
 import Pagination from "../../layout/Pagination";
-import TagDetailedCard from "../../ui/TagCard";
 import {ManageItems} from "../../../utils/ManageItems";
 import EmptyPage from "../website/EmptyPage";
 import {inputHandler} from "../../../utils/searchBarFunctions"
+import TagCard from "../../ui/TagCard";
 
 function ListOfTags() {
     const [tagData, setTagData] = useState([])
+    const [deletedItem, setDeletedItem] = useState(0)
     const [currentItems, setCurrentItems] = useState([]);
     const [inputText, setInputText] = useState("");
+
     let {authTokens, logoutUser} = useContext(AuthContext)
 
     const pull_tags = (tags) => {
@@ -38,7 +40,7 @@ function ListOfTags() {
             authTokens: authTokens,
             logoutUser: logoutUser
         })
-    }, [tagData])
+    }, [deletedItem])
 
 
     switch (tagData.length !== 0) {
@@ -58,8 +60,8 @@ function ListOfTags() {
                     </div>
                     <div className="list-of-items">
                         {inputText !== ""
-                            ? filteredData.map(item => <TagDetailedCard key={item.id} data={item}/>)
-                            : currentItems.map(item => <TagDetailedCard key={item.id} data={item}/>)
+                            ? filteredData.map(item => <TagCard key={item.id} data={item} setDeletedItem={setDeletedItem}/>)
+                            : currentItems.map(item => <TagCard key={item.id} data={item} setDeletedItem={setDeletedItem}/>)
                         }
                     </div>
                     <Pagination

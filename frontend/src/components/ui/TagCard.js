@@ -6,7 +6,7 @@ import {ImCross} from "react-icons/im";
 import {ManageItems} from "../../utils/ManageItems";
 
 
-function TagCard({data}) {
+function TagCard({data, setDeletedItem}) {
     let {authTokens, logoutUser} = useContext(AuthContext)
 
     return (
@@ -23,6 +23,7 @@ function TagCard({data}) {
                             authTokens: authTokens,
                             logoutUser: logoutUser,
                         })
+                        setDeletedItem(data.id)
                     }}/>
                 </Card.Body>
             </Card>

@@ -77,6 +77,7 @@ class TagViewSet(viewsets.ModelViewSet):
             return HttpResponse(500)
 
 
+
 class AlbumViewSet(viewsets.ModelViewSet):
     queryset = Album.objects.all()
     serializer_class = AlbumSerializer
