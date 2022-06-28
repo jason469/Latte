@@ -11,6 +11,7 @@ import AlbumLabel from "../../ui/AlbumLabel";
 
 function ImageDetailPage() {
     const imageId = useParams().imageId
+    const [deletedItem, setDeletedItem] = useState(0)
     const [currentImage, setCurrentImage] = useState([{fields: {}}])
     let {authTokens, logoutUser} = useContext(AuthContext)
 
@@ -22,7 +23,8 @@ function ImageDetailPage() {
             authTokens: authTokens,
             logoutUser: logoutUser
         })
-    }, [])
+        console.log('update image')
+    }, [deletedItem])
 
     return (
         <div>
@@ -39,7 +41,7 @@ function ImageDetailPage() {
             {currentImage[0].fields.tag ?
                 currentImage[0].fields.tag.map(tag => {
                     return (
-                        <TagLabel data={tag} key={tag.id} image_id={imageId}/>
+                        <TagLabel data={tag} key={tag.id} image_id={imageId} setDeletedItem={setDeletedItem}/>
                     )
                 }) :
                 <p>No Tags</p>
@@ -48,7 +50,7 @@ function ImageDetailPage() {
             {currentImage[0].fields.album ?
                 currentImage[0].fields.album.map(album => {
                     return (
-                        <AlbumLabel data={album} key={album.id} image_id={imageId}/>
+                        <AlbumLabel data={album} key={album.id} image_id={imageId} setDeletedItem={setDeletedItem}/>
                     )
                 }) :
                 <p>No Albums</p>
