@@ -11,11 +11,10 @@ import AlbumLabel from "../../ui/AlbumLabel";
 
 function ImageDetailPage() {
     const imageId = useParams().imageId
-    const [currentImage, setCurrentImage] = useState({})
+    const [currentImage, setCurrentImage] = useState([{fields: {}}])
     let {authTokens, logoutUser} = useContext(AuthContext)
 
     useEffect(() => {
-        console.log('start effect')
         ManageItems({
             endpoint: `${imageId}`,
             method: "GET",
@@ -23,7 +22,6 @@ function ImageDetailPage() {
             authTokens: authTokens,
             logoutUser: logoutUser
         })
-        console.log(currentImage)
     }, [])
 
     return (
