@@ -3,10 +3,11 @@ import {useParams} from "react-router-dom";
 import AuthContext from "../../../contexts/AuthContext";
 import {ManageItems} from "../../../utils/ManageItems";
 import AlbumForm from "../../../utils/FormikForms/AlbumForm";
+import ImageLabel from "../../ui/ImageLabel";
 
 function AlbumDetailPage() {
     const albumId = useParams().albumId
-    const [currentAlbum, setCurrentAlbum] = useState({})
+    const [currentAlbum, setCurrentAlbum] = useState({images: [], album_data: {}})
     let {authTokens, logoutUser} = useContext(AuthContext)
 
     useEffect(() => {
@@ -23,12 +24,19 @@ function AlbumDetailPage() {
         <>
             <AlbumForm  // Need to change the content-type
                 title="Update Albums"
-                name={currentAlbum.name}
-                description={currentAlbum.description}
+                name={currentAlbum.album_data.name}
+                description={currentAlbum.album_data.description}
                 method='PATCH'
-                endpoint={`${currentAlbum.id}/`}
+                endpoint={`${currentAlbum.album_data.id}/`}
             />
-        </>
+
+            <strong>Images</strong>
+            {currentAlbum.images.map(image => {
+                return (
+                    <ImageLabel data={image} key={image.id}/>
+                )
+            })}
+        < />
     )
 }
 

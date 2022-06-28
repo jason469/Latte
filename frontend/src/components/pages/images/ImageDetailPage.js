@@ -2,7 +2,7 @@ import {useEffect, useState, useContext, useRef} from "react";
 import {Link, useParams} from "react-router-dom";
 import {ManageItems} from "../../../utils/ManageItems";
 import AuthContext from "../../../contexts/AuthContext";
-import {Nav} from "react-bootstrap";
+import {Card, Nav} from "react-bootstrap";
 import TagCard from "../../ui/TagCard";
 import AlbumCard from "../../ui/AlbumCard";
 import TagLabel from "../../ui/TagLabel";
@@ -29,8 +29,14 @@ function ImageDetailPage() {
     return (
         <div>
             <div>
+                < Card.Img
+                    variant="top"
+                    src={currentImage[0].fields.image}
+                    alt={currentImage[0].fields.name}
+                    className="card-img"
+                />
                 <AlbumForm  // Need to change the content-type
-                    title="Update Albums"
+                    title="Update Images"
                     name={currentImage[0].fields.name}
                     description={currentImage[0].fields.description}
                     method='PATCH'

@@ -19,6 +19,9 @@ class Tag(models.Model):
             "name": self.name
         }
 
+    def return_images(self):
+        return self.image_set.all()
+
 
 class Album(models.Model):
     name = models.CharField(max_length=255, blank=False, null=False, default='')

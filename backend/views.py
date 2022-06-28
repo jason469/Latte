@@ -104,6 +104,15 @@ class TagViewSet(viewsets.ModelViewSet):
             print(exc)
             return HttpResponse(500)
 
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        tag = Tag.objects.get(id=instance.id)
+        images = tag.image_set.all().values()
+        tag_data = self.get_serializer(instance).data
+        return Response({"images": images,
+                         "tag_data": tag_data},
+                        status=status.HTTP_200_OK)
+
 
 class AlbumViewSet(viewsets.ModelViewSet):
     queryset = Album.objects.all()
@@ -128,3 +137,12 @@ class AlbumViewSet(viewsets.ModelViewSet):
         except Exception as exc:
             print(exc)
             return HttpResponse(500)
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        album = Album.objects.get(id=instance.id)
+        images = album.image_set.all().values()
+        tag_data = self.get_serializer(instance).data
+        return Response({"images": images,
+                         "album_data": tag_data},
+                        status=status.HTTP_200_OK)
