@@ -42,12 +42,13 @@ function AddImage() {
         if (values.file) {
             form_data.append('image', values.file, values.file.name);
         }
-        let url = 'images/';
-        axios.post(url, form_data, {
-            headers: {
-                'content-type': 'multipart/form-data',
-                'Authorization': 'Bearer ' + String(authTokens.access)
-            }
+        ManageItems({
+            endpoint: 'images/',
+            method: 'POST',
+            authTokens: authTokens,
+            logoutUser: logoutUser,
+            body: form_data,
+            content_type: null
         })
             .then(response => CheckFormOutcome(response.status, resetForm, setFormOutcome))
             .catch(err => CheckFormOutcome(err.response.status, resetForm, setFormOutcome))

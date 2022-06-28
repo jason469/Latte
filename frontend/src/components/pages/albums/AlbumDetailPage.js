@@ -21,7 +21,7 @@ function AlbumDetailPage() {
 
     return (
         <>
-            <AlbumForm
+            <AlbumForm  // Need to change the content-type
                 title="Update Albums"
                 name={currentAlbum.name}
                 description={currentAlbum.description}

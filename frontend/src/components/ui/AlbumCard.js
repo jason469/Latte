@@ -6,7 +6,7 @@ import {useContext} from "react";
 import AuthContext from "../../contexts/AuthContext";
 
 
-function AlbumCard({data, setDeletedItem}) {
+function AlbumCard({data, setDeletedItem=null}) {
     let {authTokens, logoutUser} = useContext(AuthContext)
 
     return (

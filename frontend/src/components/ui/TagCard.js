@@ -6,7 +6,7 @@ import {ImCross} from "react-icons/im";
 import {ManageItems} from "../../utils/ManageItems";
 
 
-function TagCard({data, setDeletedItem}) {
+function TagCard({data, setDeletedItem=null}) {
     let {authTokens, logoutUser} = useContext(AuthContext)
 
     return (

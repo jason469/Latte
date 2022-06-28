@@ -1,17 +1,21 @@
-import {useEffect, useState, useContext} from "react";
+import {useEffect, useState, useContext, useRef} from "react";
 import {Link, useParams} from "react-router-dom";
 import {ManageItems} from "../../../utils/ManageItems";
 import AuthContext from "../../../contexts/AuthContext";
 import {Nav} from "react-bootstrap";
 import TagCard from "../../ui/TagCard";
+import AlbumCard from "../../ui/AlbumCard";
+import TagLabel from "../../ui/TagLabel";
+import AlbumForm from "../../../utils/FormikForms/AlbumForm";
+import AlbumLabel from "../../ui/AlbumLabel";
 
 function ImageDetailPage() {
     const imageId = useParams().imageId
     const [currentImage, setCurrentImage] = useState({})
     let {authTokens, logoutUser} = useContext(AuthContext)
 
-
     useEffect(() => {
+        console.log('start effect')
         ManageItems({
             endpoint: `${imageId}`,
             method: "GET",
@@ -19,37 +23,34 @@ function ImageDetailPage() {
             authTokens: authTokens,
             logoutUser: logoutUser
         })
-            .then(() => console.log(currentImage))
+        console.log(currentImage)
     }, [])
 
     return (
         <div>
-            <img
-                src={currentImage.fields.image}
-                alt={currentImage.fields.name}
-            />
-            <h3>{currentImage.fields.name}</h3>
-            <strong>Description</strong>
-            {currentImage.fields.description ?
-                <p>{currentImage.fields.description}</p> :
-                <p>No Description</p>
-            }
+            <div>
+                <AlbumForm  // Need to change the content-type
+                    title="Update Albums"
+                    name={currentImage[0].fields.name}
+                    description={currentImage[0].fields.description}
+                    method='PATCH'
+                    endpoint={`${currentImage[0].pk}/`}
+                />
+            </div>
             <strong>Tags</strong>
-            {currentImage.fields.tag ?
-                currentImage.fields.tag.map((tag) => {
+            {currentImage[0].fields.tag ?
+                currentImage[0].fields.tag.map(tag => {
                     return (
-                        <TagCard data={tag} key={tag.id} image={currentImage}/>
+                        <TagLabel data={tag} key={tag.id} image_id={imageId}/>
                     )
                 }) :
                 <p>No Tags</p>
             }
             <strong>Albums</strong>
-            {currentImage.fields.album ?
-                currentImage.fields.album.map((album) => {
+            {currentImage[0].fields.album ?
+                currentImage[0].fields.album.map(album => {
                     return (
-                        <Nav.Link as={Link} to={`/albums/${album.id}`}>
-                            <p>{album.name}</p>
-                        </Nav.Link>
+                        <AlbumLabel data={album} key={album.id} image_id={imageId}/>
                     )
                 }) :
                 <p>No Albums</p>

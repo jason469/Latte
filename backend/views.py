@@ -1,6 +1,6 @@
 import json
 
-from django.http import Http404
+from django.http import Http404, QueryDict
 
 from .serializers import *
 from .models import *
@@ -9,6 +9,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import viewsets
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.mixins import RetrieveModelMixin
+from rest_framework.decorators import api_view
 
 from django.core import serializers
 
@@ -57,6 +58,33 @@ class ImageViewSet(viewsets.ModelViewSet):
             print(exc)
             return HttpResponse(500)
 
+    def partial_update(self, request, *args, **kwargs):
+        print(next(iter(QueryDict(request.body))))
+        try:
+            if next(iter(QueryDict(request.body))).find("action") != -1:
+                request_body = json.loads(request.body)
+                image_id = request_body["image_id"]
+                if request_body["action"] == "Remove tag":
+                    tag = Tag.objects.get(id=request_body["tag_id"])
+                    Image.objects.get(id=image_id).tag.remove(tag)
+                    return HttpResponse(status=200)
+                elif request_body["action"] == "Remove album":
+                    album = Album.objects.get(id=request_body["album_id"])
+                    Image.objects.get(id=image_id).album.remove(album)
+                    return HttpResponse(status=200)
+            else:
+                image_id = self.get_object().id
+                Image.objects.filter(id=image_id).update(
+                    name=request.data.get('name'),
+                    description=request.data.get('description'),
+                    image=request.data.get('image')
+                )
+                return HttpResponse(status=200)
+
+        except Exception as exc:
+            print(exc)
+            return HttpResponse(500)
+
 
 class TagViewSet(viewsets.ModelViewSet):
     queryset = Tag.objects.all()
@@ -77,7 +105,6 @@ class TagViewSet(viewsets.ModelViewSet):
             return HttpResponse(500)
 
 
-
 class AlbumViewSet(viewsets.ModelViewSet):
     queryset = Album.objects.all()
     serializer_class = AlbumSerializer
@@ -85,15 +112,19 @@ class AlbumViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         try:
-            instance, created = Album.objects.get_or_create(
+            album = Album.objects.filter(
                 name=request.data.get('name'),
                 description=request.data.get('description'),
-                cover_image=request.data.get('cover_image')
             )
-            if created is True:
-                return HttpResponse(status=201)
-            else:
+            if album:
                 return HttpResponse(status=406)
+            else:
+                Album.objects.create(
+                    name=request.data.get('name'),
+                    description=request.data.get('description'),
+                    cover_image=request.data.get('cover_image')
+                )
+                return HttpResponse(status=201)
         except Exception as exc:
             print(exc)
             return HttpResponse(500)

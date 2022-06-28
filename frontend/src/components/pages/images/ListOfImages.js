@@ -11,6 +11,7 @@ function ListOfImages() {
     const [imageData, setImageData] = useState([])
     const [currentItems, setCurrentItems] = useState([]);
     const [inputText, setInputText] = useState("");
+    const [deletedItem, setDeletedItem] = useState(0)
 
     let {authTokens, logoutUser} = useContext(AuthContext)
 
@@ -25,7 +26,7 @@ function ListOfImages() {
             image.description.toLowerCase().includes(inputText) ||
             image.tag.toLowerCase().includes(inputText) ||
             image.album.toLowerCase().includes(inputText)
-        ){
+        ) {
             return image;
         } else {
             return null
@@ -41,7 +42,7 @@ function ListOfImages() {
             authTokens: authTokens,
             logoutUser: logoutUser
         })
-    }, [imageData])
+    }, [deletedItem])
 
     switch (imageData.length !== 0) {
         case true:
@@ -60,8 +61,8 @@ function ListOfImages() {
                     </div>
                     <div className="list-of-items">
                         {inputText !== ""
-                            ? filteredData.map(item => <ImageCard key={item.pk} data={item}/>)
-                            : currentItems.map(item => <ImageCard key={item.pk} data={item}/>)
+                            ? filteredData.map(item => <ImageCard key={item.pk} data={item} setDeletedItem={setDeletedItem}/>)
+                            : currentItems.map(item => <ImageCard key={item.pk} data={item} setDeletedItem={setDeletedItem}/>)
                         }
                     </div>
                     <Pagination

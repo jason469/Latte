@@ -11,7 +11,7 @@ class Tag(models.Model):
 
     class Meta:
         ordering = ['name']
-        unique_together = ['name']
+        unique_together = ['name', 'description']
 
     def natural_key(self):
         return {
@@ -31,7 +31,7 @@ class Album(models.Model):
 
     class Meta:
         ordering = ['name']
-        unique_together = ['name']
+        unique_together = ['name', 'description', 'cover_image']
 
     def natural_key(self):
         return {
@@ -44,8 +44,8 @@ class Image(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
     description = models.TextField(max_length=255, blank=True, null=True)
     image = models.ImageField(upload_to='post_images', blank=True, null=True)
-    tag = models.ManyToManyField(Tag, blank=True, null=True)
-    album = models.ManyToManyField(Album, blank=True, null=True)
+    tag = models.ManyToManyField(Tag, blank=True)
+    album = models.ManyToManyField(Album, blank=True)
 
     def __str__(self):
         return f'{self.id} - {self.name}'

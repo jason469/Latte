@@ -12,6 +12,7 @@ function ListOfAlbums() {
     const [deletedItem, setDeletedItem] = useState(0)
     const [currentItems, setCurrentItems] = useState([]);
     const [inputText, setInputText] = useState("");
+
     let {authTokens, logoutUser} = useContext(AuthContext)
 
     // Fetch current items
