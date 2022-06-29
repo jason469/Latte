@@ -1,26 +1,23 @@
 import {useEffect, useState, useContext} from "react";
-import {useParams} from "react-router-dom";
 import AuthContext from "../../../contexts/AuthContext";
 import {ManageItems} from "../../../utils/ManageItems";
 import TagForm from "../../../utils/FormikForms/TagForm";
-import TagLabel from "../../ui/tags/TagLabel";
 import ImageLabel from "../../ui/images/ImageLabel";
 
-function TagDetailPage() {
-    const tagId = useParams().tagId
+function TagDetailPage({tagId}) {
+    // const tagId = useParams().tagId
     const [currentTag, setCurrentTag] = useState({images: [], tag_data: {}})
     let {authTokens, logoutUser} = useContext(AuthContext)
 
     useEffect(() => {
         ManageItems({
-            endpoint: `${tagId}`,
+            endpoint: `tags/${tagId}`,
             method: "GET",
             setFunction: setCurrentTag,
             authTokens: authTokens,
             logoutUser: logoutUser
         })
-        console.log(currentTag)
-    }, [])
+    }, [tagId])
 
     return (
         <div>
@@ -29,7 +26,7 @@ function TagDetailPage() {
                 name={currentTag.tag_data.name}
                 description={currentTag.tag_data.description}
                 method='PATCH'
-                endpoint={`${currentTag.tag_data.id}/`}
+                endpoint={`tags/${currentTag.tag_data.id}`}
             />
 
             <strong>Images</strong>

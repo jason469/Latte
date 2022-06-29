@@ -7,20 +7,22 @@ import {ManageItems} from "../../../utils/ManageItems";
 import EmptyPage from "../website/EmptyPage";
 import {filterData, inputHandler} from "../../../utils/searchBarFunctions"
 import TagCard from "../../ui/tags/TagCard";
+import {AiFillPlusCircle} from "react-icons/ai";
+import {useNavigate} from "react-router-dom";
 
 function ListOfTags() {
     const [tagData, setTagData] = useState([])
     const [deletedItem, setDeletedItem] = useState(0)
     const [currentItems, setCurrentItems] = useState([]);
     const [inputText, setInputText] = useState("");
+    const navigate = useNavigate();
 
     let {authTokens, logoutUser} = useContext(AuthContext)
 
-    const pull_tags = (tags) => {
-        setCurrentItems(tags);
-    }
+    const pull_tags = tags => setCurrentItems(tags);
 
     const filteredData = filterData(inputText, tagData)
+    const navigateToAdd = () => navigate(`/add-tag`)
 
     //Fetch tags
     useEffect(() => {
@@ -49,10 +51,13 @@ function ListOfTags() {
                             label="Search"
                         />
                     </div>
+                    <AiFillPlusCircle onClick={navigateToAdd}/>
                     <div className="list-of-items">
                         {inputText !== ""
-                            ? filteredData.map(item => <TagCard key={item.id} data={item} setDeletedItem={setDeletedItem}/>)
-                            : currentItems.map(item => <TagCard key={item.id} data={item} setDeletedItem={setDeletedItem}/>)
+                            ? filteredData.map(item => <TagCard key={item.id} data={item}
+                                                                setDeletedItem={setDeletedItem}/>)
+                            : currentItems.map(item => <TagCard key={item.id} data={item}
+                                                                setDeletedItem={setDeletedItem}/>)
                         }
                     </div>
                     <Pagination

@@ -1,33 +1,31 @@
 import {useEffect, useState, useContext} from "react";
-import {useParams} from "react-router-dom";
 import AuthContext from "../../../contexts/AuthContext";
 import {ManageItems} from "../../../utils/ManageItems";
 import AlbumForm from "../../../utils/FormikForms/AlbumForm";
 import ImageLabel from "../../ui/images/ImageLabel";
 
-function AlbumDetailPage() {
-    const albumId = useParams().albumId
+function AlbumDetailPage({albumId}) {
     const [currentAlbum, setCurrentAlbum] = useState({images: [], album_data: {}})
     let {authTokens, logoutUser} = useContext(AuthContext)
 
     useEffect(() => {
         ManageItems({
-            endpoint: `${albumId}`,
+            endpoint: `albums/${albumId}`,
             method: "GET",
             setFunction: setCurrentAlbum,
             authTokens: authTokens,
             logoutUser: logoutUser
         })
-    }, [])
+    }, [albumId])
 
     return (
         <>
-            <AlbumForm  // Need to change the content-type
+            <AlbumForm
                 title="Update Albums"
                 name={currentAlbum.album_data.name}
                 description={currentAlbum.album_data.description}
                 method='PATCH'
-                endpoint={`${currentAlbum.album_data.id}/`}
+                endpoint={`albums/${currentAlbum.album_data.id}/`}
             />
 
             <strong>Images</strong>

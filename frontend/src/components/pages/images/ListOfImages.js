@@ -6,23 +6,24 @@ import {ManageItems} from "../../../utils/ManageItems";
 import EmptyPage from "../website/EmptyPage";
 import TextField from "@mui/material/TextField";
 import {filterData, inputHandler} from "../../../utils/searchBarFunctions";
+import {AiFillPlusCircle} from "react-icons/ai";
+import {useNavigate} from "react-router-dom";
 
 function ListOfImages() {
     const [imageData, setImageData] = useState([])
+    const [deletedItem, setDeletedItem] = useState(0)
     const [currentItems, setCurrentItems] = useState([]);
     const [inputText, setInputText] = useState("");
-    const [deletedItem, setDeletedItem] = useState(0)
+    const navigate = useNavigate();
 
     let {authTokens, logoutUser} = useContext(AuthContext)
 
     // Fetch current items
-    const pull_images = (images) => {
-        setCurrentItems(images);
-    }
-
+    const pull_images = images => setCurrentItems(images)
     const filteredData = filterData(inputText, imageData)
+    const navigateToAdd = () => navigate(`/add-image`)
 
-    //Fetch photos
+    //Fetch Images
     useEffect(() => {
         ManageItems({
             endpoint: 'images',
@@ -48,6 +49,7 @@ function ListOfImages() {
                             label="Search"
                         />
                     </div>
+                    <AiFillPlusCircle onClick={navigateToAdd}/>
                     <div className="list-of-items">
                         {inputText !== ""
                             ? filteredData.map(item => <ImageCard key={item.pk} data={item}

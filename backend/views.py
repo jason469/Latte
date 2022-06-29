@@ -72,6 +72,14 @@ class ImageViewSet(viewsets.ModelViewSet):
                     album = Album.objects.get(id=request_body["album_id"])
                     Image.objects.get(id=image_id).album.remove(album)
                     return HttpResponse(status=200)
+                elif request_body["action"] == "Add Item to Image":
+                    if request_body["item_name"] == "tags":
+                        tag = Tag.objects.get(id=request_body["id"])
+                        Image.objects.get(id=image_id).tag.add(tag)
+                    elif request_body["item_name"] == "albums":
+                        album = Album.objects.get(id=request_body["id"])
+                        Image.objects.get(id=image_id).album.add(album)
+                    return HttpResponse(status=200)
             else:
                 image_id = self.get_object().id
                 Image.objects.filter(id=image_id).update(
