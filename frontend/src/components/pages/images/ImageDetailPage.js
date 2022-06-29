@@ -3,16 +3,21 @@ import {Link, useParams} from "react-router-dom";
 import {ManageItems} from "../../../utils/ManageItems";
 import AuthContext from "../../../contexts/AuthContext";
 import {Card, Nav} from "react-bootstrap";
-import TagCard from "../../ui/TagCard";
-import AlbumCard from "../../ui/AlbumCard";
-import TagLabel from "../../ui/TagLabel";
+import TagLabel from "../../ui/tags/TagLabel";
 import AlbumForm from "../../../utils/FormikForms/AlbumForm";
-import AlbumLabel from "../../ui/AlbumLabel";
+import AlbumLabel from "../../ui/albums/AlbumLabel";
+import {AiFillPlusCircle} from "react-icons/ai";
+import TagAlbum_Modal from "../../ui/TagAlbum_Modal";
 
 function ImageDetailPage() {
     const imageId = useParams().imageId
     const [deletedItem, setDeletedItem] = useState(0)
     const [currentImage, setCurrentImage] = useState([{fields: {}}])
+
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
     let {authTokens, logoutUser} = useContext(AuthContext)
 
     useEffect(() => {
@@ -23,7 +28,6 @@ function ImageDetailPage() {
             authTokens: authTokens,
             logoutUser: logoutUser
         })
-        console.log('update image')
     }, [deletedItem])
 
     return (
@@ -44,6 +48,8 @@ function ImageDetailPage() {
                 />
             </div>
             <strong>Tags</strong>
+            <AiFillPlusCircle onClick={handleOpen}/>
+            <TagAlbum_Modal open={open} handleClose={handleClose} />
             {currentImage[0].fields.tag ?
                 currentImage[0].fields.tag.map(tag => {
                     return (

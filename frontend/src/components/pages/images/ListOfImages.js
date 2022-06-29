@@ -1,11 +1,11 @@
 import Pagination from "../../layout/Pagination";
 import {useContext, useEffect, useState} from "react";
-import ImageCard from "../../ui/ImageCard";
+import ImageCard from "../../ui/images/ImageCard";
 import AuthContext from "../../../contexts/AuthContext";
 import {ManageItems} from "../../../utils/ManageItems";
 import EmptyPage from "../website/EmptyPage";
 import TextField from "@mui/material/TextField";
-import {inputHandler} from "../../../utils/searchBarFunctions";
+import {filterData, inputHandler} from "../../../utils/searchBarFunctions";
 
 function ListOfImages() {
     const [imageData, setImageData] = useState([])
@@ -20,18 +20,7 @@ function ListOfImages() {
         setCurrentItems(images);
     }
 
-    const filteredData = imageData.filter((image) => {
-        if (inputText === '' ||
-            image.name.toLowerCase().includes(inputText) ||
-            image.description.toLowerCase().includes(inputText) ||
-            image.tag.toLowerCase().includes(inputText) ||
-            image.album.toLowerCase().includes(inputText)
-        ) {
-            return image;
-        } else {
-            return null
-        }
-    })
+    const filteredData = filterData(inputText, imageData)
 
     //Fetch photos
     useEffect(() => {
@@ -61,8 +50,10 @@ function ListOfImages() {
                     </div>
                     <div className="list-of-items">
                         {inputText !== ""
-                            ? filteredData.map(item => <ImageCard key={item.pk} data={item} setDeletedItem={setDeletedItem}/>)
-                            : currentItems.map(item => <ImageCard key={item.pk} data={item} setDeletedItem={setDeletedItem}/>)
+                            ? filteredData.map(item => <ImageCard key={item.pk} data={item}
+                                                                  setDeletedItem={setDeletedItem}/>)
+                            : currentItems.map(item => <ImageCard key={item.pk} data={item}
+                                                                  setDeletedItem={setDeletedItem}/>)
                         }
                     </div>
                     <Pagination

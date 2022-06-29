@@ -3,8 +3,8 @@ import {useParams} from "react-router-dom";
 import AuthContext from "../../../contexts/AuthContext";
 import {ManageItems} from "../../../utils/ManageItems";
 import TagForm from "../../../utils/FormikForms/TagForm";
-import TagLabel from "../../ui/TagLabel";
-import ImageLabel from "../../ui/ImageLabel";
+import TagLabel from "../../ui/tags/TagLabel";
+import ImageLabel from "../../ui/images/ImageLabel";
 
 function TagDetailPage() {
     const tagId = useParams().tagId

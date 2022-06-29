@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 import AuthContext from "../../../contexts/AuthContext";
 import {ManageItems} from "../../../utils/ManageItems";
 import AlbumForm from "../../../utils/FormikForms/AlbumForm";
-import ImageLabel from "../../ui/ImageLabel";
+import ImageLabel from "../../ui/images/ImageLabel";
 
 function AlbumDetailPage() {
     const albumId = useParams().albumId

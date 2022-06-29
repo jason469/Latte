@@ -1,11 +1,11 @@
 import Pagination from "../../layout/Pagination";
 import {useEffect, useState, useContext} from "react";
-import AlbumCard from "../../ui/AlbumCard";
+import AlbumCard from "../../ui/albums/AlbumCard";
 import AuthContext from "../../../contexts/AuthContext";
 import {ManageItems} from "../../../utils/ManageItems";
 import EmptyPage from "../website/EmptyPage";
 import TextField from "@mui/material/TextField";
-import {inputHandler} from "../../../utils/searchBarFunctions";
+import {inputHandler, filterData} from "../../../utils/searchBarFunctions";
 
 function ListOfAlbums() {
     const [albumData, setAlbumData] = useState([])
@@ -20,16 +20,7 @@ function ListOfAlbums() {
         setCurrentItems(albums);
     }
 
-    const filteredData = albumData.filter(album => {
-        if (inputText === '' ||
-            album.name.toLowerCase().includes(inputText) ||
-            album.description.toLowerCase().includes(inputText)
-        ) {
-            return album;
-        } else {
-            return null
-        }
-    })
+    const filteredData = filterData(inputText, albumData)
 
     //Fetch Images
     useEffect(() => {
@@ -59,8 +50,10 @@ function ListOfAlbums() {
                     </div>
                     <div className="list-of-items">
                         {inputText !== ""
-                            ? filteredData.map(item => <AlbumCard key={item.id} data={item} setDeletedItem={setDeletedItem}/>)
-                            : currentItems.map(item => <AlbumCard key={item.id} data={item} setDeletedItem={setDeletedItem}/>)
+                            ? filteredData.map(item => <AlbumCard key={item.id} data={item}
+                                                                  setDeletedItem={setDeletedItem}/>)
+                            : currentItems.map(item => <AlbumCard key={item.id} data={item}
+                                                                  setDeletedItem={setDeletedItem}/>)
                         }
                     </div>
                     <Pagination

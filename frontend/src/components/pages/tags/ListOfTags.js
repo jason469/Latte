@@ -5,8 +5,8 @@ import TextField from "@mui/material/TextField";
 import Pagination from "../../layout/Pagination";
 import {ManageItems} from "../../../utils/ManageItems";
 import EmptyPage from "../website/EmptyPage";
-import {inputHandler} from "../../../utils/searchBarFunctions"
-import TagCard from "../../ui/TagCard";
+import {filterData, inputHandler} from "../../../utils/searchBarFunctions"
+import TagCard from "../../ui/tags/TagCard";
 
 function ListOfTags() {
     const [tagData, setTagData] = useState([])
@@ -20,16 +20,7 @@ function ListOfTags() {
         setCurrentItems(tags);
     }
 
-    const filteredData = tagData.filter(tag => {
-        if (inputText === '' ||
-            tag.name.toLowerCase().includes(inputText) ||
-            tag.description.toLowerCase().includes(inputText)
-        ) {
-            return tag;
-        } else {
-            return null
-        }
-    })
+    const filteredData = filterData(inputText, tagData)
 
     //Fetch tags
     useEffect(() => {
