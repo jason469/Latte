@@ -9,7 +9,7 @@ import AlbumLabel from "../../ui/albums/AlbumLabel";
 import {AiFillPlusCircle} from "react-icons/ai";
 import ImageModal from "../../ui/ImageModal";
 
-function ImageDetailPage({imageId}) {
+function ImageDetailPage(props) {
     const [deletedItem, setDeletedItem] = useState(0)
     const [currentImage, setCurrentImage] = useState([{fields: {}}])
 
@@ -25,9 +25,14 @@ function ImageDetailPage({imageId}) {
 
     let {authTokens, logoutUser} = useContext(AuthContext)
 
+    console.log(useParams().imageId)
+    let {imageId} = useParams();
+    if (!imageId) imageId = props.imageId;
+    console.log(imageId)
+
     useEffect(() => {
         ManageItems({
-            endpoint: `images/${imageId}`,
+            endpoint: `/images/${imageId}`,
             method: "GET",
             setFunction: setCurrentImage,
             authTokens: authTokens,
@@ -49,7 +54,7 @@ function ImageDetailPage({imageId}) {
                     name={currentImage[0].fields.name}
                     description={currentImage[0].fields.description}
                     method='PATCH'
-                    endpoint={`images/${currentImage[0].pk}/`}
+                    endpoint={`/images/${currentImage[0].pk}/`}
                 />
             </div>
             <strong>Tags</strong>

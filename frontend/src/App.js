@@ -36,9 +36,11 @@ function App() {
                         <Route path='/add-image' element={<AddImage/>}/>
 
                         <Route path='/tags' element={<ListOfTags/>}/>
+                        <Route path='/tags/:tagId' element={<TagDetailPage/>}/>
                         <Route path='/add-tag' element={<AddTag/>}/>
 
                         <Route path='/albums' element={<ListOfAlbums/>}/>
+                        <Route path='/albums/:albumId' element={<AlbumDetailPage/>}/>
                         <Route path='/add-album' element={<AddAlbum/>}/>
 
                         <Route path='/profile' element={<Profile/>}/>
