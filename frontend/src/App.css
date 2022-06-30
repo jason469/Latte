@@ -2,18 +2,9 @@
     margin: 2rem;
 }
 
-.list-of-items {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(2, 100px);
-    justify-items: center;
-    justify-content: center;
-    height: 75vh;
-    width: 90%;
-}
 
-.card-img {
-    max-width: 1fr;
+.image-img {
+    width: 10rem;
     height: auto;
 }
 
@@ -29,4 +20,12 @@ h1 {
 
 ul li {
     font-size: 20px;
+}
+
+.click {
+    cursor: pointer;
+}
+
+.click:hover {
+    color: red;
 }

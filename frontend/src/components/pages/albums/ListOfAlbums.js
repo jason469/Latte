@@ -8,6 +8,7 @@ import TextField from "@mui/material/TextField";
 import {inputHandler, filterData} from "../../../utils/searchBarFunctions";
 import {AiFillPlusCircle} from "react-icons/ai";
 import {useNavigate} from "react-router-dom";
+import {ImageList} from "@mui/material";
 
 function ListOfAlbums() {
     const [albumData, setAlbumData] = useState([])
@@ -48,15 +49,15 @@ function ListOfAlbums() {
                             label="Search"
                         />
                     </div>
-                    <AiFillPlusCircle onClick={navigateToAdd}/>
-                    <div className="list-of-items">
+                    <AiFillPlusCircle className="click" onClick={navigateToAdd}/>
+                    <ImageList sx={{width: 500, height: 450}} variant="woven" cols={3} gap={8}>
                         {inputText !== ""
                             ? filteredData.map(item => <AlbumCard key={item.id} data={item}
                                                                   setDeletedItem={setDeletedItem}/>)
                             : currentItems.map(item => <AlbumCard key={item.id} data={item}
                                                                   setDeletedItem={setDeletedItem}/>)
                         }
-                    </div>
+                    </ImageList>
                     <Pagination
                         itemsPerPage={12}
                         data={albumData}

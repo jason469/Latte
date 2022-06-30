@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Tag(models.Model):
@@ -49,6 +50,8 @@ class Image(models.Model):
     image = models.ImageField(upload_to='post_images', blank=True, null=True)
     tag = models.ManyToManyField(Tag, blank=True)
     album = models.ManyToManyField(Album, blank=True)
+    date_uploaded = models.DateTimeField(auto_now=True, blank=True, null=True)
+    uploaded_by = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return f'{self.id} - {self.name}'

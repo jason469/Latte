@@ -1,7 +1,9 @@
+import {Skeleton} from "@mui/material";
+
 function EmptyPage(props) {
     return (
         <div>
-            <h1>No {props.item}</h1>
+            <Skeleton variant="rectangular" width={210} height={118} />
         </div>
     )
 }

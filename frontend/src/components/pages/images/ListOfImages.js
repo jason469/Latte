@@ -8,6 +8,7 @@ import TextField from "@mui/material/TextField";
 import {filterData, inputHandler} from "../../../utils/searchBarFunctions";
 import {AiFillPlusCircle} from "react-icons/ai";
 import {useNavigate} from "react-router-dom";
+import {ImageList} from "@mui/material";
 
 function ListOfImages() {
     const [imageData, setImageData] = useState([])
@@ -26,7 +27,7 @@ function ListOfImages() {
     //Fetch Images
     useEffect(() => {
         ManageItems({
-            endpoint: 'images',
+            endpoint: '/images',
             method: "GET",
             setFunction: setImageData,
             authTokens: authTokens,
@@ -49,15 +50,17 @@ function ListOfImages() {
                             label="Search"
                         />
                     </div>
-                    <AiFillPlusCircle onClick={navigateToAdd}/>
-                    <div className="list-of-items">
+                    <AiFillPlusCircle className="click" onClick={navigateToAdd}/>
+                    <ImageList variant="masonry" cols={3} gap={8}>
                         {inputText !== ""
-                            ? filteredData.map(item => <ImageCard key={item.pk} data={item}
-                                                                  setDeletedItem={setDeletedItem}/>)
-                            : currentItems.map(item => <ImageCard key={item.pk} data={item}
-                                                                  setDeletedItem={setDeletedItem}/>)
+                            ? filteredData.map(item =>
+                                    <ImageCard key={item.pk} data={item} setDeletedItem={setDeletedItem}/>
+                            )
+                            : currentItems.map(item =>
+                                    <ImageCard key={item.pk} data={item} setDeletedItem={setDeletedItem}/>
+                            )
                         }
-                    </div>
+                    </ImageList>
                     <Pagination
                         itemsPerPage={12}
                         data={imageData}

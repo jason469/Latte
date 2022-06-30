@@ -9,6 +9,7 @@ import {filterData, inputHandler} from "../../../utils/searchBarFunctions"
 import TagCard from "../../ui/tags/TagCard";
 import {AiFillPlusCircle} from "react-icons/ai";
 import {useNavigate} from "react-router-dom";
+import {ImageList} from "@mui/material";
 
 function ListOfTags() {
     const [tagData, setTagData] = useState([])
@@ -51,15 +52,15 @@ function ListOfTags() {
                             label="Search"
                         />
                     </div>
-                    <AiFillPlusCircle onClick={navigateToAdd}/>
-                    <div className="list-of-items">
+                    <AiFillPlusCircle className="click" onClick={navigateToAdd}/>
+                    <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
                         {inputText !== ""
                             ? filteredData.map(item => <TagCard key={item.id} data={item}
                                                                 setDeletedItem={setDeletedItem}/>)
                             : currentItems.map(item => <TagCard key={item.id} data={item}
                                                                 setDeletedItem={setDeletedItem}/>)
                         }
-                    </div>
+                    </ImageList>
                     <Pagination
                         itemsPerPage={12}
                         data={tagData}

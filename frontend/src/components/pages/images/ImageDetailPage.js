@@ -25,10 +25,8 @@ function ImageDetailPage(props) {
 
     let {authTokens, logoutUser} = useContext(AuthContext)
 
-    console.log(useParams().imageId)
     let {imageId} = useParams();
     if (!imageId) imageId = props.imageId;
-    console.log(imageId)
 
     useEffect(() => {
         ManageItems({
@@ -58,7 +56,7 @@ function ImageDetailPage(props) {
                 />
             </div>
             <strong>Tags</strong>
-            <AiFillPlusCircle onClick={handleTagOpen}/>
+            <AiFillPlusCircle className="click" onClick={handleTagOpen}/>
             <ImageModal open={tagOpen} handleClose={handleTagClose} endpoint="tags" image_id={imageId}/>
             {currentImage[0].fields.tag ?
                 currentImage[0].fields.tag.map(tag => {
@@ -69,7 +67,7 @@ function ImageDetailPage(props) {
                 <p>No Tags</p>
             }
             <strong>Albums</strong>
-            <AiFillPlusCircle onClick={handleAlbumOpen}/>
+            <AiFillPlusCircle className="click" onClick={handleAlbumOpen}/>
             <ImageModal open={albumOpen} handleClose={handleAlbumClose} endpoint="albums" image_id={imageId}/>
             {currentImage[0].fields.album ?
                 currentImage[0].fields.album.map(album => {

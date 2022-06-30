@@ -42,7 +42,8 @@ class ImageViewSet(viewsets.ModelViewSet):
             image, created = Image.objects.get_or_create(
                 name=request.data.get('name'),
                 description=request.data.get('description'),
-                image=request.data.get('image')
+                image=request.data.get('image'),
+                uploaded_by=request.user
             )
             if created is True:
                 tags = json.loads(request.data.get("tags"))
@@ -59,7 +60,6 @@ class ImageViewSet(viewsets.ModelViewSet):
             return HttpResponse(500)
 
     def partial_update(self, request, *args, **kwargs):
-        print(next(iter(QueryDict(request.body))))
         try:
             if next(iter(QueryDict(request.body))).find("action") != -1:
                 request_body = json.loads(request.body)
