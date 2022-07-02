@@ -1,13 +1,13 @@
 import {useEffect, useState, useContext} from "react";
-import {Link, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {ManageItems} from "../../../utils/ManageItems";
 import AuthContext from "../../../contexts/AuthContext";
-import {Card, Nav} from "react-bootstrap";
+import {Card} from "react-bootstrap";
 import TagLabel from "../../ui/tags/TagLabel";
-import AlbumForm from "../../../utils/FormikForms/AlbumForm";
 import AlbumLabel from "../../ui/albums/AlbumLabel";
 import {AiFillPlusCircle} from "react-icons/ai";
 import ImageModal from "../../ui/ImageModal";
+import ImageDetailForm from "../../../utils/FormikForms/ImageDetailForm";
 
 function ImageDetailPage(props) {
     const [deletedItem, setDeletedItem] = useState(0)
@@ -22,7 +22,6 @@ function ImageDetailPage(props) {
     const handleAlbumOpen = () => setAlbumOpen(true);
     const handleAlbumClose = () => setAlbumOpen(false);
 
-
     let {authTokens, logoutUser} = useContext(AuthContext)
 
     let {imageId} = useParams();
@@ -36,7 +35,7 @@ function ImageDetailPage(props) {
             authTokens: authTokens,
             logoutUser: logoutUser
         })
-    }, [deletedItem])
+    }, [deletedItem, currentImage])
 
     return (
         <div>
@@ -47,7 +46,7 @@ function ImageDetailPage(props) {
                     alt={currentImage[0].fields.name}
                     className="card-img"
                 />
-                <AlbumForm  // Need to change the content-type
+                <ImageDetailForm
                     title="Update Images"
                     name={currentImage[0].fields.name}
                     description={currentImage[0].fields.description}

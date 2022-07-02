@@ -4,6 +4,7 @@ from django.http import Http404, QueryDict
 
 from .serializers import *
 from .models import *
+from image_app.settings import MEDIA_ROOT
 
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import viewsets
@@ -85,7 +86,7 @@ class ImageViewSet(viewsets.ModelViewSet):
                 Image.objects.filter(id=image_id).update(
                     name=request.data.get('name'),
                     description=request.data.get('description'),
-                    image=request.data.get('image')
+                    image=(request.data.get('image'))
                 )
                 return HttpResponse(status=200)
 

@@ -9,7 +9,7 @@ import {CheckFormOutcome} from "../CheckFormOutcome";
 import {ManageItems} from "../ManageItems";
 
 
-function AlbumForm({title, name, description, method, endpoint}) {
+function ImageDetailForm({title, name, description, method, endpoint}) {
 
     let {authTokens, logoutUser} = useContext(AuthContext)
     const [formOutcome, setFormOutcome] = useState(null);
@@ -32,7 +32,7 @@ function AlbumForm({title, name, description, method, endpoint}) {
         form_data.append('name', values.name);
         form_data.append('description', values.description);
         if (values.file) {
-            form_data.append('cover_image', values.file, values.file.name);
+            form_data.append('image', values.file, values.file.name);
         }
         ManageItems({
             endpoint: endpoint,
@@ -91,7 +91,7 @@ function AlbumForm({title, name, description, method, endpoint}) {
                                 <br/>
                                 <Field
                                     id="image"
-                                    name="cover_image"
+                                    name="image"
                                     type="file"
                                     className="form-control"
                                     onChange={event => props.setFieldValue("file", event.currentTarget.files[0])}
@@ -106,4 +106,4 @@ function AlbumForm({title, name, description, method, endpoint}) {
     );
 }
 
-export default AlbumForm;
+export default ImageDetailForm;

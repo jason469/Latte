@@ -7,22 +7,27 @@ import EmptyPage from "../website/EmptyPage";
 import TextField from "@mui/material/TextField";
 import {filterData, inputHandler} from "../../../utils/searchBarFunctions";
 import {AiFillPlusCircle} from "react-icons/ai";
-import {useNavigate} from "react-router-dom";
 import {ImageList} from "@mui/material";
+import Modal from "@mui/material/Modal";
+import Backdrop from "@mui/material/Backdrop";
+import Fade from "@mui/material/Fade";
+import Box from "@mui/material/Box";
+import {ModalBoxStyle} from "../../../utils/ModalBoxStyles";
+import AddImage from "./AddImage";
 
 function ListOfImages() {
     const [imageData, setImageData] = useState([])
     const [deletedItem, setDeletedItem] = useState(0)
     const [currentItems, setCurrentItems] = useState([]);
     const [inputText, setInputText] = useState("");
-    const navigate = useNavigate();
+    const [showAddForm, setShowAddForm] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     let {authTokens, logoutUser} = useContext(AuthContext)
 
     // Fetch current items
     const pull_images = images => setCurrentItems(images)
     const filteredData = filterData(inputText, imageData)
-    const navigateToAdd = () => navigate(`/add-image`)
 
     //Fetch Images
     useEffect(() => {
@@ -33,9 +38,10 @@ function ListOfImages() {
             authTokens: authTokens,
             logoutUser: logoutUser
         })
-    }, [deletedItem])
+        setLoading(true)
+    }, [deletedItem, imageData])
 
-    switch (imageData.length !== 0) {
+    switch (loading) {
         case true:
             return (
                 <div>
@@ -50,14 +56,31 @@ function ListOfImages() {
                             label="Search"
                         />
                     </div>
-                    <AiFillPlusCircle className="click" onClick={navigateToAdd}/>
-                    <ImageList variant="masonry" cols={3} gap={8}>
+                    <AiFillPlusCircle className="click" onClick={() => setShowAddForm(true)}/>
+                    <Modal
+                        aria-labelledby="transition-modal-title"
+                        aria-describedby="transition-modal-description"
+                        open={showAddForm}
+                        onClose={() => setShowAddForm(false)}
+                        closeAfterTransition
+                        BackdropComponent={Backdrop}
+                        BackdropProps={{
+                            timeout: 500,
+                        }}
+                    >
+                        <Fade in={showAddForm}>
+                            <Box sx={ModalBoxStyle}>
+                                <AddImage/>
+                            </Box>
+                        </Fade>
+                    </Modal>
+                    <ImageList variant="masonry" cols={4} gap={5}>
                         {inputText !== ""
                             ? filteredData.map(item =>
-                                    <ImageCard key={item.pk} data={item} setDeletedItem={setDeletedItem}/>
+                                <ImageCard key={item.pk} data={item} setDeletedItem={setDeletedItem}/>
                             )
                             : currentItems.map(item =>
-                                    <ImageCard key={item.pk} data={item} setDeletedItem={setDeletedItem}/>
+                                <ImageCard key={item.pk} data={item} setDeletedItem={setDeletedItem}/>
                             )
                         }
                     </ImageList>
@@ -69,9 +92,7 @@ function ListOfImages() {
                 </div>
             )
         case false:
-            return (
-                <EmptyPage item="Images"/>
-            )
+            return (<EmptyPage item="Images"/>)
     }
 }
 

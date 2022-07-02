@@ -4,13 +4,13 @@ import {useState, useContext} from "react";
 import AuthContext from "../../../contexts/AuthContext";
 import ImageDetailModal from "../../pages/images/ImageDetailModal";
 import {ImageListItem, ImageListItemBar} from "@mui/material";
-import '../../../static/images/no_image_available.png';
 import ConfirmationDialog from "../ConfirmationDialog";
 
 
 function ImageCard({data, setDeletedItem = null}) {
     let {authTokens, logoutUser} = useContext(AuthContext)
     const [modalOpen, setModalOpen] = useState(false);
+    const [image, setImage] = useState(data.fields.image)
 
     const handleModalOpen = () => setModalOpen(true);
     const handleModalClose = () => setModalOpen(false);
@@ -29,9 +29,10 @@ function ImageCard({data, setDeletedItem = null}) {
         <div>
             <ImageListItem>
                 <img
-                    src={data.fields.image}
-                    alt={"/images/no_image_available.png"}
-                    className="image-img"
+                    src={`http://localhost:9000/media/${data.fields.image}`}
+                    alt={"Image not found"}
+                    className="image-img click"
+                    onClick={handleModalOpen}
                 />
                 <ImageListItemBar
                     onClick={handleModalOpen}

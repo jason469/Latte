@@ -26,7 +26,7 @@ export default function ImageModal({open, handleClose, endpoint, image_id}) {
             authTokens: authTokens,
             logoutUser: logoutUser
         })
-    }, [])
+    }, [allItems])
 
     return (
         <div>
@@ -45,7 +45,6 @@ export default function ImageModal({open, handleClose, endpoint, image_id}) {
                     <Box sx={ModalBoxStyle}>
                         <div className="search">
                             <TextField
-                                id="tag_search"
                                 onChange={(e) => {
                                     inputHandler(e, setInputText)
                                 }}

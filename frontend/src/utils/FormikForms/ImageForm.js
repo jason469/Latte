@@ -2,27 +2,32 @@ import {Formik, Form, Field} from 'formik';
 import * as Yup from "yup"
 import {Button} from '@mui/material';
 import {TextField} from 'formik-mui';
-import {useContext, useState} from "react";
+import {useState, useEffect, useContext} from "react";
 import AuthContext from "../../contexts/AuthContext";
+import {ManageItems} from "../ManageItems";
 import FormSubmitMessage from "../../components/ui/FormSubmitMessage";
 import {CheckFormOutcome} from "../CheckFormOutcome";
-import {ManageItems} from "../ManageItems";
+import {FormikControl} from "../FormikControl/FormikControl";
 
 
-function AlbumForm({title, name, description, method, endpoint}) {
-
-    let {authTokens, logoutUser} = useContext(AuthContext)
+function ImageForm() {
+    const [tagOptions, setTagOptions] = useState([])
+    const [albumOptions, setAlbumOptions] = useState([])
     const [formOutcome, setFormOutcome] = useState(null);
 
+    let {authTokens, logoutUser} = useContext(AuthContext)
+
     const initialValues = {
-        name: String(name),
-        description: String(description),
+        name: '',
+        description: '',
+        tags: [],
+        albums: []
     }
 
     const validationSchema = Yup.object({
         name: Yup.string()
             .max(100, "Must be 100 characters or less")
-            .required("Album name Required"),
+            .required("Image name Required"),
         description: Yup.string(),
     })
 
@@ -31,12 +36,14 @@ function AlbumForm({title, name, description, method, endpoint}) {
         let form_data = new FormData();
         form_data.append('name', values.name);
         form_data.append('description', values.description);
+        form_data.append('tags', JSON.stringify(values.tags));
+        form_data.append('albums', JSON.stringify(values.albums));
         if (values.file) {
-            form_data.append('cover_image', values.file, values.file.name);
+            form_data.append('image', values.file, values.file.name);
         }
         ManageItems({
-            endpoint: endpoint,
-            method: method,
+            endpoint: 'images/',
+            method: 'POST',
             authTokens: authTokens,
             logoutUser: logoutUser,
             body: form_data,
@@ -46,13 +53,32 @@ function AlbumForm({title, name, description, method, endpoint}) {
             .catch(err => CheckFormOutcome(err.response.status, resetForm, setFormOutcome))
     };
 
+    useEffect(() => {
+        ManageItems({
+            endpoint: 'tags',
+            method: "GET",
+            setFunction: setTagOptions,
+            authTokens: authTokens,
+            logoutUser: logoutUser
+        })
+    }, [])
+
+    useEffect(() => {
+        ManageItems({
+            endpoint: 'albums',
+            method: "GET",
+            setFunction: setAlbumOptions,
+            authTokens: authTokens,
+            logoutUser: logoutUser
+        })
+    }, [])
+
     return (
         <div>
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
                 onSubmit={onSubmit}
-                enableReinitialize={true}
             >
                 {(props) => {
                     const {
@@ -64,10 +90,10 @@ function AlbumForm({title, name, description, method, endpoint}) {
                     } = props;
                     return (
                         <Form>
-                            <h1>{title}</h1>
+                            <h1>Add Image</h1>
                             <FormSubmitMessage
                                 formOutcome={formOutcome}
-                                item="Album"
+                                item="Image"
                             />
                             <div>
                                 <Field
@@ -89,12 +115,28 @@ function AlbumForm({title, name, description, method, endpoint}) {
                                     component={TextField}
                                 />
                                 <br/>
+
                                 <Field
                                     id="image"
-                                    name="cover_image"
+                                    name="image"
                                     type="file"
                                     className="form-control"
                                     onChange={event => props.setFieldValue("file", event.currentTarget.files[0])}
+                                />
+
+                                <FormikControl
+                                    control='checkbox'
+                                    label='Tags'
+                                    name='tags'
+                                    options={tagOptions}
+                                />
+
+                                <br/>
+                                <FormikControl
+                                    control='checkbox'
+                                    label='Albums'
+                                    name='albums'
+                                    options={albumOptions}
                                 />
                             </div>
                             <Button type="submit">Submit</Button>
@@ -106,4 +148,4 @@ function AlbumForm({title, name, description, method, endpoint}) {
     );
 }
 
-export default AlbumForm;
+export default ImageForm;

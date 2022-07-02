@@ -4,8 +4,14 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import ImageDetailPage from "./ImageDetailPage";
 import {ModalBoxStyle} from "../../../utils/ModalBoxStyles";
+import {AiOutlineArrowLeft, AiOutlineArrowRight} from "react-icons/ai";
+
 
 export default function ImageDetailModal({open, handleClose, imageId}) {
+    const showPreviousImage = () => {
+        imageId = imageId - 1
+    }
+
     return (
         <div>
             <Modal
@@ -21,7 +27,9 @@ export default function ImageDetailModal({open, handleClose, imageId}) {
             >
                 <Fade in={open}>
                     <Box sx={ModalBoxStyle}>
-                        <ImageDetailPage imageId={imageId} key={imageId} />
+                        <AiOutlineArrowLeft onClick={showPreviousImage} className="click"/>
+                        <ImageDetailPage imageId={imageId} key={imageId}/>
+                        <AiOutlineArrowRight onClick={showPreviousImage} className="click"/>
                     </Box>
                 </Fade>
             </Modal>

@@ -13,30 +13,24 @@ function NavigationBar() {
     return (
         <Navbar bg="light" expand="lg">
             <Navbar.Brand as={Link} to="/" className="brand">Latte</Navbar.Brand>
-            <NavDropdown title={<IoMdImages size={35} color="black" className="click"/>} id="image-dropdown" className="image">
-                <NavDropdown.Item  as={Link} to="/images">
+            <NavDropdown title={<IoMdImages size={35} color="black" className="click"/>} id="image-dropdown"
+                         className="image">
+                <NavDropdown.Item as={Link} to="/images">
                     All Images
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/add-image">
-                    Add
                 </NavDropdown.Item>
             </NavDropdown>
 
-            <NavDropdown title={<IoMdPricetags size={30} color="black" className="click"/>} id="tag-dropdown" className="tags">
+            <NavDropdown title={<IoMdPricetags size={30} color="black" className="click"/>} id="tag-dropdown"
+                         className="tags">
                 <NavDropdown.Item as={Link} to="/tags">
                     All Tags
                 </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/add-tag">
-                    Add
-                </NavDropdown.Item>
             </NavDropdown>
 
-            <NavDropdown title={<IoIosAlbums size={30} color="black" className="click"/>} id="album-dropdown" className="albums">
+            <NavDropdown title={<IoIosAlbums size={30} color="black" className="click"/>} id="album-dropdown"
+                         className="albums">
                 <NavDropdown.Item as={Link} to="/albums">
                     All Albums
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/add-album">
-                    Add
                 </NavDropdown.Item>
             </NavDropdown>
 
