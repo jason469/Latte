@@ -33,9 +33,9 @@ function ImageDetailForm({title, name, description, method, endpoint}) {
         let form_data = new FormData();
         form_data.append('name', values.name);
         form_data.append('description', values.description);
-        // if (values.file) {
-        //     form_data.append('image', values.file, values.file.name);
-        // }
+        if (values.file) {
+            form_data.append('image', values.file, values.file.name);
+        }
         ManageItems({
             endpoint: endpoint,
             method: method,

@@ -86,12 +86,12 @@ class ImageViewSet(viewsets.ModelViewSet):
                         Image.objects.get(id=image_id).album.add(album)
                     return HttpResponse(status=200)
             else:
-                image_id = self.get_object().id
-                Image.objects.filter(id=image_id).update(
-                    name=request.data.get('name'),
-                    description=request.data.get('description'),
-                    image=(request.data.get('image'))
-                )
+                currentImage = self.get_object()
+                currentImage.name = request.data.get('name')
+                currentImage.description = request.data.get('description')
+                if request.data.get('image'):
+                    currentImage.image = request.data.get('image')
+                currentImage.save()
                 return HttpResponse(status=200)
 
         except Exception as exc:
