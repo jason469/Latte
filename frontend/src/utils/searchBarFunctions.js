@@ -4,19 +4,29 @@ function inputHandler(e, setFunction) {
     return null;
 }
 
-function filterData(inputText ,listOfItems) {
-    let filteredItems = listOfItems.filter(item => {
-        if (inputText === '' ||
-            item.name.toLowerCase().includes(inputText) ||
-            item.description.toLowerCase().includes(inputText)
-        ) {
-            return item;
+function filterData(inputText, listOfItems, filterImage = false) {
+    console.log(listOfItems)
+    return listOfItems.filter(item => {
+        if (filterImage) {
+            if (inputText === '' ||
+                item.fields.name.toLowerCase().includes(inputText) ||
+                item.fields.description.toLowerCase().includes(inputText)
+            ) {
+                return item;
+            } else {
+                return null
+            }
         } else {
-            return null
+            if (inputText === '' ||
+                item.name.toLowerCase().includes(inputText) ||
+                item.description.toLowerCase().includes(inputText)
+            ) {
+                return item;
+            } else {
+                return null
+            }
         }
     })
-
-    return filteredItems
 }
 
 export {inputHandler, filterData}

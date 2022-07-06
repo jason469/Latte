@@ -33,7 +33,7 @@ function ListOfImages() {
         setCurrentItems(images)
         setItemIDs(currentItems.map(item => item.pk));
     }
-    const filteredData = filterData(inputText, imageData)
+    const filteredData = filterData(inputText, imageData, true)
 
     //Fetch Images
     useEffect(() => {

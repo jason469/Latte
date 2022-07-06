@@ -12,7 +12,6 @@ import Backdrop from "@mui/material/Backdrop";
 import Fade from "@mui/material/Fade";
 import Box from "@mui/material/Box";
 import {ModalBoxStyle} from "../../../utils/ModalBoxStyles";
-import AddTag from "../tags/AddTag";
 import Modal from "@mui/material/Modal";
 import AddAlbum from "./AddAlbum";
 import UpdateContext from "../../../contexts/UpdateContext";
