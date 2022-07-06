@@ -45,9 +45,10 @@ function ImageForm() {
         form_data.append('albums', JSON.stringify(values.albums));
         console.log(values)
         if (values.file) {
+            let counter = 1
             for (let file of values.file) {
-                form_data.append('images', file, values.file.name);
-                // form_data.append('images', values.file, values.file.name);
+                form_data.append(`images__${counter}`, file, values.file.name);
+                counter++
             }
         }
         ManageItems({

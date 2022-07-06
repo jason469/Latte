@@ -39,28 +39,30 @@ class ImageViewSet(viewsets.ModelViewSet):
         )
 
     def create(self, request, *args, **kwargs):
-        print(f'________________________________________________________UPLOADED IMAGE IS {request.data.get("images")}')
-        for uploaded_image in request.data.get("images"):
-            try:
-                image, created = Image.objects.get_or_create(
-                    name=request.data.get('name'),
-                    description=request.data.get('description'),
-                    image=uploaded_image,
-                    uploaded_by=request.user
-                )
-                if created is True:
-                    tags = json.loads(request.data.get("tags"))
-                    albums = json.loads(request.data.get("albums"))
-                    for tag in tags:
-                        image.tag.add(Tag.objects.get(name=tag))
-                    for album in albums:
-                        image.album.add(Album.objects.get(name=album))
-                    return HttpResponse(status=201)
-                else:
-                    return HttpResponse(status=406)
-            except Exception as exc:
-                print(exc)
-                return HttpResponse(500)
+        for item in request.data.dict():
+            if item.startswith('images__'):
+                try:
+                    image, created = Image.objects.get_or_create(
+                        name=request.data.get("name"),
+                        description=request.data.get("description"),
+                        image=request.data.get(item),
+                        uploaded_by=request.user
+                    )
+
+                    if created is True:
+                        tags = json.loads(request.data.get("tags"))
+                        albums = json.loads(request.data.get("albums"))
+                        for tag in tags:
+                            image.tag.add(Tag.objects.get(name=tag))
+                        for album in albums:
+                            image.album.add(Album.objects.get(name=album))
+                    else:
+                        return HttpResponse(status=406)
+                except Exception as exc:
+                    print(exc)
+                    return HttpResponse(500)
+
+        return HttpResponse(status=201)
 
     def partial_update(self, request, *args, **kwargs):
         try:
