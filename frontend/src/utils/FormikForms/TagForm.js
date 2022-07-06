@@ -7,11 +7,14 @@ import AuthContext from "../../contexts/AuthContext";
 import FormSubmitMessage from "../../components/ui/FormSubmitMessage";
 import {CheckFormOutcome} from "../CheckFormOutcome";
 import {ManageItems} from "../ManageItems";
+import UpdateContext from "../../contexts/UpdateContext";
 
 
 function TagForm({title, name, description, method, endpoint}) {
     let {authTokens, logoutUser} = useContext(AuthContext)
     const [formOutcome, setFormOutcome] = useState(null);
+
+    let {setUpdatedTag} = useContext(UpdateContext)
 
     const initialValues = {
         name: String(name),
@@ -35,6 +38,7 @@ function TagForm({title, name, description, method, endpoint}) {
             body: JSON.stringify(values)
         })
             .then(response => CheckFormOutcome(response.status, resetForm, setFormOutcome))
+            .then(() => setUpdatedTag(Math.random()))
             .catch(err => console.log(err))
     };
 

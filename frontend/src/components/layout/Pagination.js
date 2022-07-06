@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import ReactPaginate from "react-paginate";
 import classes from "./Pagination.module.css";
+import {IoChevronBackCircleSharp, IoChevronForwardCircleSharp} from "react-icons/io5";
 
 
 function Pagination({itemsPerPage, data, pull_function}) {
@@ -24,11 +25,11 @@ function Pagination({itemsPerPage, data, pull_function}) {
         <>
             <ReactPaginate
                 breakLabel="..."
-                nextLabel=">"
+                nextLabel={<IoChevronForwardCircleSharp/>}
                 onPageChange={handlePageClick}
                 pageRangeDisplayed={2}
                 pageCount={pageCount}
-                previousLabel="<"
+                previousLabel={<IoChevronBackCircleSharp/>}
                 renderOnZeroPageCount={null}
                 containerClassName={classes.pagination}
                 pageLinkClassName={classes.page_num}

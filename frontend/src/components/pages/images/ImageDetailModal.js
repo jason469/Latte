@@ -7,9 +7,14 @@ import {ModalBoxStyle} from "../../../utils/ModalBoxStyles";
 import {AiOutlineArrowLeft, AiOutlineArrowRight} from "react-icons/ai";
 
 
-export default function ImageDetailModal({open, handleClose, imageId}) {
+export default function ImageDetailModal({open, handleClose, imageId, prevImageId, afterImageId}) {
     const showPreviousImage = () => {
-        imageId = imageId - 1
+        imageId = prevImageId
+        console.log(imageId)
+    }
+
+    const showAfterImage = () => {
+        imageId = afterImageId
     }
 
     return (
@@ -29,7 +34,7 @@ export default function ImageDetailModal({open, handleClose, imageId}) {
                     <Box sx={ModalBoxStyle}>
                         <AiOutlineArrowLeft onClick={showPreviousImage} className="click"/>
                         <ImageDetailPage imageId={imageId} key={imageId}/>
-                        <AiOutlineArrowRight onClick={showPreviousImage} className="click"/>
+                        <AiOutlineArrowRight onClick={showAfterImage} className="click"/>
                     </Box>
                 </Fade>
             </Modal>

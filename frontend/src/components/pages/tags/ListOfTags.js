@@ -15,6 +15,7 @@ import Box from "@mui/material/Box";
 import {ModalBoxStyle} from "../../../utils/ModalBoxStyles";
 import Modal from "@mui/material/Modal";
 import AddTag from "./AddTag";
+import UpdateContext from "../../../contexts/UpdateContext";
 
 function ListOfTags() {
     const [tagData, setTagData] = useState([])
@@ -25,6 +26,7 @@ function ListOfTags() {
     const [loading, setLoading] = useState(false)
 
     let {authTokens, logoutUser} = useContext(AuthContext)
+    let {updatedTag} = useContext(UpdateContext)
 
     const pull_tags = tags => setCurrentItems(tags);
 
@@ -40,7 +42,7 @@ function ListOfTags() {
             logoutUser: logoutUser
         })
         setLoading(true)
-    }, [deletedItem, tagData])
+    }, [deletedItem, updatedTag])
 
 
     switch (loading) {

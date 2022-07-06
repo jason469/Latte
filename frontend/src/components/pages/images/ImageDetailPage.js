@@ -40,7 +40,7 @@ function ImageDetailPage(props) {
     return (
         <div>
             <div>
-                < Card.Img
+                <Card.Img
                     variant="top"
                     src={currentImage[0].fields.image}
                     alt={currentImage[0].fields.name}

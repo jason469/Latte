@@ -14,6 +14,7 @@ import Fade from "@mui/material/Fade";
 import Box from "@mui/material/Box";
 import {ModalBoxStyle} from "../../../utils/ModalBoxStyles";
 import AddImage from "./AddImage";
+import UpdateContext from "../../../contexts/UpdateContext";
 
 function ListOfImages() {
     const [imageData, setImageData] = useState([])
@@ -24,6 +25,7 @@ function ListOfImages() {
     const [loading, setLoading] = useState(false)
 
     let {authTokens, logoutUser} = useContext(AuthContext)
+    let {updatedImage} = useContext(UpdateContext)
 
     // Fetch current items
     const pull_images = images => setCurrentItems(images)
@@ -31,6 +33,7 @@ function ListOfImages() {
 
     //Fetch Images
     useEffect(() => {
+        console.log('effect')
         ManageItems({
             endpoint: '/images',
             method: "GET",
@@ -39,7 +42,7 @@ function ListOfImages() {
             logoutUser: logoutUser
         })
         setLoading(true)
-    }, [deletedItem, imageData])
+    }, [deletedItem, updatedImage])
 
     switch (loading) {
         case true:
@@ -76,16 +79,18 @@ function ListOfImages() {
                     </Modal>
                     <ImageList variant="masonry" cols={4} gap={5}>
                         {inputText !== ""
-                            ? filteredData.map(item =>
-                                <ImageCard key={item.pk} data={item} setDeletedItem={setDeletedItem}/>
+                            ? filteredData.map((item, index, array) =>
+                                <ImageCard key={item.pk} data={item} prevImage={array[index - 1]}
+                                           afterImage={array[index + 1]} setDeletedItem={setDeletedItem}/>
                             )
-                            : currentItems.map(item =>
-                                <ImageCard key={item.pk} data={item} setDeletedItem={setDeletedItem}/>
+                            : currentItems.map((item, index, array) =>
+                                <ImageCard key={item.pk} data={item} prevImage={array[index - 1]}
+                                           afterImage={array[index + 1]} setDeletedItem={setDeletedItem}/>
                             )
                         }
                     </ImageList>
                     <Pagination
-                        itemsPerPage={12}
+                        itemsPerPage={8}
                         data={imageData}
                         pull_function={pull_images}
                     />

@@ -15,6 +15,7 @@ import {ModalBoxStyle} from "../../../utils/ModalBoxStyles";
 import AddTag from "../tags/AddTag";
 import Modal from "@mui/material/Modal";
 import AddAlbum from "./AddAlbum";
+import UpdateContext from "../../../contexts/UpdateContext";
 
 function ListOfAlbums() {
     const [albumData, setAlbumData] = useState([])
@@ -25,6 +26,7 @@ function ListOfAlbums() {
     const [loading, setLoading] = useState(false)
 
     let {authTokens, logoutUser} = useContext(AuthContext)
+    let {updatedAlbum} = useContext(UpdateContext)
 
     const pull_albums = albums => setCurrentItems(albums);
     const filteredData = filterData(inputText, albumData)
@@ -39,7 +41,7 @@ function ListOfAlbums() {
             logoutUser: logoutUser
         })
         setLoading(true)
-    }, [deletedItem, albumData])
+    }, [deletedItem, updatedAlbum])
 
     switch (loading) {
         case true:

@@ -1,16 +1,17 @@
 import {ImCross} from "react-icons/im";
 import {ManageItems} from "../../../utils/ManageItems";
-import {useState, useContext} from "react";
+import {useState, useContext, useEffect} from "react";
 import AuthContext from "../../../contexts/AuthContext";
 import ImageDetailModal from "../../pages/images/ImageDetailModal";
 import {ImageListItem, ImageListItemBar} from "@mui/material";
 import ConfirmationDialog from "../ConfirmationDialog";
 
 
-function ImageCard({data, setDeletedItem = null}) {
+function ImageCard({data, prevImage, afterImage, setDeletedItem = null}) {
     let {authTokens, logoutUser} = useContext(AuthContext)
     const [modalOpen, setModalOpen] = useState(false);
-    const [image, setImage] = useState(data.fields.image)
+    const [prevImageId, setPrevImageId] = useState()
+    const [afterImageId, setAfterImageId] = useState()
 
     const handleModalOpen = () => setModalOpen(true);
     const handleModalClose = () => setModalOpen(false);
@@ -25,6 +26,19 @@ function ImageCard({data, setDeletedItem = null}) {
         setDeletedItem(data.pk)
     }
 
+    useEffect(() => {
+        if (prevImage) {
+            setPrevImageId(prevImage.pk)
+        }
+
+        if (afterImage) {
+            setAfterImageId(afterImage.pk)
+        }
+
+        console.log(prevImageId, afterImageId)
+    }, []);
+
+
     return (
         <div>
             <ImageListItem>
@@ -35,7 +49,6 @@ function ImageCard({data, setDeletedItem = null}) {
                     onClick={handleModalOpen}
                 />
                 <ImageListItemBar
-                    onClick={handleModalOpen}
                     className="click"
                     title={data.fields.name}
                     subtitle={data.fields.description}
@@ -47,7 +60,13 @@ function ImageCard({data, setDeletedItem = null}) {
                         />
                     }
                 />
-                <ImageDetailModal open={modalOpen} handleClose={handleModalClose} imageId={data.pk}/>
+                <ImageDetailModal
+                    open={modalOpen}
+                    handleClose={handleModalClose}
+                    imageId={data.pk}
+                    prevImageId={prevImageId}
+                    afterImageId={afterImageId}
+                />
             </ImageListItem>
         </div>
     )

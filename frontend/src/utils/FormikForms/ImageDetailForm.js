@@ -7,11 +7,13 @@ import AuthContext from "../../contexts/AuthContext";
 import FormSubmitMessage from "../../components/ui/FormSubmitMessage";
 import {CheckFormOutcome} from "../CheckFormOutcome";
 import {ManageItems} from "../ManageItems";
+import UpdateContext from "../../contexts/UpdateContext";
 
 
 function ImageDetailForm({title, name, description, method, endpoint}) {
-
     let {authTokens, logoutUser} = useContext(AuthContext)
+    let {setUpdatedImage} = useContext(UpdateContext)
+
     const [formOutcome, setFormOutcome] = useState(null);
 
     const initialValues = {
@@ -31,9 +33,9 @@ function ImageDetailForm({title, name, description, method, endpoint}) {
         let form_data = new FormData();
         form_data.append('name', values.name);
         form_data.append('description', values.description);
-        if (values.file) {
-            form_data.append('image', values.file, values.file.name);
-        }
+        // if (values.file) {
+        //     form_data.append('image', values.file, values.file.name);
+        // }
         ManageItems({
             endpoint: endpoint,
             method: method,
@@ -43,7 +45,8 @@ function ImageDetailForm({title, name, description, method, endpoint}) {
             content_type: null
         })
             .then(response => CheckFormOutcome(response.status, resetForm, setFormOutcome))
-            .catch(err => CheckFormOutcome(err.response.status, resetForm, setFormOutcome))
+            .then(() => setUpdatedImage(Math.random()))
+            // .catch(err => CheckFormOutcome(err.response.status, resetForm, setFormOutcome))
     };
 
     return (

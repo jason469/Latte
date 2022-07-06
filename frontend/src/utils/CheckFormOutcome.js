@@ -14,4 +14,5 @@ export function CheckFormOutcome(status, resetForm, setFormOutcome) {
             setFormOutcome('cannot be created');
             break;
     }
+    return null
 }

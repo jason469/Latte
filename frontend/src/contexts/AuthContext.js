@@ -74,7 +74,6 @@ export const AuthProvider = props => {
         if (loading) {
             setLoading(false)
         }
-
     }
 
     let contextData = {

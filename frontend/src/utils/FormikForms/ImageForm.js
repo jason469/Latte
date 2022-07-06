@@ -2,26 +2,31 @@ import {Formik, Form, Field} from 'formik';
 import * as Yup from "yup"
 import {Button} from '@mui/material';
 import {TextField} from 'formik-mui';
-import {useState, useEffect, useContext} from "react";
+import {useState, useEffect, useContext, useRef} from "react";
 import AuthContext from "../../contexts/AuthContext";
 import {ManageItems} from "../ManageItems";
 import FormSubmitMessage from "../../components/ui/FormSubmitMessage";
 import {CheckFormOutcome} from "../CheckFormOutcome";
 import {FormikControl} from "../FormikControl/FormikControl";
+import UpdateContext from "../../contexts/UpdateContext";
 
 
 function ImageForm() {
     const [tagOptions, setTagOptions] = useState([])
     const [albumOptions, setAlbumOptions] = useState([])
     const [formOutcome, setFormOutcome] = useState(null);
+    const imageRef = useRef();
 
     let {authTokens, logoutUser} = useContext(AuthContext)
+    let {setUpdatedImage} = useContext(UpdateContext)
 
     const initialValues = {
         name: '',
         description: '',
         tags: [],
-        albums: []
+        albums: [],
+        image: null
+
     }
 
     const validationSchema = Yup.object({
@@ -50,7 +55,9 @@ function ImageForm() {
             content_type: null
         })
             .then(response => CheckFormOutcome(response.status, resetForm, setFormOutcome))
-            .catch(err => CheckFormOutcome(err.response.status, resetForm, setFormOutcome))
+            .then(() => setUpdatedImage(Math.random()))
+            .then(() => imageRef.current.value = null)
+            // .catch(err => CheckFormOutcome(err.response.status, resetForm, setFormOutcome))
     };
 
     useEffect(() => {
@@ -117,10 +124,12 @@ function ImageForm() {
                                 <br/>
 
                                 <Field
+                                    innerRef={imageRef}
                                     id="image"
                                     name="image"
                                     type="file"
                                     className="form-control"
+                                    multiple
                                     onChange={event => props.setFieldValue("file", event.currentTarget.files[0])}
                                 />
 
