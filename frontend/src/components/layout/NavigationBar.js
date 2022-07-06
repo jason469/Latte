@@ -13,26 +13,23 @@ function NavigationBar() {
     return (
         <Navbar bg="light" expand="lg">
             <Navbar.Brand as={Link} to="/" className="brand">Latte</Navbar.Brand>
-            <NavDropdown title={<IoMdImages size={35} color="black" className="click"/>} id="image-dropdown"
-                         className="image">
-                <NavDropdown.Item as={Link} to="/images">
-                    All Images
-                </NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Item>
+                <Nav.Link id="image-dropdown" className="image" to="/images" as={Link}>
+                    <IoMdImages size={35} color="black" className="click"/>
+                </Nav.Link>
+            </Nav.Item>
 
-            <NavDropdown title={<IoMdPricetags size={30} color="black" className="click"/>} id="tag-dropdown"
-                         className="tags">
-                <NavDropdown.Item as={Link} to="/tags">
-                    All Tags
-                </NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Item>
+                <Nav.Link id="tag-dropdown" className="tags" to="/tags" as={Link}>
+                    <IoMdPricetags size={30} color="black" className="click"/>
+                </Nav.Link>
+            </Nav.Item>
 
-            <NavDropdown title={<IoIosAlbums size={30} color="black" className="click"/>} id="album-dropdown"
-                         className="albums">
-                <NavDropdown.Item as={Link} to="/albums">
-                    All Albums
-                </NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Item>
+                <Nav.Link id="album-dropdown" className="albums" as={Link} to="/albums">
+                    <IoIosAlbums size={30} color="black" className="click"/>
+                </Nav.Link>
+            </Nav.Item>
 
             <NavDropdown title={<IoPersonSharp size={30} color="black" className="click"/>} id="profile-dropdown"
                          className="ml-auto profile" alignRight={true}>
