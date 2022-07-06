@@ -32,7 +32,7 @@ function ListOfAlbums() {
 
     const pull_albums = albums => {
         setCurrentItems(albums);
-        setItemIDs(currentItems.map(item => item.id));
+        setItemIDs(albums.map(item => item.id));
     }
     const filteredData = filterData(inputText, albumData)
 

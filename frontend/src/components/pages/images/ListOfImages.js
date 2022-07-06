@@ -32,7 +32,7 @@ function ListOfImages() {
     // Fetch current items
     const pull_images = images => {
         setCurrentItems(images)
-        setItemIDs(currentItems.map(item => item.pk));
+        setItemIDs(images.map(item => item.pk));
     }
     const filteredData = filterData(inputText, imageData, true)
 

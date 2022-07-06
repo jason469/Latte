@@ -33,7 +33,7 @@ function ListOfTags() {
 
     const pull_tags = tags => {
         setCurrentItems(tags);
-        setItemIDs(currentItems.map(item => item.id));
+        setItemIDs(tags.map(item => item.id));
     }
 
     const filteredData = filterData(inputText, tagData)
