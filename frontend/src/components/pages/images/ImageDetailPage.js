@@ -2,13 +2,14 @@ import {useEffect, useState, useContext} from "react";
 import {useParams} from "react-router-dom";
 import {ManageItems} from "../../../utils/ManageItems";
 import AuthContext from "../../../contexts/AuthContext";
-import {Card} from "react-bootstrap";
 import TagLabel from "../../ui/tags/TagLabel";
 import AlbumLabel from "../../ui/albums/AlbumLabel";
 import {AiFillPlusCircle} from "react-icons/ai";
 import ImageModal from "../../ui/ImageModal";
 import ImageDetailForm from "../../../utils/FormikForms/ImageDetailForm";
 import UpdateContext from "../../../contexts/UpdateContext";
+import '../../../App.css'
+
 
 function ImageDetailPage(props) {
     const [deletedItem, setDeletedItem] = useState(0)
@@ -42,12 +43,6 @@ function ImageDetailPage(props) {
     return (
         <div>
             <div>
-                {/*<Card.Img*/}
-                {/*    variant="top"*/}
-                {/*    src={currentImage[0].fields.image}*/}
-                {/*    alt={currentImage[0].fields.name}*/}
-                {/*    className="card-img"*/}
-                {/*/>*/}
                 <ImageDetailForm
                     title="Update Images"
                     name={currentImage[0].fields.name}

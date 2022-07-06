@@ -1,4 +1,5 @@
 import {Skeleton} from "@mui/material";
+import '../../../App.css'
 
 function EmptyPage() {
     return (

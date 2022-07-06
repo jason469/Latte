@@ -1,4 +1,5 @@
 import AlbumForm from "../../../utils/FormikForms/AlbumForm";
+import '../../../App.css'
 
 
 function AddAlbum() {

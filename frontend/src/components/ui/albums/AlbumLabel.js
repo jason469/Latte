@@ -2,9 +2,9 @@ import {Nav, Card} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {useContext} from "react";
 import AuthContext from "../../../contexts/AuthContext";
-import {ImCross} from "react-icons/im";
 import {ManageItems} from "../../../utils/ManageItems";
 import ConfirmationDialog from "../ConfirmationDialog";
+import '../../../App.css'
 
 
 function AlbumLabel({data, image_id, setDeletedItem = null}) {

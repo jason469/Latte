@@ -4,6 +4,8 @@ import {ManageItems} from "../../../utils/ManageItems";
 import AlbumForm from "../../../utils/FormikForms/AlbumForm";
 import ImageLabel from "../../ui/images/ImageLabel";
 import {useParams} from "react-router-dom";
+import '../../../App.css'
+
 
 function AlbumDetailPage(props) {
     const [currentAlbum, setCurrentAlbum] = useState({images: [], album_data: {}})

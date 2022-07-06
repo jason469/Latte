@@ -1,10 +1,11 @@
 import './NavigationBar.module.css'
-import {Container, Nav, NavDropdown, Navbar} from "react-bootstrap";
+import {Nav, NavDropdown, Navbar} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {useContext} from "react";
 import AuthContext from "../../contexts/AuthContext";
 import {IoPersonSharp} from "react-icons/io5";
 import {IoMdImages, IoMdPricetags, IoIosAlbums} from "react-icons/io";
+import '../../App.css'
 
 
 function NavigationBar() {

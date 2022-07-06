@@ -13,6 +13,7 @@ router.register(r'images', views.ImageViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('get-random-images/', views.GetRandomImages.as_view(), name='get-random-images'),
     path('auth/token/', views.MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]

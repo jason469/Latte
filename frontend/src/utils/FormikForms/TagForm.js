@@ -1,13 +1,14 @@
 import {Formik, Form, Field} from 'formik';
 import * as Yup from "yup"
-import {Button, Box, Alert} from '@mui/material';
+import {Button} from '@mui/material';
 import {TextField} from 'formik-mui';
-import {useContext, useRef, useState} from "react";
+import {useContext, useState} from "react";
 import AuthContext from "../../contexts/AuthContext";
 import FormSubmitMessage from "../../components/ui/FormSubmitMessage";
 import {CheckFormOutcome} from "../CheckFormOutcome";
 import {ManageItems} from "../ManageItems";
 import UpdateContext from "../../contexts/UpdateContext";
+import '../../App.css'
 
 
 function TagForm({title, name, description, method, endpoint}) {

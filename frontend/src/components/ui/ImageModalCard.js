@@ -5,6 +5,7 @@ import {ManageItems} from "../../utils/ManageItems";
 import {useContext} from "react";
 import AuthContext from "../../contexts/AuthContext";
 import UpdateContext from "../../contexts/UpdateContext";
+import '../../App.css'
 
 
 function ImageModalCard({data, item_name, image_id}) {

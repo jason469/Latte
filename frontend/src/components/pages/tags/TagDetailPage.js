@@ -4,6 +4,8 @@ import {ManageItems} from "../../../utils/ManageItems";
 import TagForm from "../../../utils/FormikForms/TagForm";
 import ImageLabel from "../../ui/images/ImageLabel";
 import {useParams} from "react-router-dom";
+import '../../../App.css'
+
 
 function TagDetailPage(props) {
     const [currentTag, setCurrentTag] = useState({images: [], tag_data: {}})

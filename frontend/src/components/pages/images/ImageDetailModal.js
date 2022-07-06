@@ -6,6 +6,8 @@ import ImageDetailPage from "./ImageDetailPage";
 import {ModalBoxStyle} from "../../../utils/ModalBoxStyles";
 import {AiOutlineArrowLeft, AiOutlineArrowRight} from "react-icons/ai";
 import {useState} from "react";
+import '../../../App.css'
+
 
 export default function ImageDetailModal({open, handleClose, imageId, ids}) {
     const [currentImageId, setCurrentImageId] = useState(imageId);
@@ -17,6 +19,7 @@ export default function ImageDetailModal({open, handleClose, imageId, ids}) {
     const showAfterImage = () => {
         let afterId = ids[ids.indexOf(currentImageId) + 1]
         setCurrentImageId(afterId)
+        console.log(currentImageId)
     }
 
     return (
@@ -35,7 +38,7 @@ export default function ImageDetailModal({open, handleClose, imageId, ids}) {
                 <Fade in={open}>
                     <Box sx={ModalBoxStyle}>
                         <AiOutlineArrowLeft onClick={showPreviousImage} className="click"/>
-                        <ImageDetailPage imageId={currentImageId} key={imageId}/>
+                        <ImageDetailPage imageId={currentImageId} key={currentImageId}/>
                         <AiOutlineArrowRight onClick={showAfterImage} className="click"/>
                     </Box>
                 </Fade>

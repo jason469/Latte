@@ -1,10 +1,10 @@
-import {ImCross} from "react-icons/im";
 import {ManageItems} from "../../../utils/ManageItems";
 import {useState, useContext, useEffect} from "react";
 import AuthContext from "../../../contexts/AuthContext";
 import ImageDetailModal from "../../pages/images/ImageDetailModal";
 import {ImageListItem, ImageListItemBar} from "@mui/material";
 import ConfirmationDialog from "../ConfirmationDialog";
+import '../../../App.css'
 
 
 function ImageCard({data, ids, setDeletedItem = null}) {

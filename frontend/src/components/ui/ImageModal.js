@@ -10,6 +10,7 @@ import AuthContext from "../../contexts/AuthContext";
 import ImageModalCard from "./ImageModalCard";
 import {ModalBoxStyle} from "../../utils/ModalBoxStyles";
 import UpdateContext from "../../contexts/UpdateContext";
+import '../../App.css'
 
 export default function ImageModal({open, handleClose, endpoint, image_id}) {
     const [inputText, setInputText] = useState("");

@@ -8,6 +8,7 @@ import FormSubmitMessage from "../../components/ui/FormSubmitMessage";
 import {CheckFormOutcome} from "../CheckFormOutcome";
 import {ManageItems} from "../ManageItems";
 import UpdateContext from "../../contexts/UpdateContext";
+import '../../App.css'
 
 
 function ImageDetailForm({title, name, description, method, endpoint}) {

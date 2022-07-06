@@ -1,4 +1,5 @@
 import TagForm from "../../../utils/FormikForms/TagForm";
+import '../../../App.css'
 
 
 function AddTag() {

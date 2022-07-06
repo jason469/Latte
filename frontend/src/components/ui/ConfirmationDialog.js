@@ -1,6 +1,7 @@
 import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from "@mui/material";
 import {useState} from "react";
 import {ImCross} from "react-icons/im";
+import '../../App.css'
 
 function ConfirmationDialog({deleteItem, title, content}) {
     const [dialogOpen, setDialogOpen] = useState(false)

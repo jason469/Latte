@@ -6,6 +6,8 @@ import TagDetailPage from "./TagDetailPage";
 import {ModalBoxStyle} from "../../../utils/ModalBoxStyles";
 import {useState} from "react";
 import {AiOutlineArrowLeft, AiOutlineArrowRight} from "react-icons/ai";
+import '../../../App.css'
+
 
 export default function TagDetailModal({open, handleClose, tagId, ids}) {
     const [currentTagId, setCurrentTagId] = useState(tagId);

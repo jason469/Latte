@@ -9,6 +9,7 @@ import FormSubmitMessage from "../../components/ui/FormSubmitMessage";
 import {CheckFormOutcome} from "../CheckFormOutcome";
 import {FormikControl} from "../FormikControl/FormikControl";
 import UpdateContext from "../../contexts/UpdateContext";
+import '../../App.css'
 
 
 function ImageForm() {
@@ -43,7 +44,6 @@ function ImageForm() {
         form_data.append('description', values.description);
         form_data.append('tags', JSON.stringify(values.tags));
         form_data.append('albums', JSON.stringify(values.albums));
-        console.log(values)
         if (values.file) {
             let counter = 1
             for (let file of values.file) {

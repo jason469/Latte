@@ -1,6 +1,8 @@
 import json
+import random
 
 from django.http import Http404, QueryDict
+from rest_framework.views import APIView
 
 from .serializers import *
 from .models import *
@@ -159,3 +161,14 @@ class AlbumViewSet(viewsets.ModelViewSet):
         return Response({"images": images,
                          "album_data": tag_data},
                         status=status.HTTP_200_OK)
+
+
+class GetRandomImages(APIView):
+    def get(self, request):
+        randomImages = []
+        allImages = Image.objects.all()
+        number_of_images = len(allImages)
+        randomIndexes = random.sample(range(1, number_of_images), 5)
+        for randomIndex in randomIndexes:
+            randomImages.append(allImages[randomIndex])
+        return HttpResponse(serializers.serialize('json', randomImages, use_natural_foreign_keys=True))

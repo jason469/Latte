@@ -1,10 +1,10 @@
 import {Card} from "react-bootstrap";
 import {useState, useContext} from "react";
 import AuthContext from "../../../contexts/AuthContext";
-import {ImCross} from "react-icons/im";
 import {ManageItems} from "../../../utils/ManageItems";
 import TagDetailModal from "../../pages/tags/TagDetailModal";
 import ConfirmationDialog from "../ConfirmationDialog";
+import '../../../App.css'
 
 
 function TagCard({data, ids, setDeletedItem = null}) {

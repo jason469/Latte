@@ -5,7 +5,6 @@ function inputHandler(e, setFunction) {
 }
 
 function filterData(inputText, listOfItems, filterImage = false) {
-    console.log(listOfItems)
     return listOfItems.filter(item => {
         if (filterImage) {
             if (inputText === '' ||

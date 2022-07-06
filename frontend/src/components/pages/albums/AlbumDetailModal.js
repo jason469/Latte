@@ -6,6 +6,7 @@ import AlbumDetailPage from "./AlbumDetailPage";
 import {ModalBoxStyle} from "../../../utils/ModalBoxStyles";
 import {useState} from "react";
 import {AiOutlineArrowLeft, AiOutlineArrowRight} from "react-icons/ai";
+import '../../../App.css'
 
 export default function AlbumDetailModal({open, handleClose, albumId, ids}) {
     const [currentAlbumId, setCurrentAlbumId] = useState(albumId);

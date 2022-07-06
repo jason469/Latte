@@ -1,5 +1,6 @@
 import {useContext} from "react";
 import AuthContext from "../../../contexts/AuthContext";
+import '../../../App.css'
 
 function Profile() {
     let {user} = useContext(AuthContext)

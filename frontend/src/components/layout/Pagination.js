@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import ReactPaginate from "react-paginate";
 import classes from "./Pagination.module.css";
 import {IoChevronBackCircleSharp, IoChevronForwardCircleSharp} from "react-icons/io5";
+import '../../App.css'
 
 
 function Pagination({itemsPerPage, data, pull_function}) {

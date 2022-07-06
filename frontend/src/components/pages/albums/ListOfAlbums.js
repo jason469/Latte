@@ -15,6 +15,8 @@ import {ModalBoxStyle} from "../../../utils/ModalBoxStyles";
 import Modal from "@mui/material/Modal";
 import AddAlbum from "./AddAlbum";
 import UpdateContext from "../../../contexts/UpdateContext";
+import '../../../App.css'
+
 
 function ListOfAlbums() {
     const [albumData, setAlbumData] = useState([])

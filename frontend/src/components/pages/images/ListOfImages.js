@@ -15,6 +15,7 @@ import Box from "@mui/material/Box";
 import {ModalBoxStyle} from "../../../utils/ModalBoxStyles";
 import AddImage from "./AddImage";
 import UpdateContext from "../../../contexts/UpdateContext";
+import '../../../App.css'
 
 function ListOfImages() {
     const [imageData, setImageData] = useState([])

@@ -5,6 +5,7 @@ import AuthContext from "../../../contexts/AuthContext";
 import AlbumDetailModal from "../../pages/albums/AlbumDetailModal";
 import {ImageListItemBar} from "@mui/material";
 import ConfirmationDialog from "../ConfirmationDialog";
+import '../../../App.css'
 
 
 function AlbumCard({data, ids, setDeletedItem = null}) {

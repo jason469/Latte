@@ -16,6 +16,8 @@ import {ModalBoxStyle} from "../../../utils/ModalBoxStyles";
 import Modal from "@mui/material/Modal";
 import AddTag from "./AddTag";
 import UpdateContext from "../../../contexts/UpdateContext";
+import '../../../App.css'
+
 
 function ListOfTags() {
     const [tagData, setTagData] = useState([])
