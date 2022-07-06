@@ -15,7 +15,7 @@ function AlbumForm({title, name, description, method, endpoint}) {
     let {authTokens, logoutUser} = useContext(AuthContext)
     const [formOutcome, setFormOutcome] = useState(null);
 
-    let {setUpdatedAlbum} = useContext(UpdateContext)
+    let {setUpdatedItem} = useContext(UpdateContext)
 
     const initialValues = {
         name: String(name),
@@ -46,7 +46,7 @@ function AlbumForm({title, name, description, method, endpoint}) {
             content_type: null
         })
             .then(response => CheckFormOutcome(response.status, resetForm, setFormOutcome))
-            .then(() => setUpdatedAlbum(Math.random()))
+            .then(() => setUpdatedItem(Math.random()))
             .catch(err => CheckFormOutcome(err.response.status, resetForm, setFormOutcome))
     };
 

@@ -18,7 +18,7 @@ function ImageForm() {
     const imageRef = useRef();
 
     let {authTokens, logoutUser} = useContext(AuthContext)
-    let {setUpdatedImage} = useContext(UpdateContext)
+    let {setUpdatedItem} = useContext(UpdateContext)
 
     const initialValues = {
         name: '',
@@ -43,8 +43,12 @@ function ImageForm() {
         form_data.append('description', values.description);
         form_data.append('tags', JSON.stringify(values.tags));
         form_data.append('albums', JSON.stringify(values.albums));
+        console.log(values)
         if (values.file) {
-            form_data.append('image', values.file, values.file.name);
+            for (let file of values.file) {
+                form_data.append('images', file, values.file.name);
+                // form_data.append('images', values.file, values.file.name);
+            }
         }
         ManageItems({
             endpoint: 'images/',
@@ -55,9 +59,9 @@ function ImageForm() {
             content_type: null
         })
             .then(response => CheckFormOutcome(response.status, resetForm, setFormOutcome))
-            .then(() => setUpdatedImage(Math.random()))
+            .then(() => setUpdatedItem(Math.random()))
             .then(() => imageRef.current.value = null)
-            // .catch(err => CheckFormOutcome(err.response.status, resetForm, setFormOutcome))
+        // .catch(err => CheckFormOutcome(err.response.status, resetForm, setFormOutcome))
     };
 
     useEffect(() => {
@@ -126,11 +130,11 @@ function ImageForm() {
                                 <Field
                                     innerRef={imageRef}
                                     id="image"
-                                    name="image"
+                                    name="images"
                                     type="file"
                                     className="form-control"
                                     multiple
-                                    onChange={event => props.setFieldValue("file", event.currentTarget.files[0])}
+                                    onChange={event => props.setFieldValue("file", event.currentTarget.files)}
                                 />
 
                                 <FormikControl

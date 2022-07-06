@@ -12,7 +12,7 @@ import UpdateContext from "../../contexts/UpdateContext";
 
 function ImageDetailForm({title, name, description, method, endpoint}) {
     let {authTokens, logoutUser} = useContext(AuthContext)
-    let {setUpdatedImage} = useContext(UpdateContext)
+    let {setUpdatedItem} = useContext(UpdateContext)
 
     const [formOutcome, setFormOutcome] = useState(null);
 
@@ -45,7 +45,7 @@ function ImageDetailForm({title, name, description, method, endpoint}) {
             content_type: null
         })
             .then(response => CheckFormOutcome(response.status, resetForm, setFormOutcome))
-            .then(() => setUpdatedImage(Math.random()))
+            .then(() => setUpdatedItem(Math.random()))
             // .catch(err => CheckFormOutcome(err.response.status, resetForm, setFormOutcome))
     };
 

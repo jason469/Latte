@@ -9,10 +9,12 @@ import {ManageItems} from "../../utils/ManageItems";
 import AuthContext from "../../contexts/AuthContext";
 import ImageModalCard from "./ImageModalCard";
 import {ModalBoxStyle} from "../../utils/ModalBoxStyles";
+import UpdateContext from "../../contexts/UpdateContext";
 
 export default function ImageModal({open, handleClose, endpoint, image_id}) {
     const [inputText, setInputText] = useState("");
     const [allItems, setAllItems] = useState([]);
+    let {updatedItem} = useContext(UpdateContext)
 
     let {authTokens, logoutUser} = useContext(AuthContext)
 
@@ -26,7 +28,7 @@ export default function ImageModal({open, handleClose, endpoint, image_id}) {
             authTokens: authTokens,
             logoutUser: logoutUser
         })
-    }, [allItems])
+    }, [updatedItem])
 
     return (
         <div>

@@ -14,7 +14,7 @@ function TagForm({title, name, description, method, endpoint}) {
     let {authTokens, logoutUser} = useContext(AuthContext)
     const [formOutcome, setFormOutcome] = useState(null);
 
-    let {setUpdatedTag} = useContext(UpdateContext)
+    let {setUpdatedItem} = useContext(UpdateContext)
 
     const initialValues = {
         name: String(name),
@@ -38,7 +38,7 @@ function TagForm({title, name, description, method, endpoint}) {
             body: JSON.stringify(values)
         })
             .then(response => CheckFormOutcome(response.status, resetForm, setFormOutcome))
-            .then(() => setUpdatedTag(Math.random()))
+            .then(() => setUpdatedItem(Math.random()))
             .catch(err => console.log(err))
     };
 

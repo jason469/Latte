@@ -27,7 +27,7 @@ function ListOfAlbums() {
     const [itemIDs, setItemIDs] = useState([])
 
     let {authTokens, logoutUser} = useContext(AuthContext)
-    let {updatedAlbum} = useContext(UpdateContext)
+    let {updatedItem} = useContext(UpdateContext)
 
     const pull_albums = albums => {
         setCurrentItems(albums);
@@ -45,7 +45,7 @@ function ListOfAlbums() {
             logoutUser: logoutUser
         })
         setLoading(true)
-    }, [deletedItem, updatedAlbum])
+    }, [deletedItem, updatedItem])
 
     switch (loading) {
         case true:

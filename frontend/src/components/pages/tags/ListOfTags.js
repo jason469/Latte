@@ -27,7 +27,7 @@ function ListOfTags() {
     const [itemIDs, setItemIDs] = useState([])
 
     let {authTokens, logoutUser} = useContext(AuthContext)
-    let {updatedTag} = useContext(UpdateContext)
+    let {updatedItem} = useContext(UpdateContext)
 
     const pull_tags = tags => {
         setCurrentItems(tags);
@@ -46,7 +46,7 @@ function ListOfTags() {
             logoutUser: logoutUser
         })
         setLoading(true)
-    }, [deletedItem, updatedTag])
+    }, [deletedItem, updatedItem])
 
 
     switch (loading) {

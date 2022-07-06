@@ -8,6 +8,7 @@ import AlbumLabel from "../../ui/albums/AlbumLabel";
 import {AiFillPlusCircle} from "react-icons/ai";
 import ImageModal from "../../ui/ImageModal";
 import ImageDetailForm from "../../../utils/FormikForms/ImageDetailForm";
+import UpdateContext from "../../../contexts/UpdateContext";
 
 function ImageDetailPage(props) {
     const [deletedItem, setDeletedItem] = useState(0)
@@ -23,6 +24,7 @@ function ImageDetailPage(props) {
     const handleAlbumClose = () => setAlbumOpen(false);
 
     let {authTokens, logoutUser} = useContext(AuthContext)
+    let {updatedItem} = useContext(UpdateContext)
 
     let {imageId} = useParams();
     if (!imageId) imageId = props.imageId;
@@ -35,17 +37,17 @@ function ImageDetailPage(props) {
             authTokens: authTokens,
             logoutUser: logoutUser
         })
-    }, [deletedItem, currentImage])
+    }, [deletedItem, updatedItem])
 
     return (
         <div>
             <div>
-                <Card.Img
-                    variant="top"
-                    src={currentImage[0].fields.image}
-                    alt={currentImage[0].fields.name}
-                    className="card-img"
-                />
+                {/*<Card.Img*/}
+                {/*    variant="top"*/}
+                {/*    src={currentImage[0].fields.image}*/}
+                {/*    alt={currentImage[0].fields.name}*/}
+                {/*    className="card-img"*/}
+                {/*/>*/}
                 <ImageDetailForm
                     title="Update Images"
                     name={currentImage[0].fields.name}

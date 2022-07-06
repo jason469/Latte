@@ -26,7 +26,7 @@ function ListOfImages() {
     const [loading, setLoading] = useState(false)
 
     let {authTokens, logoutUser} = useContext(AuthContext)
-    let {updatedImage} = useContext(UpdateContext)
+    let {updatedItem} = useContext(UpdateContext)
 
     // Fetch current items
     const pull_images = images => {
@@ -45,7 +45,7 @@ function ListOfImages() {
             logoutUser: logoutUser
         })
         setLoading(true)
-    }, [deletedItem, updatedImage])
+    }, [deletedItem, updatedItem])
 
     switch (loading) {
         case true:

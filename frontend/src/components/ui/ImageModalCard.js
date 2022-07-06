@@ -4,10 +4,12 @@ import {BiPlusMedical} from "react-icons/bi";
 import {ManageItems} from "../../utils/ManageItems";
 import {useContext} from "react";
 import AuthContext from "../../contexts/AuthContext";
+import UpdateContext from "../../contexts/UpdateContext";
 
 
 function ImageModalCard({data, item_name, image_id}) {
     let {authTokens, logoutUser} = useContext(AuthContext)
+    let {setUpdatedItem} = useContext(UpdateContext)
 
     const addItem = () => {
         const body = {
@@ -23,6 +25,7 @@ function ImageModalCard({data, item_name, image_id}) {
             logoutUser: logoutUser,
             body: JSON.stringify(body),
         })
+        setUpdatedItem(Math.random())
     }
     return (
         <div>

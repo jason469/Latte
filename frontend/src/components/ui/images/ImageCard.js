@@ -24,7 +24,6 @@ function ImageCard({data, ids, setDeletedItem = null}) {
         setDeletedItem(data.pk)
     }
 
-
     return (
         <div>
             <ImageListItem>

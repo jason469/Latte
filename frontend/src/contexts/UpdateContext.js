@@ -4,17 +4,11 @@ const UpdateContext = createContext()
 export default UpdateContext
 
 export const UpdateProvider = props => {
-    const [updatedImage, setUpdatedImage] = useState(0)
-    const [updatedTag, setUpdatedTag] = useState(0)
-    const [updatedAlbum, setUpdatedAlbum] = useState(0)
+    const [updatedItem, setUpdatedItem] = useState(0)
 
     let contextData = {
-        updatedImage: updatedImage,
-        setUpdatedImage: setUpdatedImage,
-        updatedTag: updatedTag,
-        setUpdatedTag: setUpdatedTag,
-        updatedAlbum: updatedAlbum,
-        setUpdatedAlbum: setUpdatedAlbum,
+        updatedItem: updatedItem,
+        setUpdatedItem: setUpdatedItem,
     }
 
     return (
