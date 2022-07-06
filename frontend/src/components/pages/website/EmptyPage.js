@@ -1,6 +1,6 @@
 import {Skeleton} from "@mui/material";
 
-function EmptyPage(props) {
+function EmptyPage() {
     return (
         <div>
             <Skeleton variant="rectangular" width={210} height={118} />
