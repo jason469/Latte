@@ -24,11 +24,15 @@ function ListOfTags() {
     const [inputText, setInputText] = useState("");
     const [showAddForm, setShowAddForm] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [itemIDs, setItemIDs] = useState([])
 
     let {authTokens, logoutUser} = useContext(AuthContext)
     let {updatedTag} = useContext(UpdateContext)
 
-    const pull_tags = tags => setCurrentItems(tags);
+    const pull_tags = tags => {
+        setCurrentItems(tags);
+        setItemIDs(currentItems.map(item => item.id));
+    }
 
     const filteredData = filterData(inputText, tagData)
 
@@ -80,10 +84,10 @@ function ListOfTags() {
                     </Modal>
                     <ImageList sx={{width: 500, height: 450}} cols={3} rowHeight={164}>
                         {inputText !== ""
-                            ? filteredData.map(item => <TagCard key={item.id} data={item}
-                                                                setDeletedItem={setDeletedItem}/>)
-                            : currentItems.map(item => <TagCard key={item.id} data={item}
-                                                                setDeletedItem={setDeletedItem}/>)
+                            ? filteredData.map(item =>
+                                <TagCard key={item.id} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>)
+                            : currentItems.map(item =>
+                                <TagCard key={item.id} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>)
                         }
                     </ImageList>
                     <Pagination

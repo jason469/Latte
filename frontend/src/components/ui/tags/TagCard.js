@@ -7,7 +7,7 @@ import TagDetailModal from "../../pages/tags/TagDetailModal";
 import ConfirmationDialog from "../ConfirmationDialog";
 
 
-function TagCard({data, setDeletedItem = null}) {
+function TagCard({data, ids, setDeletedItem = null}) {
     let {authTokens, logoutUser} = useContext(AuthContext)
     const [modalOpen, setModalOpen] = useState(false);
 
@@ -29,7 +29,12 @@ function TagCard({data, setDeletedItem = null}) {
             <Card>
                 <Card.Body>
                     <Card.Title variant="primary" className="click" onClick={handleModalOpen}>{data.name}</Card.Title>
-                    <TagDetailModal open={modalOpen} handleClose={handleModalClose} tagId={data.id}/>
+                    <TagDetailModal
+                        open={modalOpen}
+                        handleClose={handleModalClose}
+                        tagId={data.id}
+                        ids={ids}
+                    />
                     <ConfirmationDialog
                         deleteItem={deleteTag}
                         title={`Are you sure you want to delete this tag?`}

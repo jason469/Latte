@@ -7,7 +7,7 @@ import {ImageListItemBar} from "@mui/material";
 import ConfirmationDialog from "../ConfirmationDialog";
 
 
-function AlbumCard({data, setDeletedItem = null}) {
+function AlbumCard({data, ids, setDeletedItem = null}) {
     let {authTokens, logoutUser} = useContext(AuthContext)
     const [modalOpen, setModalOpen] = useState(false);
 
@@ -35,7 +35,12 @@ function AlbumCard({data, setDeletedItem = null}) {
                 />
             }
             <ImageListItemBar position="below" className="click" onClick={handleModalOpen} title={data.name}/>
-            <AlbumDetailModal open={modalOpen} handleClose={handleModalClose} albumId={data.id}/>
+            <AlbumDetailModal
+                open={modalOpen}
+                handleClose={handleModalClose}
+                albumId={data.id}
+                ids={ids}
+            />
             <ConfirmationDialog
                 deleteItem={deleteItem}
                 title={`Are you sure you want to delete this album?`}

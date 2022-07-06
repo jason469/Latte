@@ -4,8 +4,20 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import TagDetailPage from "./TagDetailPage";
 import {ModalBoxStyle} from "../../../utils/ModalBoxStyles";
+import {useState} from "react";
+import {AiOutlineArrowLeft, AiOutlineArrowRight} from "react-icons/ai";
 
-export default function TagDetailModal({open, handleClose, tagId}) {
+export default function TagDetailModal({open, handleClose, tagId, ids}) {
+    const [currentTagId, setCurrentTagId] = useState(tagId);
+    const showPreviousTag = () => {
+        let prevId = ids[ids.indexOf(currentTagId) - 1]
+        setCurrentTagId(prevId)
+    }
+
+    const showAfterTag = () => {
+        let afterId = ids[ids.indexOf(currentTagId) + 1]
+        setCurrentTagId(afterId)
+    }
     return (
         <div>
             <Modal
@@ -21,7 +33,9 @@ export default function TagDetailModal({open, handleClose, tagId}) {
             >
                 <Fade in={open}>
                     <Box sx={ModalBoxStyle}>
-                        <TagDetailPage tagId={tagId} />
+                        <AiOutlineArrowLeft onClick={showPreviousTag} className="click"/>
+                        <TagDetailPage tagId={currentTagId}/>
+                        <AiOutlineArrowRight onClick={showAfterTag} className="click"/>
                     </Box>
                 </Fade>
             </Modal>

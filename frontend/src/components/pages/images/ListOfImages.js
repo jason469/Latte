@@ -20,6 +20,7 @@ function ListOfImages() {
     const [imageData, setImageData] = useState([])
     const [deletedItem, setDeletedItem] = useState(0)
     const [currentItems, setCurrentItems] = useState([]);
+    const [itemIDs, setItemIDs] = useState([])
     const [inputText, setInputText] = useState("");
     const [showAddForm, setShowAddForm] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -28,12 +29,14 @@ function ListOfImages() {
     let {updatedImage} = useContext(UpdateContext)
 
     // Fetch current items
-    const pull_images = images => setCurrentItems(images)
+    const pull_images = images => {
+        setCurrentItems(images)
+        setItemIDs(currentItems.map(item => item.pk));
+    }
     const filteredData = filterData(inputText, imageData)
 
     //Fetch Images
     useEffect(() => {
-        console.log('effect')
         ManageItems({
             endpoint: '/images',
             method: "GET",
@@ -77,15 +80,13 @@ function ListOfImages() {
                             </Box>
                         </Fade>
                     </Modal>
-                    <ImageList variant="masonry" cols={4} gap={5}>
+                    <ImageList variant="woven" cols={4} gap={5}>
                         {inputText !== ""
-                            ? filteredData.map((item, index, array) =>
-                                <ImageCard key={item.pk} data={item} prevImage={array[index - 1]}
-                                           afterImage={array[index + 1]} setDeletedItem={setDeletedItem}/>
+                            ? filteredData.map(item =>
+                                <ImageCard key={item.pk} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>
                             )
-                            : currentItems.map((item, index, array) =>
-                                <ImageCard key={item.pk} data={item} prevImage={array[index - 1]}
-                                           afterImage={array[index + 1]} setDeletedItem={setDeletedItem}/>
+                            : currentItems.map(item =>
+                                <ImageCard key={item.pk} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>
                             )
                         }
                     </ImageList>

@@ -24,11 +24,15 @@ function ListOfAlbums() {
     const [inputText, setInputText] = useState("");
     const [showAddForm, setShowAddForm] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [itemIDs, setItemIDs] = useState([])
 
     let {authTokens, logoutUser} = useContext(AuthContext)
     let {updatedAlbum} = useContext(UpdateContext)
 
-    const pull_albums = albums => setCurrentItems(albums);
+    const pull_albums = albums => {
+        setCurrentItems(albums);
+        setItemIDs(currentItems.map(item => item.id));
+    }
     const filteredData = filterData(inputText, albumData)
 
     //Fetch Albums
@@ -78,10 +82,12 @@ function ListOfAlbums() {
                     </Modal>
                     <ImageList sx={{width: 500, height: 450}} variant="woven" cols={3} gap={8}>
                         {inputText !== ""
-                            ? filteredData.map(item => <AlbumCard key={item.id} data={item}
-                                                                  setDeletedItem={setDeletedItem}/>)
-                            : currentItems.map(item => <AlbumCard key={item.id} data={item}
-                                                                  setDeletedItem={setDeletedItem}/>)
+                            ? filteredData.map(item =>
+                                <AlbumCard key={item.id} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>
+                            )
+                            : currentItems.map(item =>
+                                <AlbumCard key={item.id} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>
+                            )
                         }
                     </ImageList>
                     <Pagination

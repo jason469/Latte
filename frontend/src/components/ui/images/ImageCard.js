@@ -7,11 +7,9 @@ import {ImageListItem, ImageListItemBar} from "@mui/material";
 import ConfirmationDialog from "../ConfirmationDialog";
 
 
-function ImageCard({data, prevImage, afterImage, setDeletedItem = null}) {
+function ImageCard({data, ids, setDeletedItem = null}) {
     let {authTokens, logoutUser} = useContext(AuthContext)
     const [modalOpen, setModalOpen] = useState(false);
-    const [prevImageId, setPrevImageId] = useState()
-    const [afterImageId, setAfterImageId] = useState()
 
     const handleModalOpen = () => setModalOpen(true);
     const handleModalClose = () => setModalOpen(false);
@@ -25,18 +23,6 @@ function ImageCard({data, prevImage, afterImage, setDeletedItem = null}) {
         })
         setDeletedItem(data.pk)
     }
-
-    useEffect(() => {
-        if (prevImage) {
-            setPrevImageId(prevImage.pk)
-        }
-
-        if (afterImage) {
-            setAfterImageId(afterImage.pk)
-        }
-
-        console.log(prevImageId, afterImageId)
-    }, []);
 
 
     return (
@@ -64,8 +50,7 @@ function ImageCard({data, prevImage, afterImage, setDeletedItem = null}) {
                     open={modalOpen}
                     handleClose={handleModalClose}
                     imageId={data.pk}
-                    prevImageId={prevImageId}
-                    afterImageId={afterImageId}
+                    ids={ids}
                 />
             </ImageListItem>
         </div>
