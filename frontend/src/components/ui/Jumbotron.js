@@ -38,8 +38,6 @@ function Jumbrotron() {
                                         src={`http://localhost:9000/media/${data.fields.image}`}
                                         alt={"Image not found"}
                                         className="image-img"
-                                        width={900}
-                                        height={600}
                                     />)
                             }
                         </Carousel>

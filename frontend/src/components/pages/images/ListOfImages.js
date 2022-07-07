@@ -52,7 +52,7 @@ function ListOfImages() {
         case true:
             return (
                 <div>
-                    <div className="search">
+                    <div className="list_actions">
                         <TextField
                             id="image_search"
                             onChange={(e) => {
@@ -61,9 +61,14 @@ function ListOfImages() {
                             variant="outlined"
                             fullWidth
                             label="Search"
+                            className="search"
+                        />
+                        <AiFillPlusCircle
+                            className="click add_form"
+                            onClick={() => setShowAddForm(true)}
+                            size={50}
                         />
                     </div>
-                    <AiFillPlusCircle className="click" onClick={() => setShowAddForm(true)}/>
                     <Modal
                         aria-labelledby="transition-modal-title"
                         aria-describedby="transition-modal-description"
@@ -81,7 +86,7 @@ function ListOfImages() {
                             </Box>
                         </Fade>
                     </Modal>
-                    <ImageList variant="woven" cols={4} gap={5}>
+                    <ImageList variant="masonry" cols={7} gap={5}>
                         {inputText !== ""
                             ? filteredData.map(item =>
                                 <ImageCard key={item.pk} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>
@@ -92,7 +97,7 @@ function ListOfImages() {
                         }
                     </ImageList>
                     <Pagination
-                        itemsPerPage={8}
+                        itemsPerPage={14}
                         data={imageData}
                         pull_function={pull_images}
                     />

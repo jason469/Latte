@@ -1,10 +1,9 @@
 .main {
-    margin: 2rem;
+    margin: 1rem;
 }
 
-
 .image-img {
-    width: 10rem;
+    max-width: 30%;
     height: auto;
 }
 
@@ -29,3 +28,17 @@ ul li {
 .click:hover {
     color: red;
 }
+
+.list_actions{
+    display: flex;
+    padding: 0.75rem 2.5rem 1.5rem 2.5rem;
+}
+
+.list_actions > .search {
+    flex-basis: 90%;
+}
+
+.list_actions > .add_form {
+    flex-basis: 10%;
+}
+

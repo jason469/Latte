@@ -55,7 +55,7 @@ function ListOfTags() {
         case true:
             return (
                 <div>
-                    <div className="search">
+                    <div className="list_actions">
                         <TextField
                             id="tag_search"
                             onChange={(e) => {
@@ -64,9 +64,14 @@ function ListOfTags() {
                             variant="outlined"
                             fullWidth
                             label="Search"
+                            className="search"
+                        />
+                        <AiFillPlusCircle
+                            className="click add_form"
+                            onClick={() => setShowAddForm(true)}
+                            size={50}
                         />
                     </div>
-                    <AiFillPlusCircle className="click" onClick={() => setShowAddForm(true)}/>
                     <Modal
                         aria-labelledby="transition-modal-title"
                         aria-describedby="transition-modal-description"
@@ -84,7 +89,7 @@ function ListOfTags() {
                             </Box>
                         </Fade>
                     </Modal>
-                    <ImageList sx={{width: 500, height: 450}} cols={3} rowHeight={164}>
+                    <ImageList cols={4} rowHeight={164}>
                         {inputText !== ""
                             ? filteredData.map(item =>
                                 <TagCard key={item.id} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>)

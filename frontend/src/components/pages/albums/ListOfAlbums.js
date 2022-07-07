@@ -52,18 +52,23 @@ function ListOfAlbums() {
         case true:
             return (
                 <div>
-                    <div className="search">
-                        <TextField
-                            id="album_search"
-                            onChange={(e) => {
-                                inputHandler(e, setInputText)
-                            }}
-                            variant="outlined"
-                            fullWidth
-                            label="Search"
+                    <div className="list_actions">
+                            <TextField
+                                id="album_search"
+                                onChange={(e) => {
+                                    inputHandler(e, setInputText)
+                                }}
+                                variant="outlined"
+                                fullWidth
+                                label="Search"
+                                className="search"
+                            />
+                        <AiFillPlusCircle
+                            className="click add_form"
+                            onClick={() => setShowAddForm(true)}
+                            size={50}
                         />
                     </div>
-                    <AiFillPlusCircle className="click" onClick={() => setShowAddForm(true)}/>
                     <Modal
                         aria-labelledby="transition-modal-title"
                         aria-describedby="transition-modal-description"
@@ -81,7 +86,7 @@ function ListOfAlbums() {
                             </Box>
                         </Fade>
                     </Modal>
-                    <ImageList sx={{width: 500, height: 450}} variant="woven" cols={3} gap={8}>
+                    <ImageList variant="quilted" cols={6} gap={8}>
                         {inputText !== ""
                             ? filteredData.map(item =>
                                 <AlbumCard key={item.id} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>
@@ -92,7 +97,7 @@ function ListOfAlbums() {
                         }
                     </ImageList>
                     <Pagination
-                        itemsPerPage={12}
+                        itemsPerPage={6}
                         data={albumData}
                         pull_function={pull_albums}
                     />

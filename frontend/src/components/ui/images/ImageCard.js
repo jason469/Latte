@@ -30,7 +30,7 @@ function ImageCard({data, ids, setDeletedItem = null}) {
                 <img
                     src={`http://localhost:9000/media/${data.fields.image}`}
                     alt={"Image not found"}
-                    className="image-img click"
+                    className="click card_image"
                     onClick={handleModalOpen}
                 />
                 <ImageListItemBar
