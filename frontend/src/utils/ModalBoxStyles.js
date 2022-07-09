@@ -8,6 +8,8 @@ export const ModalBoxStyle = {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
+    overflow: "auto",
+    height: "80%"
 };
 
 export const ExpandedImageStyle = {

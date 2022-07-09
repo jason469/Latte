@@ -29,7 +29,7 @@ ul li {
     color: red;
 }
 
-.list_actions{
+.list_actions {
     display: flex;
     padding: 0.75rem 2.5rem 1.5rem 2.5rem;
 }
@@ -58,4 +58,38 @@ ul li {
 .image-preview {
     width: 10%;
     height: auto;
+}
+
+.form_part_one {
+    display: flex;
+}
+
+.form_part_one > .name_description {
+    flex-basis: 60%;
+    max-height: 100%;
+
+}
+
+.form_part_one > .image-preview {
+    flex-basis: 40%;
+    max-height: 100%;
+}
+
+.modal {
+    overflow: auto;
+}
+
+.labels {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: auto;
+}
+.label {
+    width: 20%;
+    margin: 0;
+}
+
+.label > .card > .body {
+    display: flex;
+    align-items: center;
 }

@@ -74,31 +74,35 @@ function ImageDetailForm({title, name, description, image, method, endpoint}) {
                                 item="Album"
                             />
                             <div>
-                                <Field
-                                    id="name"
-                                    name="name"
-                                    type="text"
-                                    label="Name"
-                                    component={TextField}
-                                />
-                                <br/>
-                                <Field
-                                    as='textarea'
-                                    id="description"
-                                    name="description"
-                                    type="text"
-                                    label="Description"
-                                    multiline
-                                    rows={4}
-                                    component={TextField}
-                                />
-                                <br/>
-                                <img
-                                    src={`http://localhost:9000/media/${image}`}
-                                    alt={"Image not found"}
-                                    className="click image-preview"
-                                    loading="lazy"
-                                />
+                                <div className="form_part_one">
+                                    <div className="name_description">
+                                        <Field
+                                            id="name"
+                                            name="name"
+                                            type="text"
+                                            label="Name"
+                                            component={TextField}
+                                        />
+                                        <br/>
+                                        <Field
+                                            as='textarea'
+                                            id="description"
+                                            name="description"
+                                            type="text"
+                                            label="Description"
+                                            multiline
+                                            rows={4}
+                                            component={TextField}
+                                        />
+                                    </div>
+                                    <img
+                                        src={`http://localhost:9000/media/${image}`}
+                                        alt={"Image not found"}
+                                        className="click image-preview"
+                                        loading="lazy"
+                                    />
+                                </div>
+
                                 <Field
                                     id="image"
                                     name="image"

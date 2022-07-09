@@ -35,11 +35,13 @@ function AlbumDetailPage(props) {
             />
 
             <strong>Images</strong>
-            {currentAlbum.images.map(image => {
-                return (
-                    <ImageLabel data={image} key={image.id}/>
-                )
-            })}
+            <div className="labels">
+                {currentAlbum.images.map(image => {
+                    return (
+                        <ImageLabel data={image} key={image.id}/>
+                    )
+                })}
+            </div>
         < />
     )
 }

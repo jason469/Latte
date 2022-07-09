@@ -1,6 +1,6 @@
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
+import Modal from '@mui/base/ModalUnstyled';
 import Fade from '@mui/material/Fade';
 import AlbumDetailPage from "./AlbumDetailPage";
 import {ModalBoxStyle} from "../../../utils/ModalBoxStyles";
