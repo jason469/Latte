@@ -35,18 +35,20 @@ function AlbumCard({data, ids, setDeletedItem = null}) {
                     className="card-img"
                 />
             }
-            <ImageListItemBar position="below" className="click" onClick={handleModalOpen} title={data.name}/>
-            <AlbumDetailModal
-                open={modalOpen}
-                handleClose={handleModalClose}
-                albumId={data.id}
-                ids={ids}
-            />
-            <ConfirmationDialog
-                deleteItem={deleteItem}
-                title={`Are you sure you want to delete this album?`}
-                content={`This won't delete any images associated with this album, but it will remove the album`}
-            />
+            <div className="card-info">
+                <ImageListItemBar position="below" className="click" onClick={handleModalOpen} title={data.name}/>
+                <AlbumDetailModal
+                    open={modalOpen}
+                    handleClose={handleModalClose}
+                    albumId={data.id}
+                    ids={ids}
+                />
+                <ConfirmationDialog
+                    deleteItem={deleteItem}
+                    title={`Are you sure you want to delete this album?`}
+                    content={`This won't delete any images associated with this album, but it will remove the album`}
+                />
+            </div>
         </div>
     );
 }

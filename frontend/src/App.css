@@ -42,3 +42,20 @@ ul li {
     flex-basis: 10%;
 }
 
+.card-info {
+    width: 100%;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.expanded-image {
+    width: 100%;
+    height: auto;
+}
+
+.image-preview {
+    width: 10%;
+    height: auto;
+}

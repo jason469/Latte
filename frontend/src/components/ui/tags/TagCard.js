@@ -27,18 +27,18 @@ function TagCard({data, ids, setDeletedItem = null}) {
     return (
         <div>
             <Card>
-                <Card.Body>
+                <Card.Body className="card-info">
                     <Card.Title variant="primary" className="click" onClick={handleModalOpen}>{data.name}</Card.Title>
+                    <ConfirmationDialog
+                        deleteItem={deleteTag}
+                        title={`Are you sure you want to delete this tag?`}
+                        content={`This won't delete any images associated with this tag, but it will remove the tag`}
+                    />
                     <TagDetailModal
                         open={modalOpen}
                         handleClose={handleModalClose}
                         tagId={data.id}
                         ids={ids}
-                    />
-                    <ConfirmationDialog
-                        deleteItem={deleteTag}
-                        title={`Are you sure you want to delete this tag?`}
-                        content={`This won't delete any images associated with this tag, but it will remove the tag`}
                     />
                 </Card.Body>
             </Card>

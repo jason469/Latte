@@ -11,7 +11,7 @@ import UpdateContext from "../../contexts/UpdateContext";
 import '../../App.css'
 
 
-function ImageDetailForm({title, name, description, method, endpoint}) {
+function ImageDetailForm({title, name, description, image, method, endpoint}) {
     let {authTokens, logoutUser} = useContext(AuthContext)
     let {setUpdatedItem} = useContext(UpdateContext)
 
@@ -47,7 +47,7 @@ function ImageDetailForm({title, name, description, method, endpoint}) {
         })
             .then(response => CheckFormOutcome(response.status, resetForm, setFormOutcome))
             .then(() => setUpdatedItem(Math.random()))
-            // .catch(err => CheckFormOutcome(err.response.status, resetForm, setFormOutcome))
+        // .catch(err => CheckFormOutcome(err.response.status, resetForm, setFormOutcome))
     };
 
     return (
@@ -93,6 +93,12 @@ function ImageDetailForm({title, name, description, method, endpoint}) {
                                     component={TextField}
                                 />
                                 <br/>
+                                <img
+                                    src={`http://localhost:9000/media/${image}`}
+                                    alt={"Image not found"}
+                                    className="click image-preview"
+                                    loading="lazy"
+                                />
                                 <Field
                                     id="image"
                                     name="image"

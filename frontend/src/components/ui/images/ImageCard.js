@@ -5,14 +5,19 @@ import ImageDetailModal from "../../pages/images/ImageDetailModal";
 import {ImageListItem, ImageListItemBar} from "@mui/material";
 import ConfirmationDialog from "../ConfirmationDialog";
 import '../../../App.css'
+import ExpandedImage from "./ExpandedImage";
 
 
 function ImageCard({data, ids, setDeletedItem = null}) {
     let {authTokens, logoutUser} = useContext(AuthContext)
     const [modalOpen, setModalOpen] = useState(false);
+    const [expandedImageOpen, setExpandedImageOpen] = useState(false)
 
     const handleModalOpen = () => setModalOpen(true);
     const handleModalClose = () => setModalOpen(false);
+
+    const openExpandedImage = () => setExpandedImageOpen(true);
+    const closeExpandedImage = () => setExpandedImageOpen(false);
 
     const deleteImage = () => {
         ManageItems({
@@ -31,25 +36,33 @@ function ImageCard({data, ids, setDeletedItem = null}) {
                     src={`http://localhost:9000/media/${data.fields.image}`}
                     alt={"Image not found"}
                     className="click card_image"
-                    onClick={handleModalOpen}
+                    loading="lazy"
+                    onClick={openExpandedImage}
                 />
-                <ImageListItemBar
-                    className="click"
-                    title={data.fields.name}
-                    subtitle={data.fields.description}
-                    actionIcon={
-                        <ConfirmationDialog
-                            deleteItem={deleteImage}
-                            title={`Are you sure you want to delete this image?`}
-                            content={`This will remove the image`}
-                        />
-                    }
-                />
+                <div className="card-info">
+                    <ImageListItemBar
+                        className="click"
+                        title={data.fields.name}
+                        subtitle={data.fields.description}
+                        onClick={handleModalOpen}
+                        position="below"
+                    />
+                    <ConfirmationDialog
+                        deleteItem={deleteImage}
+                        title={`Are you sure you want to delete this image?`}
+                        content={`This will remove the image`}
+                    />
+                </div>
                 <ImageDetailModal
                     open={modalOpen}
                     handleClose={handleModalClose}
                     imageId={data.pk}
                     ids={ids}
+                />
+                <ExpandedImage
+                    open={expandedImageOpen}
+                    handleClose={closeExpandedImage}
+                    image={data.fields.image}
                 />
             </ImageListItem>
         </div>

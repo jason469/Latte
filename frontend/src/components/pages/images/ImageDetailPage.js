@@ -44,9 +44,10 @@ function ImageDetailPage(props) {
         <div>
             <div>
                 <ImageDetailForm
-                    title="Update Images"
+                    title="Update Image"
                     name={currentImage[0].fields.name}
                     description={currentImage[0].fields.description}
+                    image={currentImage[0].fields.image}
                     method='PATCH'
                     endpoint={`/images/${currentImage[0].pk}/`}
                 />

@@ -1,9 +1,7 @@
-import Pagination from "../../layout/Pagination";
-import {useContext, useEffect, useState} from "react";
-import ImageCard from "../../ui/images/ImageCard";
+import React, {useContext, useEffect, useState} from 'react'
 import AuthContext from "../../../contexts/AuthContext";
+import UpdateContext from "../../../contexts/UpdateContext";
 import {ManageItems} from "../../../utils/ManageItems";
-import EmptyPage from "../website/EmptyPage";
 import TextField from "@mui/material/TextField";
 import {filterData, inputHandler} from "../../../utils/searchBarFunctions";
 import {AiFillPlusCircle} from "react-icons/ai";
@@ -14,8 +12,12 @@ import Fade from "@mui/material/Fade";
 import Box from "@mui/material/Box";
 import {ModalBoxStyle} from "../../../utils/ModalBoxStyles";
 import AddImage from "./AddImage";
-import UpdateContext from "../../../contexts/UpdateContext";
 import '../../../App.css'
+
+const Pagination = React.lazy(() => import ("../../layout/Pagination"))
+const ImageCard = React.lazy(() => import ("../../ui/images/ImageCard"))
+const EmptyPage = React.lazy(() => import ("../website/EmptyPage"))
+
 
 function ListOfImages() {
     const [imageData, setImageData] = useState([])
