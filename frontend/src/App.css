@@ -11,6 +11,8 @@ html {
 }
 
 .title {
+    font-size: 50px;
+    margin-bottom: 1rem;
 
 }
 
@@ -22,11 +24,6 @@ html {
 
 form > .button {
     margin-top: 2rem;
-}
-
-.image-img {
-    max-width: 30%;
-    height: auto;
 }
 
 .search {

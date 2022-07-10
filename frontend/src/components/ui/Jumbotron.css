@@ -1,0 +1,21 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.jumbotron {
+    width: 80%;
+    padding: 2rem !important;
+}
+
+.jumbotron > div {
+    text-align: center;
+}
+
+.jumbotron_image {
+    max-height: 25rem;
+    object-fit: contain;
+    border: none;
+}

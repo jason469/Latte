@@ -1,18 +1,18 @@
 import Jumbotron from 'react-bootstrap/Jumbotron'
-import {Container} from '@mui/material';
+import {Container, ImageList} from '@mui/material';
 import Carousel from 'react-material-ui-carousel'
 import {useContext, useEffect, useState} from "react";
 import {ManageItems} from "../../utils/ManageItems";
 import AuthContext from "../../contexts/AuthContext";
 import EmptyPage from "../pages/website/EmptyPage";
 import '../../App.css'
+import './Jumbotron.css'
 
 
 function Jumbrotron() {
     let {authTokens, logoutUser} = useContext(AuthContext)
     const [images, setImages] = useState([])
     const [loading, setLoading] = useState(false)
-
 
     useEffect(() => {
         ManageItems({
@@ -28,18 +28,24 @@ function Jumbrotron() {
     switch (loading) {
         case true:
             return (
-                <Jumbotron fluid>
-                    <Container>
-                        <h1>Our favourite moments</h1>
-                        <Carousel>
-                            {
-                                images.map(data =>
-                                    <img
-                                        src={`http://localhost:9000/media/${data.fields.image}`}
-                                        alt={"Image not found"}
-                                        className="image-img"
-                                    />)
-                            }
+                <Jumbotron>
+                    <div className="title">Our favourite moments</div>
+                    <Container className="jumbotron_container">
+                        <Carousel
+                            navButtonsProps={{
+                                style: {
+                                    backgroundColor: 'cornflowerblue',
+                                    borderRadius: 100
+                                }
+                            }}
+                        >
+                            {images.map(data =>
+                                <img
+                                    src={`http://localhost:9000/media/${data.fields.image}`}
+                                    alt={"Image not found"}
+                                    className="jumbotron_image"
+                                />
+                            )}
                         </Carousel>
                     </Container>
                 </Jumbotron>
