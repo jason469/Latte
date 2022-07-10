@@ -84,6 +84,7 @@ function TagForm({title, name, description, method, endpoint}) {
                         variant="contained"
                         endIcon={<SendIcon/>}
                         color="success"
+                        className="button"
                     >
                         Submit
                     </Button>

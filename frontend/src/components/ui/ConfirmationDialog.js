@@ -10,8 +10,8 @@ function ConfirmationDialog({deleteItem, title, content}) {
     const handleDialogClose = () => setDialogOpen(false);
 
     return (
-        <>
-            <ImCross className="click" onClick={handleDialogOpen} size={15}/>
+        <div className="delete">
+            <ImCross className="click" onClick={handleDialogOpen} size={10}/>
             <Dialog
                 open={dialogOpen}
                 onClose={handleDialogClose}
@@ -33,7 +33,7 @@ function ConfirmationDialog({deleteItem, title, content}) {
                     </Button>
                 </DialogActions>
             </Dialog>
-        </>
+        </div>
     )
 }
 

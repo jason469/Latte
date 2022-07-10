@@ -41,9 +41,8 @@ function ImageCard({data, ids, setDeletedItem = null}) {
                 />
                 <div className="card-info">
                     <ImageListItemBar
-                        className="click"
-                        title={data.fields.name}
-                        subtitle={data.fields.description}
+                        className="click title"
+                        subtitle={data.fields.name}
                         onClick={handleModalOpen}
                         position="below"
                     />
@@ -51,6 +50,7 @@ function ImageCard({data, ids, setDeletedItem = null}) {
                         deleteItem={deleteImage}
                         title={`Are you sure you want to delete this image?`}
                         content={`This will remove the image`}
+                        className="delete-button"
                     />
                 </div>
                 <ImageDetailModal

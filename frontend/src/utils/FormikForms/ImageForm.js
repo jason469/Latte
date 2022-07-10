@@ -140,17 +140,18 @@ function ImageForm() {
                                 onChange={event => props.setFieldValue("file", event.currentTarget.files)}
                             />
 
+                            <div className="subtitle">Tags</div>
                             <FormikControl
                                 control='checkbox'
-                                label='Tags'
                                 name='tags'
                                 options={tagOptions}
+                                className="tags"
                             />
 
                             <br/>
+                            <div className="subtitle">Albums</div>
                             <FormikControl
                                 control='checkbox'
-                                label='Albums'
                                 name='albums'
                                 options={albumOptions}
                             />
@@ -159,6 +160,7 @@ function ImageForm() {
                                 variant="contained"
                                 endIcon={<SendIcon/>}
                                 color="success"
+                                className="button"
                             >
                                 Submit
                             </Button>

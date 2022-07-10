@@ -35,7 +35,7 @@ function AlbumDetailPage(props) {
                 endpoint={`/albums/${currentAlbum.album_data.id}/`}
             />
 
-            <strong>Images</strong>
+            <div className="subtitle">Images</div>
             <ImageList variant="masonry" cols={4} gap={0}>
                 {currentAlbum.images.map(image => {
                     return (

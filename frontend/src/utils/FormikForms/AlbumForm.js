@@ -2,7 +2,7 @@ import {Formik, Form, Field} from 'formik';
 import * as Yup from "yup"
 import {Button} from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-import {TextField} from 'formik-mui';
+import {SimpleFileUpload, TextField,} from 'formik-mui';
 import {useContext, useState} from "react";
 import AuthContext from "../../contexts/AuthContext";
 import FormSubmitMessage from "../../components/ui/FormSubmitMessage";
@@ -108,6 +108,7 @@ function AlbumForm({title, name, description, method, endpoint}) {
                                 variant="contained"
                                 endIcon={<SendIcon/>}
                                 color="success"
+                                className="button"
                             >
                                 Submit
                             </Button>

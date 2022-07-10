@@ -118,6 +118,7 @@ function ImageDetailForm({title, name, description, image, method, endpoint}) {
                                 variant="contained"
                                 endIcon={<SendIcon/>}
                                 color="success"
+                                className="button"
                             >
                                 Submit
                             </Button>

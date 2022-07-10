@@ -7,7 +7,21 @@ html {
 }
 
 .main {
+    margin: 2rem;
+}
+
+.title {
+
+}
+
+.subtitle {
+    font-size: 2rem;
+    color: #0a53be;
     margin: 1rem;
+}
+
+form > .button {
+    margin-top: 2rem;
 }
 
 .image-img {
@@ -54,6 +68,11 @@ ul li {
 
 .card-info > .title {
     flex-basis: 90%;
+    margin: 0.25rem 0;
+}
+
+.card-info > .title >.MuiImageListItemBar-titleWrap {
+    padding: 0;
 }
 
 .card-info > .delete-button {
@@ -61,8 +80,9 @@ ul li {
 }
 
 .expanded-image {
-    width: 100%;
-    height: auto;
+    max-height: 40rem;
+    object-fit: contain;
+    border: none;
 }
 
 .image-preview {
@@ -79,20 +99,12 @@ ul li {
     font-weight: bold;
     font-size: 40px;
     color: rgb(1, 1, 59);
+    font-family: EduQLDBeginner;
 }
 
 .form > .field {
     margin: 0.5rem 0;
     width: 80%;
-}
-
-
-.labels {
-    display: flex;
-    flex-wrap: wrap;
-    overflow: auto;
-    gap: 10px;
-    justify-content: flex-start;
 }
 
 .label {

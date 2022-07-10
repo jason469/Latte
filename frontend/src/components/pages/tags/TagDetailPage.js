@@ -5,6 +5,7 @@ import TagForm from "../../../utils/FormikForms/TagForm";
 import ImageLabel from "../../ui/images/ImageLabel";
 import {useParams} from "react-router-dom";
 import '../../../App.css'
+import {ImageList} from "@mui/material";
 
 
 function TagDetailPage(props) {
@@ -34,14 +35,14 @@ function TagDetailPage(props) {
                 endpoint={`/tags/${currentTag.tag_data.id}`}
             />
 
-            <strong>Images</strong>
-            <div className="labels">
+            <div className="subtitle">Images</div>
+            <ImageList variant="masonry" cols={4} gap={0}>
                 {currentTag.images.map(image => {
                     return (
                         <ImageLabel data={image} key={image.id}/>
                     )
                 })}
-            </div>
+            </ImageList>
         </div>
     )
 }

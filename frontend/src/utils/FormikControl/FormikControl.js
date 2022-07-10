@@ -1,4 +1,6 @@
 import CheckboxGroup from "./FormikComponents/CheckboxGroup"
+import 'pretty-checkbox/dist/pretty-checkbox.min.css';
+
 
 export function FormikControl (props) {
     const {control, ...otherProps} = props

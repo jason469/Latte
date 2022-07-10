@@ -8,7 +8,9 @@ import {AiFillPlusCircle} from "react-icons/ai";
 import ImageModal from "../../ui/ImageModal";
 import ImageDetailForm from "../../../utils/FormikForms/ImageDetailForm";
 import UpdateContext from "../../../contexts/UpdateContext";
+import {ImageList} from "@mui/material";
 import '../../../App.css'
+import './ImageDetailPage.css'
 
 
 function ImageDetailPage(props) {
@@ -41,7 +43,7 @@ function ImageDetailPage(props) {
     }, [deletedItem, updatedItem])
 
     return (
-        <div>
+        <>
             <div>
                 <ImageDetailForm
                     title="Update Image"
@@ -52,10 +54,12 @@ function ImageDetailPage(props) {
                     endpoint={`/images/${currentImage[0].pk}/`}
                 />
             </div>
-            <strong>Tags</strong>
-            <AiFillPlusCircle className="click" onClick={handleTagOpen}/>
+            <div className="add_categories">
+                <div className="subtitle">Tags</div>
+                <AiFillPlusCircle className="click" onClick={handleTagOpen}/>
+            </div>
             <ImageModal open={tagOpen} handleClose={handleTagClose} endpoint="tags" image_id={imageId}/>
-            <div className="labels">
+            <ImageList cols={4}>
                 {currentImage[0].fields.tag ?
                     currentImage[0].fields.tag.map(tag => {
                         return (
@@ -64,22 +68,25 @@ function ImageDetailPage(props) {
                     }) :
                     <p>No Tags</p>
                 }
-            </div>
+            </ImageList>
 
-            <strong>Albums</strong>
-            <AiFillPlusCircle className="click" onClick={handleAlbumOpen}/>
-            <div className="labels">
-                <ImageModal open={albumOpen} handleClose={handleAlbumClose} endpoint="albums" image_id={imageId}/>
+            <div className="add_categories">
+                <div className="subtitle">Albums</div>
+                <AiFillPlusCircle className="click" onClick={handleAlbumOpen}/>
+            </div>
+            <ImageModal open={albumOpen} handleClose={handleAlbumClose} endpoint="albums" image_id={imageId}/>
+            <ImageList cols={4}>
                 {currentImage[0].fields.album ?
                     currentImage[0].fields.album.map(album => {
                         return (
-                            <AlbumLabel data={album} key={album.id} image_id={imageId} setDeletedItem={setDeletedItem}/>
+                            <AlbumLabel data={album} key={album.id} image_id={imageId}
+                                        setDeletedItem={setDeletedItem}/>
                         )
                     }) :
                     <p>No Albums</p>
                 }
-            </div>
-        </div>
+            </ImageList>
+        </>
     )
 }
 

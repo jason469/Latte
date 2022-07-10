@@ -1,0 +1,8 @@
+.label > .nav-link {
+    padding: 0.2rem !important;
+}
+
+.label > .nav-link > img {
+    width: 100%;
+    height: auto;
+}
