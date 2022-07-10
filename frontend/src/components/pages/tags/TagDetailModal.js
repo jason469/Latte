@@ -3,9 +3,9 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import TagDetailPage from "./TagDetailPage";
-import {ModalBoxStyle} from "../../../utils/ModalBoxStyles";
+import {ArrowBoxStyle, ModalBoxStyle} from "../../../utils/ModalBoxStyles";
 import {useState} from "react";
-import {AiOutlineArrowLeft, AiOutlineArrowRight} from "react-icons/ai";
+import {IoIosArrowBack, IoIosArrowForward} from "react-icons/io"
 import '../../../App.css'
 
 
@@ -34,10 +34,14 @@ export default function TagDetailModal({open, handleClose, tagId, ids}) {
                 }}
             >
                 <Fade in={open}>
-                    <Box sx={ModalBoxStyle}>
-                        <AiOutlineArrowLeft onClick={showPreviousTag} className="click"/>
-                        <TagDetailPage tagId={currentTagId}/>
-                        <AiOutlineArrowRight onClick={showAfterTag} className="click"/>
+                    <Box sx={ArrowBoxStyle} className="detail_modal_box">
+                        <IoIosArrowBack onClick={showPreviousTag} className="click arrow" size={50}
+                                        id="back_arrow"/>
+                        <Box sx={ModalBoxStyle}>
+                            <TagDetailPage tagId={currentTagId}/>
+                        </Box>
+                        <IoIosArrowForward onClick={showAfterTag} className="click arrow" size={50}
+                                           id="forward_arrow"/>
                     </Box>
                 </Fade>
             </Modal>

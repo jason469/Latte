@@ -22,15 +22,12 @@ function ExpandedImage({open, handleClose, image}) {
             >
                 <Fade in={open}>
                     <Box sx={ExpandedImageStyle}>
-                        {/*<AiOutlineArrowLeft onClick={showPreviousImage} className="click"/>*/}
                         <img
                             src={`http://localhost:9000/media/${image}`}
                             alt={"Image not found"}
                             loading="lazy"
                             className="click expanded-image"
-                            // onClick={handleModalOpen}
                         />
-                        {/*<AiOutlineArrowRight onClick={showAfterImage} className="click"/>*/}
                     </Box>
                 </Fade>
             </Modal>

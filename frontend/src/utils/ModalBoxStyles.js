@@ -1,15 +1,26 @@
+export const ArrowBoxStyle = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    bgcolor: 'rgba(0, 0, 0, 0.5)',
+    border: null,
+    p: 4,
+    overflow: "auto",
+    height: "100%",
+    width: "100%",
+};
+
 export const ModalBoxStyle = {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 1000,
     bgcolor: 'background.paper',
-    border: "",
-    boxShadow: 24,
     p: 4,
     overflow: "auto",
-    height: "80%"
+    height: "90%",
+    width: "75%"
 };
 
 export const ExpandedImageStyle = {

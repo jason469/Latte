@@ -127,3 +127,17 @@ ul li {
     flex-basis: 10%;
 }
 
+.arrow {
+    color: #7F7F7F;
+}
+
+.arrow:hover {
+    color: #ffffff;
+}
+
+.detail_modal_box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}

@@ -3,9 +3,9 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/base/ModalUnstyled';
 import Fade from '@mui/material/Fade';
 import AlbumDetailPage from "./AlbumDetailPage";
-import {ModalBoxStyle} from "../../../utils/ModalBoxStyles";
+import {ArrowBoxStyle, ModalBoxStyle} from "../../../utils/ModalBoxStyles";
 import {useState} from "react";
-import {AiOutlineArrowLeft, AiOutlineArrowRight} from "react-icons/ai";
+import {IoIosArrowBack, IoIosArrowForward} from "react-icons/io"
 import '../../../App.css'
 
 export default function AlbumDetailModal({open, handleClose, albumId, ids}) {
@@ -34,10 +34,14 @@ export default function AlbumDetailModal({open, handleClose, albumId, ids}) {
                 }}
             >
                 <Fade in={open}>
-                    <Box sx={ModalBoxStyle}>
-                        <AiOutlineArrowLeft onClick={showPreviousAlbum} className="click"/>
-                        <AlbumDetailPage albumId={currentAlbumId} key={albumId}/>
-                        <AiOutlineArrowRight onClick={showAfterAlbum} className="click"/>
+                    <Box sx={ArrowBoxStyle} className="detail_modal_box">
+                        <IoIosArrowBack onClick={showPreviousAlbum} className="click arrow" size={50}
+                                        id="back_arrow"/>
+                        <Box sx={ModalBoxStyle}>
+                            <AlbumDetailPage albumId={currentAlbumId} key={albumId}/>
+                        </Box>
+                        <IoIosArrowForward onClick={showAfterAlbum} className="click arrow" size={50}
+                                           id="forward_arrow"/>
                     </Box>
                 </Fade>
             </Modal>
