@@ -35,11 +35,13 @@ function TagDetailPage(props) {
             />
 
             <strong>Images</strong>
-            {currentTag.images.map(image => {
-                return (
-                    <ImageLabel data={image} key={image.id}/>
-                )
-            })}
+            <div className="labels">
+                {currentTag.images.map(image => {
+                    return (
+                        <ImageLabel data={image} key={image.id}/>
+                    )
+                })}
+            </div>
         </div>
     )
 }

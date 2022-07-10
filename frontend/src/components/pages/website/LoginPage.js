@@ -2,6 +2,7 @@ import {useContext} from "react";
 import AuthContext from "../../../contexts/AuthContext";
 import {Box, Button, TextField} from "@mui/material";
 import '../../../App.css'
+import SendIcon from "@mui/icons-material/Send";
 
 function LoginPage() {
     let {loginUser} = useContext(AuthContext)
@@ -21,7 +22,12 @@ function LoginPage() {
                         type="password"
                     />
                 </Box>
-                <Button type="submit">Submit</Button>
+                <Button
+                    type="submit"
+                    variant="contained"
+                >
+                    Submit
+                </Button>
             </form>
         </>
     );

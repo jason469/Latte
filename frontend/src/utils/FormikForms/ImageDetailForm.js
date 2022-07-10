@@ -8,7 +8,10 @@ import FormSubmitMessage from "../../components/ui/FormSubmitMessage";
 import {CheckFormOutcome} from "../CheckFormOutcome";
 import {ManageItems} from "../ManageItems";
 import UpdateContext from "../../contexts/UpdateContext";
+import SendIcon from "@mui/icons-material/Send";
+
 import '../../App.css'
+import './ImageDetailForm.css'
 
 
 function ImageDetailForm({title, name, description, image, method, endpoint}) {
@@ -67,51 +70,57 @@ function ImageDetailForm({title, name, description, image, method, endpoint}) {
                         errors
                     } = props;
                     return (
-                        <Form>
-                            <h1>{title}</h1>
+                        <Form className="form">
+                            <div className="title">{title}</div>
                             <FormSubmitMessage
                                 formOutcome={formOutcome}
                                 item="Album"
                             />
-                            <div>
-                                <div className="form_part_one">
-                                    <div className="name_description">
-                                        <Field
-                                            id="name"
-                                            name="name"
-                                            type="text"
-                                            label="Name"
-                                            component={TextField}
-                                        />
-                                        <br/>
-                                        <Field
-                                            as='textarea'
-                                            id="description"
-                                            name="description"
-                                            type="text"
-                                            label="Description"
-                                            multiline
-                                            rows={4}
-                                            component={TextField}
-                                        />
-                                    </div>
-                                    <img
-                                        src={`http://localhost:9000/media/${image}`}
-                                        alt={"Image not found"}
-                                        className="click image-preview"
-                                        loading="lazy"
+                            <div className="fields">
+                                <div className="inputs">
+                                    <Field
+                                        id="name"
+                                        name="name"
+                                        type="text"
+                                        label="Name"
+                                        component={TextField}
+                                        className="field"
+                                    />
+                                    <br/>
+                                    <Field
+                                        as='textarea'
+                                        id="description"
+                                        name="description"
+                                        type="text"
+                                        label="Description"
+                                        multiline
+                                        rows={4}
+                                        component={TextField}
+                                        className="field"
+                                    />
+                                    <Field
+                                        id="image"
+                                        name="image"
+                                        type="file"
+                                        className="form-control field"
+                                        onChange={event => props.setFieldValue("file", event.currentTarget.files[0])}
                                     />
                                 </div>
-
-                                <Field
-                                    id="image"
-                                    name="image"
-                                    type="file"
-                                    className="form-control"
-                                    onChange={event => props.setFieldValue("file", event.currentTarget.files[0])}
+                                <img
+                                    src={`http://localhost:9000/media/${image}`}
+                                    alt={"Image not found"}
+                                    className="click image-preview"
+                                    loading="lazy"
                                 />
                             </div>
-                            <Button type="submit">Submit</Button>
+                            <Button
+                                type="submit"
+                                variant="contained"
+                                endIcon={<SendIcon/>}
+                                color="success"
+                            >
+                                Submit
+                            </Button>
                         </Form>
                     )
                 }}

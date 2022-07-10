@@ -11,7 +11,7 @@ function ConfirmationDialog({deleteItem, title, content}) {
 
     return (
         <>
-            <ImCross className="click" onClick={handleDialogOpen}/>
+            <ImCross className="click" onClick={handleDialogOpen} size={15}/>
             <Dialog
                 open={dialogOpen}
                 onClose={handleDialogClose}

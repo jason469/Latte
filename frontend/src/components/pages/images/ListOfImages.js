@@ -13,11 +13,9 @@ import Box from "@mui/material/Box";
 import {ModalBoxStyle} from "../../../utils/ModalBoxStyles";
 import AddImage from "./AddImage";
 import '../../../App.css'
-
-const Pagination = React.lazy(() => import ("../../layout/Pagination"))
-const ImageCard = React.lazy(() => import ("../../ui/images/ImageCard"))
-const EmptyPage = React.lazy(() => import ("../website/EmptyPage"))
-
+import Pagination from "../../layout/Pagination";
+import ImageCard from "../../ui/images/ImageCard";
+import EmptyPage from "../website/EmptyPage";
 
 function ListOfImages() {
     const [imageData, setImageData] = useState([])

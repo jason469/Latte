@@ -32,12 +32,13 @@ function AlbumLabel({data, image_id, setDeletedItem = null}) {
             <Card className="card">
                 <Card.Body className="body">
                     <Nav.Link as={Link} to={`/albums/${data.id}`}>
-                        <Card.Title className="click" variant="primary">{data.name}</Card.Title>
+                        <Card.Title className="click title" variant="primary">{data.name}</Card.Title>
                     </Nav.Link>
                     <ConfirmationDialog
                         deleteItem={removeAlbum}
                         title={`Are you sure you want to delete this album?`}
                         content={`This will unassign the image from the album`}
+                        className="delete-button"
                     />
                 </Card.Body>
             </Card>

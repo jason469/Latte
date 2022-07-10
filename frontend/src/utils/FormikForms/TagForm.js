@@ -9,6 +9,7 @@ import {CheckFormOutcome} from "../CheckFormOutcome";
 import {ManageItems} from "../ManageItems";
 import UpdateContext from "../../contexts/UpdateContext";
 import '../../App.css'
+import SendIcon from "@mui/icons-material/Send";
 
 
 function TagForm({title, name, description, method, endpoint}) {
@@ -51,34 +52,41 @@ function TagForm({title, name, description, method, endpoint}) {
                 onSubmit={onSubmit}
                 enableReinitialize={true}
             >
-                <Form>
-                    <h1>{title}</h1>
+                <Form className="form">
+                    <div className="title">{title}</div>
                     <FormSubmitMessage
                         formOutcome={formOutcome}
                         item="Tag"
                     />
-                    <div>
-                        <Field
-                            id="name"
-                            name="name"
-                            type="text"
-                            label="Name"
-                            component={TextField}
-                        />
-                        <br/>
-                        <Field
-                            as='textarea'
-                            id="description"
-                            name="description"
-                            type="text"
-                            label="Description"
-                            multiline
-                            rows={4}
-                            component={TextField}
-                        />
-                        <br/>
-                    </div>
-                    <Button type="submit">Submit</Button>
+                    <Field
+                        id="name"
+                        name="name"
+                        type="text"
+                        label="Name"
+                        component={TextField}
+                        className="field"
+                    />
+                    <br/>
+                    <Field
+                        as='textarea'
+                        id="description"
+                        name="description"
+                        type="text"
+                        label="Description"
+                        multiline
+                        rows={4}
+                        component={TextField}
+                        className="field"
+                    />
+                    <br/>
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        endIcon={<SendIcon/>}
+                        color="success"
+                    >
+                        Submit
+                    </Button>
                 </Form>
             < /Formik>
         </div>

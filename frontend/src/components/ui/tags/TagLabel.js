@@ -27,9 +27,9 @@ function TagLabel({data, image_id, setDeletedItem = null}) {
     }
 
     return (
-        <div>
-            <Card>
-                <Card.Body>
+        <div className="label">
+            <Card className="card">
+                <Card.Body className="body">
                     <Nav.Link as={Link} to={`/tags/${data.id}`}>
                         <Card.Title className="click" variant="primary">{data.name}</Card.Title>
                     </Nav.Link>

@@ -55,25 +55,30 @@ function ImageDetailPage(props) {
             <strong>Tags</strong>
             <AiFillPlusCircle className="click" onClick={handleTagOpen}/>
             <ImageModal open={tagOpen} handleClose={handleTagClose} endpoint="tags" image_id={imageId}/>
-            {currentImage[0].fields.tag ?
-                currentImage[0].fields.tag.map(tag => {
-                    return (
-                        <TagLabel data={tag} key={tag.id} image_id={imageId} setDeletedItem={setDeletedItem}/>
-                    )
-                }) :
-                <p>No Tags</p>
-            }
+            <div className="labels">
+                {currentImage[0].fields.tag ?
+                    currentImage[0].fields.tag.map(tag => {
+                        return (
+                            <TagLabel data={tag} key={tag.id} image_id={imageId} setDeletedItem={setDeletedItem}/>
+                        )
+                    }) :
+                    <p>No Tags</p>
+                }
+            </div>
+
             <strong>Albums</strong>
             <AiFillPlusCircle className="click" onClick={handleAlbumOpen}/>
-            <ImageModal open={albumOpen} handleClose={handleAlbumClose} endpoint="albums" image_id={imageId}/>
-            {currentImage[0].fields.album ?
-                currentImage[0].fields.album.map(album => {
-                    return (
-                        <AlbumLabel data={album} key={album.id} image_id={imageId} setDeletedItem={setDeletedItem}/>
-                    )
-                }) :
-                <p>No Albums</p>
-            }
+            <div className="labels">
+                <ImageModal open={albumOpen} handleClose={handleAlbumClose} endpoint="albums" image_id={imageId}/>
+                {currentImage[0].fields.album ?
+                    currentImage[0].fields.album.map(album => {
+                        return (
+                            <AlbumLabel data={album} key={album.id} image_id={imageId} setDeletedItem={setDeletedItem}/>
+                        )
+                    }) :
+                    <p>No Albums</p>
+                }
+            </div>
         </div>
     )
 }

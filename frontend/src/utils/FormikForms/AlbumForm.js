@@ -1,6 +1,7 @@
 import {Formik, Form, Field} from 'formik';
 import * as Yup from "yup"
 import {Button} from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
 import {TextField} from 'formik-mui';
 import {useContext, useState} from "react";
 import AuthContext from "../../contexts/AuthContext";
@@ -26,7 +27,7 @@ function AlbumForm({title, name, description, method, endpoint}) {
     const validationSchema = Yup.object({
         name: Yup.string()
             .max(100, "Must be 100 characters or less")
-            .required("Album name Required"),
+            .required("Album name is required"),
         description: Yup.string(),
     })
 
@@ -68,41 +69,48 @@ function AlbumForm({title, name, description, method, endpoint}) {
                         errors
                     } = props;
                     return (
-                        <Form>
-                            <h1>{title}</h1>
+                        <Form className="form">
+                            <div className="title">{title}</div>
                             <FormSubmitMessage
                                 formOutcome={formOutcome}
                                 item="Album"
                             />
-                            <div>
-                                <Field
-                                    id="name"
-                                    name="name"
-                                    type="text"
-                                    label="Name"
-                                    component={TextField}
-                                />
-                                <br/>
-                                <Field
-                                    as='textarea'
-                                    id="description"
-                                    name="description"
-                                    type="text"
-                                    label="Description"
-                                    multiline
-                                    rows={4}
-                                    component={TextField}
-                                />
-                                <br/>
-                                <Field
-                                    id="image"
-                                    name="cover_image"
-                                    type="file"
-                                    className="form-control"
-                                    onChange={event => props.setFieldValue("file", event.currentTarget.files[0])}
-                                />
-                            </div>
-                            <Button type="submit">Submit</Button>
+                            <Field
+                                id="name"
+                                name="name"
+                                type="text"
+                                label="Name"
+                                component={TextField}
+                                className="field"
+                            />
+                            <br/>
+                            <Field
+                                as='textarea'
+                                id="description"
+                                name="description"
+                                type="text"
+                                label="Description"
+                                multiline
+                                rows={4}
+                                component={TextField}
+                                className="field"
+                            />
+                            <br/>
+                            <Field
+                                id="image"
+                                name="cover_image"
+                                type="file"
+                                className="form-control field"
+                                onChange={event => props.setFieldValue("file", event.currentTarget.files[0])}
+                            />
+                            <Button
+                                type="submit"
+                                variant="contained"
+                                endIcon={<SendIcon/>}
+                                color="success"
+                            >
+                                Submit
+                            </Button>
                         </Form>
                     )
                 }}

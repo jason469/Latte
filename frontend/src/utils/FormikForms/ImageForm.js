@@ -10,6 +10,7 @@ import {CheckFormOutcome} from "../CheckFormOutcome";
 import {FormikControl} from "../FormikControl/FormikControl";
 import UpdateContext from "../../contexts/UpdateContext";
 import '../../App.css'
+import SendIcon from "@mui/icons-material/Send";
 
 
 function ImageForm() {
@@ -101,59 +102,66 @@ function ImageForm() {
                         errors
                     } = props;
                     return (
-                        <Form>
-                            <h1>Add Image</h1>
+                        <Form className="form">
+                            <div className="title">Add Image</div>
                             <FormSubmitMessage
                                 formOutcome={formOutcome}
                                 item="Image"
                             />
-                            <div>
-                                <Field
-                                    id="name"
-                                    name="name"
-                                    type="text"
-                                    label="Name"
-                                    component={TextField}
-                                />
-                                <br/>
-                                <Field
-                                    as='textarea'
-                                    id="description"
-                                    name="description"
-                                    type="text"
-                                    label="Description"
-                                    multiline
-                                    rows={4}
-                                    component={TextField}
-                                />
-                                <br/>
+                            <Field
+                                id="name"
+                                name="name"
+                                type="text"
+                                label="Name"
+                                component={TextField}
+                                className="field"
+                            />
+                            <br/>
+                            <Field
+                                as='textarea'
+                                id="description"
+                                name="description"
+                                type="text"
+                                label="Description"
+                                multiline
+                                rows={4}
+                                component={TextField}
+                                className="field"
+                            />
+                            <br/>
 
-                                <Field
-                                    innerRef={imageRef}
-                                    id="image"
-                                    name="images"
-                                    type="file"
-                                    className="form-control"
-                                    multiple
-                                    onChange={event => props.setFieldValue("file", event.currentTarget.files)}
-                                />
+                            <Field
+                                innerRef={imageRef}
+                                id="image"
+                                name="images"
+                                type="file"
+                                className="form-control field"
+                                multiple
+                                onChange={event => props.setFieldValue("file", event.currentTarget.files)}
+                            />
 
-                                <FormikControl
-                                    control='checkbox'
-                                    label='Tags'
-                                    name='tags'
-                                    options={tagOptions}
-                                />
+                            <FormikControl
+                                control='checkbox'
+                                label='Tags'
+                                name='tags'
+                                options={tagOptions}
+                            />
 
-                                <br/>
-                                <FormikControl
-                                    control='checkbox'
-                                    label='Albums'
-                                    name='albums'
-                                    options={albumOptions}
-                                />
-                            </div>
-                            <Button type="submit">Submit</Button>
+                            <br/>
+                            <FormikControl
+                                control='checkbox'
+                                label='Albums'
+                                name='albums'
+                                options={albumOptions}
+                            />
+                            <Button
+                                type="submit"
+                                variant="contained"
+                                endIcon={<SendIcon/>}
+                                color="success"
+                            >
+                                Submit
+                            </Button>
                         </Form>
                     )
                 }}

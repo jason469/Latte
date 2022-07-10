@@ -5,6 +5,7 @@ import AlbumForm from "../../../utils/FormikForms/AlbumForm";
 import ImageLabel from "../../ui/images/ImageLabel";
 import {useParams} from "react-router-dom";
 import '../../../App.css'
+import {ImageList} from "@mui/material";
 
 
 function AlbumDetailPage(props) {
@@ -35,13 +36,13 @@ function AlbumDetailPage(props) {
             />
 
             <strong>Images</strong>
-            <div className="labels">
+            <ImageList variant="masonry" cols={4} gap={0}>
                 {currentAlbum.images.map(image => {
                     return (
                         <ImageLabel data={image} key={image.id}/>
                     )
                 })}
-            </div>
+            </ImageList>
         < />
     )
 }

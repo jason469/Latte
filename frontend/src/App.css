@@ -1,3 +1,11 @@
+html {
+    font-size: calc(60% + 0.8vmin);
+}
+
+.MuiBox-root::-webkit-scrollbar {
+  display: none;
+}
+
 .main {
     margin: 1rem;
 }
@@ -5,12 +13,6 @@
 .image-img {
     max-width: 30%;
     height: auto;
-}
-
-h1 {
-    margin: 10px;
-    font-size: 40px;
-    color: rgb(1, 1, 59);
 }
 
 .search {
@@ -50,6 +52,14 @@ ul li {
     align-items: center;
 }
 
+.card-info > .title {
+    flex-basis: 90%;
+}
+
+.card-info > .delete-button {
+    flex-basis: 10%;
+}
+
 .expanded-image {
     width: 100%;
     height: auto;
@@ -60,36 +70,48 @@ ul li {
     height: auto;
 }
 
-.form_part_one {
-    display: flex;
+.form {
 }
 
-.form_part_one > .name_description {
-    flex-basis: 60%;
-    max-height: 100%;
-
+.form > .title {
+    margin: 10px;
+    padding-bottom: 10px;
+    font-weight: bold;
+    font-size: 40px;
+    color: rgb(1, 1, 59);
 }
 
-.form_part_one > .image-preview {
-    flex-basis: 40%;
-    max-height: 100%;
+.form > .field {
+    margin: 0.5rem 0;
+    width: 80%;
 }
 
-.modal {
-    overflow: auto;
-}
 
 .labels {
     display: flex;
     flex-wrap: wrap;
     overflow: auto;
+    gap: 10px;
+    justify-content: flex-start;
 }
+
 .label {
-    width: 20%;
+    width: 100%;
     margin: 0;
 }
 
 .label > .card > .body {
     display: flex;
     align-items: center;
+    padding: 1rem !important;
+    justify-content: space-between;
 }
+
+.label > .card > .body > .title {
+    flex-basis: 90%;
+}
+
+.label > .card > .body > .delete-button {
+    flex-basis: 10%;
+}
+
