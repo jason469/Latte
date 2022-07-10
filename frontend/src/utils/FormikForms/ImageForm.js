@@ -60,7 +60,7 @@ function ImageForm() {
             body: form_data,
             content_type: null
         })
-            .then(response => CheckFormOutcome(response.status, resetForm, setFormOutcome))
+            .then(response => CheckFormOutcome(response.status, setFormOutcome, resetForm))
             .then(() => setUpdatedItem(Math.random()))
             .then(() => imageRef.current.value = null)
         // .catch(err => CheckFormOutcome(err.response.status, resetForm, setFormOutcome))

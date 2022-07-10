@@ -1,9 +1,19 @@
-import {Alert} from "@mui/material";
+import {Alert, Snackbar} from "@mui/material";
 import '../../App.css'
 
-function FormSubmitMessage({formOutcome, item}) {
+function FormSubmitMessage({formOutcome,
+                               item=null,
+                               setFormOutcome=null}) {
     return (
         <>
+            {formOutcome === 'updated' && (
+                <Snackbar
+                    open={formOutcome}
+                    autoHideDuration={5000}
+                    message="Added"
+                    onClose={() => setFormOutcome(null)}
+                />
+            )}
             {formOutcome === 'created' && (
                 <Alert variant="outlined" severity="success">
                     {item} has been successfully added!

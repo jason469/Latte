@@ -1,18 +1,17 @@
-export function CheckFormOutcome(status, resetForm, setFormOutcome) {
-    switch (status) {
-        case 200:
-        case 201:
-            resetForm({values: ''})
-            setFormOutcome('created');
-            break;
-        case 406:
-            resetForm({values: ''})
-            setFormOutcome('already created');
-            break;
-        default:
-            resetForm({values: ''})
-            setFormOutcome('cannot be created');
-            break;
+export function CheckFormOutcome(status, setFormOutcome, resetForm = null) {
+    if (status === 200) {
+        setFormOutcome('updated')
+    } else if (status === 201) {
+        setFormOutcome('created');
+    } else if (status === 406) {
+        setFormOutcome('already created');
+    } else {
+        setFormOutcome('cannot be created');
     }
+
+    if (resetForm) {
+        resetForm({values: ''})
+    }
+
     return null
 }

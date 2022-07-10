@@ -39,7 +39,7 @@ function TagForm({title, name, description, method, endpoint}) {
             logoutUser: logoutUser,
             body: JSON.stringify(values)
         })
-            .then(response => CheckFormOutcome(response.status, resetForm, setFormOutcome))
+            .then(response => CheckFormOutcome(response.status, setFormOutcome, resetForm))
             .then(() => setUpdatedItem(Math.random()))
             .catch(err => console.log(err))
     };

@@ -48,7 +48,7 @@ function ImageDetailForm({title, name, description, image, method, endpoint}) {
             body: form_data,
             content_type: null
         })
-            .then(response => CheckFormOutcome(response.status, resetForm, setFormOutcome))
+            .then(response => CheckFormOutcome(response.status, setFormOutcome, resetForm))
             .then(() => setUpdatedItem(Math.random()))
         // .catch(err => CheckFormOutcome(err.response.status, resetForm, setFormOutcome))
     };

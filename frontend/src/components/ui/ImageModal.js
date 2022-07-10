@@ -11,10 +11,13 @@ import ImageModalCard from "./ImageModalCard";
 import {ModalBoxStyle} from "../../utils/ModalBoxStyles";
 import UpdateContext from "../../contexts/UpdateContext";
 import '../../App.css'
+import FormSubmitMessage from "./FormSubmitMessage";
 
 export default function ImageModal({open, handleClose, endpoint, image_id}) {
     const [inputText, setInputText] = useState("");
     const [allItems, setAllItems] = useState([]);
+    const [formOutcome, setFormOutcome] = useState(null);
+
     let {updatedItem} = useContext(UpdateContext)
 
     let {authTokens, logoutUser} = useContext(AuthContext)
@@ -56,9 +59,18 @@ export default function ImageModal({open, handleClose, endpoint, image_id}) {
                                 label="Search"
                             />
                         </div>
+                        <FormSubmitMessage
+                            formOutcome={formOutcome}
+                            setFormOutcome={setFormOutcome}
+                        />
                         <div className="list-of-items">
                             {inputText !== ""
-                                ? filteredTags.map(item => <ImageModalCard data={item} item_name={endpoint} image_id={image_id}/>)
+                                ? filteredTags.map(item => <ImageModalCard data={item}
+                                                                           item_name={endpoint}
+                                                                           image_id={image_id}
+                                                                           setFormOutcome={setFormOutcome}
+                                                                           key={item.id}
+                                />)
                                 : <p>No items match that name</p>
                             }
                         </div>

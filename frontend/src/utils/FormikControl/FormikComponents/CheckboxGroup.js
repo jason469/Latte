@@ -1,5 +1,6 @@
 import {Field, ErrorMessage} from "formik";
 import React from 'react';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 import "./CheckboxGroup.css"
 
@@ -17,7 +18,7 @@ function CheckboxGroup(props) {
                                 <React.Fragment
                                     key={option.id}
                                 >
-                                    <div className="pretty p-icon p-round p-jelly p-plain">
+                                    <div className="pretty p-icon p-rotate p-thick">
                                         <input
                                             type="checkbox"
                                             id={option.id}
@@ -25,8 +26,7 @@ function CheckboxGroup(props) {
                                             value={option.name}
                                             checked={field.value.includes(option.name)}
                                         />
-                                        <div className="state p-primary">
-                                            <i className="icon mdi mdi-check-all"/>
+                                        <div className="state p-info">
                                             <label
                                                 htmlFor={option.id}
                                                 className="checkbox_label"

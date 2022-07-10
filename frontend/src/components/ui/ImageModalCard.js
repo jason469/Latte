@@ -2,13 +2,15 @@ import {Nav, Card} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {BiPlusMedical} from "react-icons/bi";
 import {ManageItems} from "../../utils/ManageItems";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import AuthContext from "../../contexts/AuthContext";
 import UpdateContext from "../../contexts/UpdateContext";
 import '../../App.css'
+import {CheckFormOutcome} from "../../utils/CheckFormOutcome";
 
 
-function ImageModalCard({data, item_name, image_id}) {
+function ImageModalCard({data, item_name, image_id, setFormOutcome}) {
+
     let {authTokens, logoutUser} = useContext(AuthContext)
     let {setUpdatedItem} = useContext(UpdateContext)
 
@@ -26,7 +28,8 @@ function ImageModalCard({data, item_name, image_id}) {
             logoutUser: logoutUser,
             body: JSON.stringify(body),
         })
-        setUpdatedItem(Math.random())
+            .then(response => CheckFormOutcome(response.status, setFormOutcome))
+            .then(() => setUpdatedItem(Math.random()))
     }
     return (
         <div>
