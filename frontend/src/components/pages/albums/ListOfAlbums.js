@@ -53,16 +53,16 @@ function ListOfAlbums() {
             return (
                 <div>
                     <div className="list_actions">
-                            <TextField
-                                id="album_search"
-                                onChange={(e) => {
-                                    inputHandler(e, setInputText)
-                                }}
-                                variant="outlined"
-                                fullWidth
-                                label="Search"
-                                className="search"
-                            />
+                        <TextField
+                            id="album_search"
+                            onChange={(e) => {
+                                inputHandler(e, setInputText)
+                            }}
+                            variant="outlined"
+                            fullWidth
+                            label="Search"
+                            className="search"
+                        />
                         <AiFillPlusCircle
                             className="click add_form"
                             onClick={() => setShowAddForm(true)}
@@ -86,7 +86,7 @@ function ListOfAlbums() {
                             </Box>
                         </Fade>
                     </Modal>
-                    <ImageList variant="quilted" cols={6} gap={8}>
+                    <ImageList variant="quilted" cols={5} gap={8}>
                         {inputText !== ""
                             ? filteredData.map(item =>
                                 <AlbumCard key={item.id} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>
@@ -96,11 +96,13 @@ function ListOfAlbums() {
                             )
                         }
                     </ImageList>
-                    <Pagination
-                        itemsPerPage={6}
-                        data={albumData}
-                        pull_function={pull_albums}
-                    />
+                    {inputText === ""
+                        && <Pagination
+                            itemsPerPage={6}
+                            data={albumData}
+                            pull_function={pull_albums}
+                        />
+                    }
                 </div>
             )
         case false:

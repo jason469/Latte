@@ -89,7 +89,7 @@ function ListOfTags() {
                             </Box>
                         </Fade>
                     </Modal>
-                    <ImageList cols={6}>
+                    <ImageList cols={5}>
                         {inputText !== ""
                             ? filteredData.map(item =>
                                 <TagCard key={item.id} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>)
@@ -97,11 +97,12 @@ function ListOfTags() {
                                 <TagCard key={item.id} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>)
                         }
                     </ImageList>
-                    <Pagination
-                        itemsPerPage={12}
-                        data={tagData}
-                        pull_function={pull_tags}
-                    />
+                    {inputText === ""
+                        && <Pagination
+                            itemsPerPage={12}
+                            data={tagData}
+                            pull_function={pull_tags}
+                        />}
                 </div>
             )
         case false:

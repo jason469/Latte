@@ -96,11 +96,13 @@ function ListOfImages() {
                             )
                         }
                     </ImageList>
-                    <Pagination
-                        itemsPerPage={14}
-                        data={imageData}
-                        pull_function={pull_images}
-                    />
+                    {inputText === ""
+                        && <Pagination
+                            itemsPerPage={14}
+                            data={imageData}
+                            pull_function={pull_images}
+                        />
+                    }
                 </div>
             )
         case false:

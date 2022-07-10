@@ -32,7 +32,8 @@ function AlbumCard({data, ids, setDeletedItem = null}) {
                     variant="top"
                     src={data.cover_image}
                     alt={data.name}
-                    className="card-img"
+                    className="card-img click"
+                    onClick={handleModalOpen}
                 />
             }
             <div className="card-info">
@@ -40,7 +41,8 @@ function AlbumCard({data, ids, setDeletedItem = null}) {
                     position="below"
                     className="click title"
                     onClick={handleModalOpen}
-                    title={data.name}/>
+                    subtitle={data.name}
+                />
                 <ConfirmationDialog
                     deleteItem={deleteItem}
                     title={`Are you sure you want to delete this album?`}
