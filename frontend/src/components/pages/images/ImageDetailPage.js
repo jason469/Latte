@@ -63,7 +63,11 @@ function ImageDetailPage(props) {
                 {currentImage[0].fields.tag ?
                     currentImage[0].fields.tag.map(tag => {
                         return (
-                            <TagLabel data={tag} key={tag.id} image_id={imageId} setDeletedItem={setDeletedItem}/>
+                            <TagLabel
+                                data={tag}
+                                key={tag.id}
+                                image_id={imageId}
+                                setDeletedItem={setDeletedItem}/>
                         )
                     }) :
                     <p>No Tags</p>

@@ -4,6 +4,7 @@ import '../../../App.css'
 
 function Profile() {
     let {user} = useContext(AuthContext)
+    console.log(user)
 
     return (
         <h1>Hi {user.first_name} {user.last_name}</h1>

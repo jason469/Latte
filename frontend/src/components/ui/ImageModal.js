@@ -10,8 +10,10 @@ import AuthContext from "../../contexts/AuthContext";
 import ImageModalCard from "./ImageModalCard";
 import {ModalBoxStyle} from "../../utils/ModalBoxStyles";
 import UpdateContext from "../../contexts/UpdateContext";
-import '../../App.css'
+import {ImageList} from "@mui/material";
 import FormSubmitMessage from "./FormSubmitMessage";
+
+import '../../App.css'
 
 export default function ImageModal({open, handleClose, endpoint, image_id}) {
     const [inputText, setInputText] = useState("");
@@ -22,7 +24,7 @@ export default function ImageModal({open, handleClose, endpoint, image_id}) {
 
     let {authTokens, logoutUser} = useContext(AuthContext)
 
-    const filteredTags = filterData(inputText, allItems)
+    const filteredItems = filterData(inputText, allItems)
 
     useEffect(() => {
         ManageItems({
@@ -63,17 +65,17 @@ export default function ImageModal({open, handleClose, endpoint, image_id}) {
                             formOutcome={formOutcome}
                             setFormOutcome={setFormOutcome}
                         />
-                        <div className="list-of-items">
+                        <ImageList cols={3} gap={5}>
                             {inputText !== ""
-                                ? filteredTags.map(item => <ImageModalCard data={item}
-                                                                           item_name={endpoint}
-                                                                           image_id={image_id}
-                                                                           setFormOutcome={setFormOutcome}
-                                                                           key={item.id}
+                                ? filteredItems.map(item => <ImageModalCard data={item}
+                                                                            item_name={endpoint}
+                                                                            image_id={image_id}
+                                                                            setFormOutcome={setFormOutcome}
+                                                                            key={item.id}
                                 />)
                                 : <p>No items match that name</p>
                             }
-                        </div>
+                        </ImageList>
                     </Box>
                 </Fade>
             </Modal>
