@@ -16,6 +16,7 @@ import Modal from "@mui/material/Modal";
 import AddAlbum from "./AddAlbum";
 import UpdateContext from "../../../contexts/UpdateContext";
 import '../../../App.css'
+import RangeSelector from "../../ui/RangeSelector";
 
 
 function ListOfAlbums() {
@@ -26,6 +27,7 @@ function ListOfAlbums() {
     const [showAddForm, setShowAddForm] = useState(false)
     const [loading, setLoading] = useState(false)
     const [itemIDs, setItemIDs] = useState([])
+    const [itemsPerPage, setItemsPerPage] = useState(15)
 
     let {authTokens, logoutUser} = useContext(AuthContext)
     let {updatedItem} = useContext(UpdateContext)
@@ -63,6 +65,7 @@ function ListOfAlbums() {
                             label="Search"
                             className="search"
                         />
+                        <RangeSelector setFunction={setItemsPerPage}/>
                         <AiFillPlusCircle
                             className="click add_form"
                             onClick={() => setShowAddForm(true)}
@@ -98,7 +101,7 @@ function ListOfAlbums() {
                     </ImageList>
                     {inputText === ""
                         && <Pagination
-                            itemsPerPage={6}
+                            itemsPerPage={itemsPerPage}
                             data={albumData}
                             pull_function={pull_albums}
                         />

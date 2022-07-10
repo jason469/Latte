@@ -46,10 +46,15 @@ ul li {
     display: flex;
     padding: 0.75rem 2.5rem 1.5rem 2.5rem;
     width: 100%;
+    gap: 10px;
 }
 
 .list_actions > .search {
-    flex-basis: 90%;
+    flex-basis: 70%;
+}
+
+.list_actions > .range_selector {
+    flex-basis: 20%;
 }
 
 .list_actions > .add_form {

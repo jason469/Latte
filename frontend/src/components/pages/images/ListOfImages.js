@@ -16,6 +16,7 @@ import '../../../App.css'
 import Pagination from "../../layout/Pagination";
 import ImageCard from "../../ui/images/ImageCard";
 import EmptyPage from "../website/EmptyPage";
+import RangeSelector from "../../ui/RangeSelector";
 
 function ListOfImages() {
     const [imageData, setImageData] = useState([])
@@ -25,6 +26,7 @@ function ListOfImages() {
     const [inputText, setInputText] = useState("");
     const [showAddForm, setShowAddForm] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [itemsPerPage, setItemsPerPage] = useState(15)
 
     let {authTokens, logoutUser} = useContext(AuthContext)
     let {updatedItem} = useContext(UpdateContext)
@@ -63,6 +65,7 @@ function ListOfImages() {
                             label="Search"
                             className="search"
                         />
+                        <RangeSelector setFunction={setItemsPerPage}/>
                         <AiFillPlusCircle
                             className="click add_form"
                             onClick={() => setShowAddForm(true)}
@@ -98,7 +101,7 @@ function ListOfImages() {
                     </ImageList>
                     {inputText === ""
                         && <Pagination
-                            itemsPerPage={14}
+                            itemsPerPage={itemsPerPage}
                             data={imageData}
                             pull_function={pull_images}
                         />

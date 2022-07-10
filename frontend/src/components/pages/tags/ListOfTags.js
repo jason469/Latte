@@ -19,6 +19,7 @@ import UpdateContext from "../../../contexts/UpdateContext";
 
 import './ListOfTags.css'
 import '../../../App.css'
+import RangeSelector from "../../ui/RangeSelector";
 
 
 function ListOfTags() {
@@ -29,6 +30,7 @@ function ListOfTags() {
     const [showAddForm, setShowAddForm] = useState(false)
     const [loading, setLoading] = useState(false)
     const [itemIDs, setItemIDs] = useState([])
+    const [itemsPerPage, setItemsPerPage] = useState(15)
 
     let {authTokens, logoutUser} = useContext(AuthContext)
     let {updatedItem} = useContext(UpdateContext)
@@ -68,6 +70,7 @@ function ListOfTags() {
                             label="Search"
                             className="search"
                         />
+                        <RangeSelector setFunction={setItemsPerPage}/>
                         <AiFillPlusCircle
                             className="click add_form"
                             onClick={() => setShowAddForm(true)}
@@ -101,7 +104,7 @@ function ListOfTags() {
                     </ImageList>
                     {inputText === ""
                         && <Pagination
-                            itemsPerPage={14}
+                            itemsPerPage={itemsPerPage}
                             data={tagData}
                             pull_function={pull_tags}
                         />}

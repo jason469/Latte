@@ -2,7 +2,7 @@ import {Formik, Form, Field} from 'formik';
 import * as Yup from "yup"
 import {Button} from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-import {SimpleFileUpload, TextField,} from 'formik-mui';
+import {TextField,} from 'formik-mui';
 import {useContext, useState} from "react";
 import AuthContext from "../../contexts/AuthContext";
 import FormSubmitMessage from "../../components/ui/FormSubmitMessage";
