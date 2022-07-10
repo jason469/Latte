@@ -1,5 +1,10 @@
 import json
 import random
+import PIL
+
+from PIL import Image as PIL_Image
+import os
+import glob
 
 from django.http import Http404, QueryDict
 from rest_framework.views import APIView
@@ -44,7 +49,7 @@ class ImageViewSet(viewsets.ModelViewSet):
         for item in request.data.dict():
             if item.startswith('images__'):
                 try:
-                    image, created = Image.objects.get_or_create(
+                    new_image, created = Image.objects.get_or_create(
                         name=request.data.get("name"),
                         description=request.data.get("description"),
                         image=request.data.get(item),
@@ -55,15 +60,14 @@ class ImageViewSet(viewsets.ModelViewSet):
                         tags = json.loads(request.data.get("tags"))
                         albums = json.loads(request.data.get("albums"))
                         for tag in tags:
-                            image.tag.add(Tag.objects.get(name=tag))
+                            new_image.tag.add(Tag.objects.get(name=tag))
                         for album in albums:
-                            image.album.add(Album.objects.get(name=album))
+                            new_image.album.add(Album.objects.get(name=album))
                     else:
                         return HttpResponse(status=406)
                 except Exception as exc:
                     print(exc)
                     return HttpResponse(500)
-
         return HttpResponse(status=201)
 
     def partial_update(self, request, *args, **kwargs):
@@ -94,6 +98,9 @@ class ImageViewSet(viewsets.ModelViewSet):
                 if request.data.get('image'):
                     currentImage.image = request.data.get('image')
                 currentImage.save()
+                image = PIL_Image.open(Image.objects.get(name=(request.data.get("name"))).image)
+                image = image.convert('RGB')
+                image.save(request.data.get("name"), 'webp')
                 return HttpResponse(status=200)
 
         except Exception as exc:

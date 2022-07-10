@@ -7,7 +7,6 @@ import AuthContext from "../../contexts/AuthContext";
 import {ManageItems} from "../ManageItems";
 import FormSubmitMessage from "../../components/ui/FormSubmitMessage";
 import {CheckFormOutcome} from "../CheckFormOutcome";
-import {FormikControl} from "../FormikControl/FormikControl";
 import UpdateContext from "../../contexts/UpdateContext";
 import '../../App.css'
 import SendIcon from "@mui/icons-material/Send";
@@ -113,6 +112,7 @@ function ImageForm() {
                             <FormSubmitMessage
                                 formOutcome={formOutcome}
                                 item="Image"
+                                setFormOutcome={setFormOutcome}
                             />
                             <Field
                                 id="name"
