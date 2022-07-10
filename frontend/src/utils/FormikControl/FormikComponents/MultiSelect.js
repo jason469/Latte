@@ -20,25 +20,23 @@ const MenuProps = {
 };
 
 
-function getStyles(name, personName, theme) {
+function getStyles(itemName, item, theme) {
   return {
     fontWeight:
-      personName.indexOf(name) === -1
+      item.indexOf(itemName) === -1
         ? theme.typography.fontWeightRegular
         : theme.typography.fontWeightMedium,
   };
 }
 
-export default function MultiSelect({options, }) {
+export default function MultiSelect({options, label, item, setItem}) {
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
 
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
+    setItem(
       typeof value === 'string' ? value.split(',') : value,
     );
   };
@@ -46,12 +44,12 @@ export default function MultiSelect({options, }) {
   return (
     <div>
       <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-chip-label">Chip</InputLabel>
+        <InputLabel id="demo-multiple-chip-label">{label}</InputLabel>
         <Select
           labelId="demo-multiple-chip-label"
           id="demo-multiple-chip"
           multiple
-          value={personName}
+          value={item}
           onChange={handleChange}
           input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
           renderValue={(selected) => (
@@ -67,7 +65,7 @@ export default function MultiSelect({options, }) {
             <MenuItem
               key={option.id}
               value={option.name}
-              style={getStyles(option, personName, theme)}
+              style={getStyles(option, item, theme)}
             >
               {option.name}
             </MenuItem>

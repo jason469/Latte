@@ -26,7 +26,7 @@ function ListOfImages() {
     const [inputText, setInputText] = useState("");
     const [showAddForm, setShowAddForm] = useState(false)
     const [loading, setLoading] = useState(false)
-    const [itemsPerPage, setItemsPerPage] = useState(15)
+    const [itemsPerPage, setItemsPerPage] = useState(10)
 
     let {authTokens, logoutUser} = useContext(AuthContext)
     let {updatedItem} = useContext(UpdateContext)

@@ -18,6 +18,9 @@ function ImageForm() {
     const [tagOptions, setTagOptions] = useState([])
     const [albumOptions, setAlbumOptions] = useState([])
     const [formOutcome, setFormOutcome] = useState(null);
+
+    const [selectedTags, setSelectedTags] = useState([])
+    const [selectedAlbums, setSelectedAlbums] = useState([])
     const imageRef = useRef();
 
     let {authTokens, logoutUser} = useContext(AuthContext)
@@ -42,10 +45,11 @@ function ImageForm() {
 
     const onSubmit = (values, {resetForm}) => {
         let form_data = new FormData();
+        console.log(selectedTags)
         form_data.append('name', values.name);
         form_data.append('description', values.description);
-        form_data.append('tags', JSON.stringify(values.tags));
-        form_data.append('albums', JSON.stringify(values.albums));
+        form_data.append('tags', JSON.stringify(selectedTags));
+        form_data.append('albums', JSON.stringify(selectedAlbums));
         if (values.file) {
             let counter = 1
             for (let file of values.file) {
@@ -117,7 +121,6 @@ function ImageForm() {
                                 component={TextField}
                                 className="field"
                             />
-                            <br/>
                             <Field
                                 as='textarea'
                                 id="description"
@@ -129,8 +132,6 @@ function ImageForm() {
                                 component={TextField}
                                 className="field"
                             />
-                            <br/>
-
                             <Field
                                 innerRef={imageRef}
                                 id="image"
@@ -140,18 +141,19 @@ function ImageForm() {
                                 multiple
                                 onChange={event => props.setFieldValue("file", event.currentTarget.files)}
                             />
-
                             <div className="subtitle">Tags</div>
                             <MultiSelect
                                 options={tagOptions}
+                                label="Tags"
+                                item={selectedTags}
+                                setItem={setSelectedTags}
                             />
-
-                            <br/>
                             <div className="subtitle">Albums</div>
-                            <FormikControl
-                                control='checkbox'
-                                name='albums'
+                            <MultiSelect
                                 options={albumOptions}
+                                label="Albums"
+                                item={selectedAlbums}
+                                setItem={setSelectedAlbums}
                             />
                             <Button
                                 type="submit"
