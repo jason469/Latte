@@ -3,7 +3,7 @@ export const ArrowBoxStyle = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    bgcolor: 'rgba(0, 0, 0, 0.5)',
+    bgcolor: 'rgba(0, 0, 0, 0.7)',
     border: null,
     p: 4,
     overflow: "auto",
