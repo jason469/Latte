@@ -11,6 +11,7 @@ import {FormikControl} from "../FormikControl/FormikControl";
 import UpdateContext from "../../contexts/UpdateContext";
 import '../../App.css'
 import SendIcon from "@mui/icons-material/Send";
+import MultiSelect from "../FormikControl/FormikComponents/MultiSelect";
 
 
 function ImageForm() {
@@ -141,11 +142,8 @@ function ImageForm() {
                             />
 
                             <div className="subtitle">Tags</div>
-                            <FormikControl
-                                control='checkbox'
-                                name='tags'
+                            <MultiSelect
                                 options={tagOptions}
-                                className="tags"
                             />
 
                             <br/>
