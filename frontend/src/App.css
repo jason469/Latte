@@ -45,6 +45,7 @@ ul li {
 .list_actions {
     display: flex;
     padding: 0.75rem 2.5rem 1.5rem 2.5rem;
+    width: 100%;
 }
 
 .list_actions > .search {
@@ -137,4 +138,8 @@ ul li {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+}
+
+.list_of_items {
+    width: 95%;
 }

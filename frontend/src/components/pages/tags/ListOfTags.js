@@ -16,6 +16,8 @@ import {ModalBoxStyle} from "../../../utils/ModalBoxStyles";
 import Modal from "@mui/material/Modal";
 import AddTag from "./AddTag";
 import UpdateContext from "../../../contexts/UpdateContext";
+
+import './ListOfTags.css'
 import '../../../App.css'
 
 
@@ -54,7 +56,7 @@ function ListOfTags() {
     switch (loading) {
         case true:
             return (
-                <div>
+                <div className="list_of_items">
                     <div className="list_actions">
                         <TextField
                             id="tag_search"
@@ -89,7 +91,7 @@ function ListOfTags() {
                             </Box>
                         </Fade>
                     </Modal>
-                    <ImageList cols={5}>
+                    <ImageList cols={5} gap={20}>
                         {inputText !== ""
                             ? filteredData.map(item =>
                                 <TagCard key={item.id} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>)
@@ -99,7 +101,7 @@ function ListOfTags() {
                     </ImageList>
                     {inputText === ""
                         && <Pagination
-                            itemsPerPage={12}
+                            itemsPerPage={14}
                             data={tagData}
                             pull_function={pull_tags}
                         />}

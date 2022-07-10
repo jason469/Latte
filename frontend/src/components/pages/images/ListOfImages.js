@@ -51,7 +51,7 @@ function ListOfImages() {
     switch (loading) {
         case true:
             return (
-                <div>
+                <div className="list_of_items">
                     <div className="list_actions">
                         <TextField
                             id="image_search"
