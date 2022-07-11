@@ -45,7 +45,7 @@ function ImageForm() {
 
     const onSubmit = (values, {resetForm}) => {
         let form_data = new FormData();
-        console.log(selectedTags)
+        console.log(values.file)
         form_data.append('name', values.name);
         form_data.append('description', values.description);
         form_data.append('tags', JSON.stringify(selectedTags));

@@ -91,21 +91,25 @@ class ImageViewSet(viewsets.ModelViewSet):
                         album = Album.objects.get(id=request_body["id"])
                         Image.objects.get(id=image_id).album.add(album)
                     return HttpResponse(status=200)
+                print(request.data)
             else:
                 currentImage = self.get_object()
                 currentImage.name = request.data.get('name')
                 currentImage.description = request.data.get('description')
                 if request.data.get('image'):
+                    os.remove(currentImage.image.path)
                     currentImage.image = request.data.get('image')
                 currentImage.save()
-                image = PIL_Image.open(Image.objects.get(name=(request.data.get("name"))).image)
-                image = image.convert('RGB')
-                image.save(request.data.get("name"), 'webp')
                 return HttpResponse(status=200)
 
         except Exception as exc:
             print(exc)
             return HttpResponse(500)
+
+    def destroy(self, request, *args, **kwargs):
+        image = self.get_object()
+        os.remove(image.image.path)
+        image.delete()
 
 
 class TagViewSet(viewsets.ModelViewSet):

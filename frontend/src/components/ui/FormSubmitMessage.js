@@ -10,7 +10,7 @@ function FormSubmitMessage({formOutcome,
                 <Snackbar
                     open={formOutcome}
                     autoHideDuration={5000}
-                    message="Added"
+                    message="Updated"
                     onClose={() => setFormOutcome(null)}
                 />
             )}

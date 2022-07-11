@@ -88,21 +88,21 @@ class Image(models.Model):
 
 @receiver(post_save, sender=Image)
 def covert_webp(sender, instance, created, **kwargs):
-    if created:
-        initial_path = instance.image.path
-        initial_name, initial_ext = os.path.splitext(initial_path)
-        image_path = Path(initial_path)
-        destination = image_path.with_suffix('.webp')
-        image = PIL_Image.open(image_path)
-        image.save(destination, format='webp')
-        new_name = initial_name.split('/')[-1] + '.webp'
-
-        with open(initial_name + '.webp', 'rb') as f:
-            encoded = base64.b64encode(f.read())
-            data = ContentFile(base64.b64decode(encoded))
-
-        try:
-            os.remove(initial_path)
-            instance.image.save(os.path.basename(new_name), data)
-        except Exception as exc:
-            print(exc)
+    if instance.image:
+        if not instance.image.path.lower().endswith('.webp'):
+            initial_path = instance.image.path
+            initial_name, initial_ext = os.path.splitext(initial_path)
+            image_path = Path(initial_path)
+            destination = image_path.with_suffix('.webp')
+            image = PIL_Image.open(image_path)
+            image.save(destination, format='webp')
+            new_name = initial_name.split('/')[-1] + '.webp'
+            with open(initial_name + '.webp', 'rb') as f:
+                encoded = base64.b64encode(f.read())
+                data = ContentFile(base64.b64decode(encoded))
+            try:
+                instance.image.save(os.path.basename(new_name), data)
+                os.remove(initial_path)
+                os.remove(new_name)
+            except Exception as exc:
+                print(exc)
