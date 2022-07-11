@@ -6,7 +6,7 @@ import {ManageItems} from "../../../utils/ManageItems";
 import EmptyPage from "../website/EmptyPage";
 import TextField from "@mui/material/TextField";
 import {inputHandler, filterData} from "../../../utils/searchBarFunctions";
-import {AiFillPlusCircle} from "react-icons/ai";
+import {GrChapterAdd} from "react-icons/gr";
 import {ImageList} from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import Fade from "@mui/material/Fade";
@@ -66,7 +66,7 @@ function ListOfAlbums() {
                             className="search"
                         />
                         <RangeSelector value={itemsPerPage} setFunction={setItemsPerPage}/>
-                        <AiFillPlusCircle
+                        <GrChapterAdd
                             className="click add_form"
                             onClick={() => setShowAddForm(true)}
                             size={50}

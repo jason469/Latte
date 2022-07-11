@@ -19,7 +19,7 @@ html {
 .subtitle {
     font-size: 2rem;
     color: #0a53be;
-    margin: 1rem;
+    margin: 0.5rem;
 }
 
 .list_actions {
@@ -104,7 +104,7 @@ ul li {
 
 .form > .field {
     margin: 0.5rem 0;
-    width: 80%;
+    width: 100%;
 }
 
 .label {
@@ -144,4 +144,8 @@ ul li {
 
 .list_of_items {
     width: 95%;
+}
+
+.loader {
+    margin-bottom: 0.5rem;
 }

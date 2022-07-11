@@ -1,5 +1,5 @@
 import {useContext, useEffect, useState} from "react";
-import {AiFillPlusCircle} from "react-icons/ai";
+import AddCommentIcon from '@mui/icons-material/AddComment';
 import TextField from "@mui/material/TextField";
 import {ImageList} from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
@@ -72,10 +72,10 @@ function ListOfTags() {
                             className="search"
                         />
                         <RangeSelector value={itemsPerPage} setFunction={setItemsPerPage}/>
-                        <AiFillPlusCircle
+                        <AddCommentIcon
                             className="click add_form"
                             onClick={() => setShowAddForm(true)}
-                            size={50}
+                            sx={{ fontSize: 50 }}
                         />
                     </div>
                     <Modal

@@ -1,6 +1,6 @@
 import {Formik, Form, Field} from 'formik';
 import * as Yup from "yup"
-import {Button} from '@mui/material';
+import {Button, CircularProgress, LinearProgress} from '@mui/material';
 import {TextField} from 'formik-mui';
 import {useState, useEffect, useContext, useRef} from "react";
 import AuthContext from "../../contexts/AuthContext";
@@ -8,11 +8,11 @@ import {ManageItems} from "../ManageItems";
 import FormSubmitMessage from "../../components/ui/FormSubmitMessage";
 import {CheckFormOutcome} from "../CheckFormOutcome";
 import UpdateContext from "../../contexts/UpdateContext";
-import '../../App.css'
 import SendIcon from "@mui/icons-material/Send";
 import MultiSelect from "../FormikControl/FormikComponents/MultiSelect";
+import Box from "@mui/material/Box";
 
-//Test
+import '../../App.css'
 
 function ImageForm() {
     const [tagOptions, setTagOptions] = useState([])
@@ -21,6 +21,8 @@ function ImageForm() {
 
     const [selectedTags, setSelectedTags] = useState([])
     const [selectedAlbums, setSelectedAlbums] = useState([])
+
+    const [loading, setLoading] = useState(false)
     const imageRef = useRef();
 
     let {authTokens, logoutUser} = useContext(AuthContext)
@@ -44,8 +46,8 @@ function ImageForm() {
 
 
     const onSubmit = (values, {resetForm}) => {
+        setLoading(true)
         let form_data = new FormData();
-        console.log(values.file)
         form_data.append('name', values.name);
         form_data.append('description', values.description);
         form_data.append('tags', JSON.stringify(selectedTags));
@@ -68,6 +70,7 @@ function ImageForm() {
             .then(response => CheckFormOutcome(response.status, setFormOutcome, resetForm))
             .then(() => setUpdatedItem(Math.random()))
             .then(() => imageRef.current.value = null)
+            .then(() => setLoading(false))
         // .catch(err => CheckFormOutcome(err.response.status, resetForm, setFormOutcome))
     };
 
@@ -109,6 +112,13 @@ function ImageForm() {
                     return (
                         <Form className="form">
                             <div className="title">Add Image</div>
+                            {loading
+                                ?
+                                <Box sx={{width: '100%'}} className="loader">
+                                    <LinearProgress/>
+                                </Box>
+                                : null
+                            }
                             <FormSubmitMessage
                                 formOutcome={formOutcome}
                                 item="Image"
@@ -138,7 +148,7 @@ function ImageForm() {
                                 id="image"
                                 name="images"
                                 type="file"
-                                className="form-control field"
+                                className={`form-control field`}
                                 multiple
                                 onChange={event => props.setFieldValue("file", event.currentTarget.files)}
                             />
