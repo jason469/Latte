@@ -19,14 +19,13 @@ import MenuItem from "@mui/material/MenuItem";
 import Modal from "@mui/material/Modal";
 
 import '../../../App.css'
-import './ListOfImages.css'
+import classes from './ListOfImages.module.css'
 
 
 function ListOfImages() {
     const [imageData, setImageData] = useState([])
     const [deletedItem, setDeletedItem] = useState(0)
     const [currentItems, setCurrentItems] = useState([]);
-    const [itemIDs, setItemIDs] = useState([])
     const [inputText, setInputText] = useState("");
     const [searchCriteria, setSearchCriteria] = useState("");
     const [showAddForm, setShowAddForm] = useState(false)
@@ -67,10 +66,10 @@ function ListOfImages() {
                             variant="outlined"
                             fullWidth
                             label="Search"
-                            className="search"
+                            className={classes.search}
                         />
                         <TextField
-                            className="search_criteria"
+                            className={classes.search_criteria}
                             label="Search Criteria"
                             onChange={e => {
                                 setSearchCriteria(e.target.value)
