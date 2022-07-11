@@ -1,11 +1,13 @@
+import '../../../App.css'
+
 import {ManageItems} from "../../../utils/ManageItems";
-import {useState, useContext, useEffect} from "react";
+import React, {useState, useContext, useEffect} from "react";
 import AuthContext from "../../../contexts/AuthContext";
-import ImageDetailModal from "../../pages/images/ImageDetailModal";
 import {ImageListItem, ImageListItemBar} from "@mui/material";
 import ConfirmationDialog from "../ConfirmationDialog";
-import '../../../App.css'
-import ExpandedImage from "./ExpandedImage";
+
+const ImageDetailModal = React.lazy(() => import("../../pages/images/ImageDetailModal"));
+const ExpandedImage = React.lazy(() => import("./ExpandedImage"));
 
 
 function ImageCard({data, ids, setDeletedItem = null}) {
@@ -63,6 +65,7 @@ function ImageCard({data, ids, setDeletedItem = null}) {
                     open={expandedImageOpen}
                     handleClose={closeExpandedImage}
                     image={data.fields.image}
+                    ids={ids}
                 />
             </ImageListItem>
         </div>

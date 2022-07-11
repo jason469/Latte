@@ -12,14 +12,11 @@ import '../../../App.css'
 export default function ImageDetailModal({open, handleClose, imageId, ids}) {
     const [currentImageId, setCurrentImageId] = useState(imageId);
     const showPreviousImage = () => {
-        let prevId = ids[ids.indexOf(currentImageId) - 1]
-        setCurrentImageId(prevId)
+        setCurrentImageId(ids[ids.indexOf(currentImageId) - 1])
     }
 
     const showAfterImage = () => {
-        let afterId = ids[ids.indexOf(currentImageId) + 1]
-        setCurrentImageId(afterId)
-        console.log(currentImageId)
+        setCurrentImageId(ids[ids.indexOf(currentImageId) + 1])
     }
 
     return (

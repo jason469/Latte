@@ -5,8 +5,21 @@ import Fade from "@mui/material/Fade";
 import Box from "@mui/material/Box";
 import {ExpandedImageStyle} from "../../../utils/ModalBoxStyles";
 import {AiOutlineArrowLeft, AiOutlineArrowRight} from "react-icons/ai";
+import {useState} from "react";
 
-function ExpandedImage({open, handleClose, image}) {
+function ExpandedImage({open, handleClose, image, ids}) {
+    const [currentImageId, setCurrentImageId] = useState(image);
+    console.log(image)
+    const showPreviousImage = () => {
+        let prevId = ids[ids.indexOf(currentImageId) - 1]
+        setCurrentImageId(prevId)
+    }
+
+    const showAfterImage = () => {
+        let afterId = ids[ids.indexOf(currentImageId) + 1]
+        setCurrentImageId(afterId)
+    }
+
     return (
         <div>
             <Modal

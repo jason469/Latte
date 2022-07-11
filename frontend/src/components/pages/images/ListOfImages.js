@@ -6,7 +6,6 @@ import TextField from "@mui/material/TextField";
 import {filterData, inputHandler} from "../../../utils/searchBarFunctions";
 import {AiFillPlusCircle} from "react-icons/ai";
 import {ImageList} from "@mui/material";
-import Modal from "@mui/material/Modal";
 import Backdrop from "@mui/material/Backdrop";
 import Fade from "@mui/material/Fade";
 import Box from "@mui/material/Box";
@@ -17,6 +16,9 @@ import Pagination from "../../layout/Pagination";
 import ImageCard from "../../ui/images/ImageCard";
 import EmptyPage from "../website/EmptyPage";
 import RangeSelector from "../../ui/RangeSelector";
+
+const Modal = React.lazy(() => import("@mui/material/Modal"));
+
 
 function ListOfImages() {
     const [imageData, setImageData] = useState([])
@@ -35,6 +37,7 @@ function ListOfImages() {
     const pull_images = images => {
         setCurrentItems(images)
         setItemIDs(images.map(item => item.pk));
+        setLoading(true)
     }
     const filteredData = filterData(inputText, imageData, true)
 
@@ -47,7 +50,6 @@ function ListOfImages() {
             authTokens: authTokens,
             logoutUser: logoutUser
         })
-        setLoading(true)
     }, [deletedItem, updatedItem])
 
     switch (loading) {
@@ -109,7 +111,18 @@ function ListOfImages() {
                 </div>
             )
         case false:
-            return (<EmptyPage item="Images"/>)
+            return (
+                <>
+                    <EmptyPage item="Images"/>
+                    {inputText === ""
+                        && <Pagination
+                            itemsPerPage={itemsPerPage}
+                            data={imageData}
+                            pull_function={pull_images}
+                        />
+                    }
+                </>
+            )
     }
 }
 
