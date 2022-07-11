@@ -3,21 +3,16 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import ImageDetailPage from "./ImageDetailPage";
-import {ArrowBoxStyle, ModalBoxStyle} from "../../../utils/ModalBoxStyles";
+import {ArrowBoxStyle, ExpandedImageStyle, ModalBoxStyle} from "../../../utils/ModalBoxStyles";
 import {IoIosArrowBack, IoIosArrowForward} from "react-icons/io"
 import {useState} from "react";
 import '../../../App.css'
 
 
-export default function ImageDetailModal({open, handleClose, imageId, ids}) {
-    const [currentImageId, setCurrentImageId] = useState(imageId);
-    const showPreviousImage = () => {
-        setCurrentImageId(ids[ids.indexOf(currentImageId) - 1])
-    }
-
-    const showAfterImage = () => {
-        setCurrentImageId(ids[ids.indexOf(currentImageId) + 1])
-    }
+export default function ImageDetailModal({open, handleClose, image, images, expandedImage}) {
+    const [currentImage, setCurrentImage] = useState(image);
+    const showPreviousImage = () => setCurrentImage(images[images.indexOf(currentImage) -1])
+    const showAfterImage = () => setCurrentImage(images[images.indexOf(currentImage) +1])
 
     return (
         <div>
@@ -35,12 +30,25 @@ export default function ImageDetailModal({open, handleClose, imageId, ids}) {
                 <Fade in={open}>
                     <Box sx={ArrowBoxStyle} className="detail_modal_box">
                         <IoIosArrowBack onClick={showPreviousImage} className="click arrow" size={50}
-                                            id="back_arrow"/>
-                        <Box sx={ModalBoxStyle}>
-                            <ImageDetailPage imageId={currentImageId} key={currentImageId}/>
-                        </Box>
+                                        id="back_arrow"/>
+                        {(expandedImage
+                            ? <Box sx={ModalBoxStyle}>
+                                <ImageDetailPage
+                                    imageId={currentImage.pk}
+                                    key={currentImage.pk}
+                                />
+                            </Box>
+                            : <Box sx={ExpandedImageStyle}>
+                                <img
+                                    src={`http://localhost:9000/media/${currentImage.fields.image}`}
+                                    alt={"Image not found"}
+                                    loading="lazy"
+                                    className="click expanded-image"
+                                />
+                            </Box>
+                        )}
                         <IoIosArrowForward onClick={showAfterImage} className="click arrow" size={50}
-                                             id="forward_arrow"/>
+                                           id="forward_arrow"/>
                     </Box>
                 </Fade>
             </Modal>

@@ -22,12 +22,27 @@ html {
     margin: 1rem;
 }
 
-form > .button {
-    margin-top: 2rem;
+.list_actions {
+    display: flex;
+    padding: 0.75rem 2.5rem 1.5rem 2.5rem;
+    width: 100%;
+    gap: 10px;
 }
 
-.search {
-    width: 30%;
+.list_actions > .search {
+    flex-basis: 80%;
+}
+
+.list_actions > .range_selector {
+    flex-basis: 10%;
+}
+
+.list_actions > .add_form {
+    flex-basis: 10%;
+}
+
+form > .button {
+    margin-top: 2rem;
 }
 
 ul li {
@@ -42,24 +57,6 @@ ul li {
     color: #0a53be;
 }
 
-.list_actions {
-    display: flex;
-    padding: 0.75rem 2.5rem 1.5rem 2.5rem;
-    width: 100%;
-    gap: 10px;
-}
-
-.list_actions > .search {
-    flex-basis: 70%;
-}
-
-.list_actions > .range_selector {
-    flex-basis: 20%;
-}
-
-.list_actions > .add_form {
-    flex-basis: 10%;
-}
 
 .card-info {
     width: 100%;

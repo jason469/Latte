@@ -11,13 +11,15 @@ import Fade from "@mui/material/Fade";
 import Box from "@mui/material/Box";
 import {ModalBoxStyle} from "../../../utils/ModalBoxStyles";
 import AddImage from "./AddImage";
-import '../../../App.css'
 import Pagination from "../../layout/Pagination";
 import ImageCard from "../../ui/images/ImageCard";
 import EmptyPage from "../website/EmptyPage";
 import RangeSelector from "../../ui/RangeSelector";
+import MenuItem from "@mui/material/MenuItem";
+import Modal from "@mui/material/Modal";
 
-const Modal = React.lazy(() => import("@mui/material/Modal"));
+import '../../../App.css'
+import './ListOfImages.css'
 
 
 function ListOfImages() {
@@ -26,6 +28,7 @@ function ListOfImages() {
     const [currentItems, setCurrentItems] = useState([]);
     const [itemIDs, setItemIDs] = useState([])
     const [inputText, setInputText] = useState("");
+    const [searchCriteria, setSearchCriteria] = useState("");
     const [showAddForm, setShowAddForm] = useState(false)
     const [loading, setLoading] = useState(false)
     const [itemsPerPage, setItemsPerPage] = useState(10)
@@ -36,10 +39,9 @@ function ListOfImages() {
     // Fetch current items
     const pull_images = images => {
         setCurrentItems(images)
-        setItemIDs(images.map(item => item.pk));
         setLoading(true)
     }
-    const filteredData = filterData(inputText, imageData, true)
+    const filteredData = filterData(inputText, imageData, true, searchCriteria)
 
     //Fetch Images
     useEffect(() => {
@@ -67,9 +69,26 @@ function ListOfImages() {
                             label="Search"
                             className="search"
                         />
-                        <RangeSelector value={itemsPerPage} setFunction={setItemsPerPage}/>
+                        <TextField
+                            className="search_criteria"
+                            label="Search Criteria"
+                            onChange={e => {
+                                setSearchCriteria(e.target.value)
+                            }}
+                            select
+                            value={searchCriteria}
+                        >
+                            <MenuItem value={"album"}>Album</MenuItem>
+                            <MenuItem value={"tag"}>Tag</MenuItem>
+                            <MenuItem value={"name"}>Name</MenuItem>
+                            <MenuItem value={"desc"}>Description</MenuItem>
+                        </TextField>
+                        <RangeSelector
+                            value={itemsPerPage}
+                            setFunction={setItemsPerPage}
+                        />
                         <AiFillPlusCircle
-                            className="click add_form"
+                            className="add_form"
                             onClick={() => setShowAddForm(true)}
                             size={50}
                         />
@@ -94,10 +113,12 @@ function ListOfImages() {
                     <ImageList variant="masonry" cols={6} gap={5}>
                         {inputText !== ""
                             ? filteredData.map(item =>
-                                <ImageCard key={item.pk} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>
+                                <ImageCard key={item.pk} data={item} images={currentItems}
+                                           setDeletedItem={setDeletedItem}/>
                             )
                             : currentItems.map(item =>
-                                <ImageCard key={item.pk} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>
+                                <ImageCard key={item.pk} data={item} images={currentItems}
+                                           setDeletedItem={setDeletedItem}/>
                             )
                         }
                     </ImageList>

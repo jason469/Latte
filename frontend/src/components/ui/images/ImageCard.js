@@ -1,25 +1,27 @@
-import '../../../App.css'
-
 import {ManageItems} from "../../../utils/ManageItems";
-import React, {useState, useContext, useEffect} from "react";
+import {useState, useContext, useEffect} from "react";
 import AuthContext from "../../../contexts/AuthContext";
+import ImageDetailModal from "../../pages/images/ImageDetailModal";
 import {ImageListItem, ImageListItemBar} from "@mui/material";
 import ConfirmationDialog from "../ConfirmationDialog";
+import '../../../App.css'
+import ExpandedImage from "./ExpandedImage";
 
-const ImageDetailModal = React.lazy(() => import("../../pages/images/ImageDetailModal"));
-const ExpandedImage = React.lazy(() => import("./ExpandedImage"));
 
-
-function ImageCard({data, ids, setDeletedItem = null}) {
+function ImageCard({data, images, setDeletedItem = null}) {
     let {authTokens, logoutUser} = useContext(AuthContext)
     const [modalOpen, setModalOpen] = useState(false);
-    const [expandedImageOpen, setExpandedImageOpen] = useState(false)
+    const [expandedImage, setExpandedImage] = useState(false)
 
-    const handleModalOpen = () => setModalOpen(true);
     const handleModalClose = () => setModalOpen(false);
-
-    const openExpandedImage = () => setExpandedImageOpen(true);
-    const closeExpandedImage = () => setExpandedImageOpen(false);
+    const handleExpandedImage = () => {
+        setModalOpen(true)
+        setExpandedImage(false)
+    }
+    const handleDetailForm = () => {
+        setModalOpen(true)
+        setExpandedImage(true)
+    }
 
     const deleteImage = () => {
         ManageItems({
@@ -39,13 +41,13 @@ function ImageCard({data, ids, setDeletedItem = null}) {
                     alt={"Image not found"}
                     className="click card_image"
                     loading="lazy"
-                    onClick={openExpandedImage}
+                    onClick={handleExpandedImage}
                 />
                 <div className="card-info">
                     <ImageListItemBar
                         className="click title"
                         subtitle={data.fields.name}
-                        onClick={handleModalOpen}
+                        onClick={handleDetailForm}
                         position="below"
                     />
                     <ConfirmationDialog
@@ -58,14 +60,9 @@ function ImageCard({data, ids, setDeletedItem = null}) {
                 <ImageDetailModal
                     open={modalOpen}
                     handleClose={handleModalClose}
-                    imageId={data.pk}
-                    ids={ids}
-                />
-                <ExpandedImage
-                    open={expandedImageOpen}
-                    handleClose={closeExpandedImage}
-                    image={data.fields.image}
-                    ids={ids}
+                    image={data}
+                    images={images}
+                    expandedImage={expandedImage}
                 />
             </ImageListItem>
         </div>

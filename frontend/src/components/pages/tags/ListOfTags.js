@@ -1,25 +1,26 @@
-import {useContext, useEffect, useRef, useState} from "react";
-import AuthContext from "../../../contexts/AuthContext";
+import {useContext, useEffect, useState} from "react";
+import {AiFillPlusCircle} from "react-icons/ai";
 import TextField from "@mui/material/TextField";
+import {ImageList} from "@mui/material";
+import Backdrop from "@mui/material/Backdrop";
+import Fade from "@mui/material/Fade";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
 
 import Pagination from "../../layout/Pagination";
 import {ManageItems} from "../../../utils/ManageItems";
 import EmptyPage from "../website/EmptyPage";
 import {filterData, inputHandler} from "../../../utils/searchBarFunctions"
 import TagCard from "../../ui/tags/TagCard";
-import {AiFillPlusCircle} from "react-icons/ai";
-import {ImageList} from "@mui/material";
-import Backdrop from "@mui/material/Backdrop";
-import Fade from "@mui/material/Fade";
-import Box from "@mui/material/Box";
 import {ModalBoxStyle} from "../../../utils/ModalBoxStyles";
-import Modal from "@mui/material/Modal";
 import AddTag from "./AddTag";
+import RangeSelector from "../../ui/RangeSelector";
+
 import UpdateContext from "../../../contexts/UpdateContext";
+import AuthContext from "../../../contexts/AuthContext";
 
 import './ListOfTags.css'
 import '../../../App.css'
-import RangeSelector from "../../ui/RangeSelector";
 
 
 function ListOfTags() {
