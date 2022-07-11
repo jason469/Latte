@@ -70,7 +70,7 @@ function ListOfTags() {
                             label="Search"
                             className="search"
                         />
-                        <RangeSelector setFunction={setItemsPerPage}/>
+                        <RangeSelector value={itemsPerPage} setFunction={setItemsPerPage}/>
                         <AiFillPlusCircle
                             className="click add_form"
                             onClick={() => setShowAddForm(true)}

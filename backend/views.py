@@ -91,7 +91,6 @@ class ImageViewSet(viewsets.ModelViewSet):
                         album = Album.objects.get(id=request_body["id"])
                         Image.objects.get(id=image_id).album.add(album)
                     return HttpResponse(status=200)
-                print(request.data)
             else:
                 currentImage = self.get_object()
                 currentImage.name = request.data.get('name')

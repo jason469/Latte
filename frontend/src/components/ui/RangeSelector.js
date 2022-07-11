@@ -4,7 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 import {TextField} from "@mui/material";
 
 
-function RangeSelector({setFunction}) {
+function RangeSelector({value, setFunction}) {
     return (
         <TextField
             id="range_selector"
@@ -14,6 +14,7 @@ function RangeSelector({setFunction}) {
                 setFunction(e.target.value)
             }}
             select
+            value={value}
         >
             <MenuItem value={10}>10</MenuItem>
             <MenuItem value={20}>20</MenuItem>
