@@ -1,0 +1,17 @@
+.navbar {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+.navbar > .main {
+    display: flex;
+}
+
+.navbar > .secondary {
+    align-self: center;
+}
+
+.secondary_icon {
+    pointer-events: none;
+}

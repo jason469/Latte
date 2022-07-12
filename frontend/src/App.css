@@ -164,3 +164,7 @@ ul li {
 .MuiDivider-root {
     margin: 2rem 0 !important;
 }
+
+.dropdown-item {
+    padding: 0 !important;
+}
