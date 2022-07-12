@@ -6,6 +6,10 @@ html {
   display: none;
 }
 
+.css-rvv586-MuiImageList-root {
+    overflow-y: visible !important;
+}
+
 .main {
     margin: 2rem;
 }
@@ -62,7 +66,7 @@ ul li {
     width: 100%;
     display: flex !important;
     flex-direction: row !important;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -148,4 +152,14 @@ ul li {
 
 .loader {
     margin-bottom: 0.5rem;
+}
+
+.card {
+    border-radius: 50% !important;
+    margin: 1rem 0.2rem;
+    padding: 0.2rem 0.2rem;
+}
+
+.MuiDivider-root {
+    margin-top: 1rem !important;
 }

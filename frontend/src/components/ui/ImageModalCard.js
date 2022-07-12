@@ -32,15 +32,15 @@ function ImageModalCard({data, item_name, image_id, setFormOutcome}) {
             .then(() => setUpdatedItem(Math.random()))
     }
     return (
-        <div className="label">
-            <Card className="card">
-                <Card.Body className="body">
+        <div>
+            <Card>
+                <Card.Body className="card-info">
                     <Card.Title variant="primary">
                         <Nav.Link as={Link} to={`/${item_name}/${data.id}`}>
                             {data.name}
                         </Nav.Link>
-                        <BiPlusMedical className="click" onClick={addItem}/>
                     </Card.Title>
+                    <BiPlusMedical className="click" onClick={addItem}/>
                 </Card.Body>
             </Card>
         </div>

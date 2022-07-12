@@ -95,7 +95,6 @@ function AlbumForm({title, name, description, method, endpoint}) {
                                 component={TextField}
                                 className="field"
                             />
-                            <br/>
                             <Field
                                 id="image"
                                 name="cover_image"

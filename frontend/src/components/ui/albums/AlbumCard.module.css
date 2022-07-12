@@ -1,0 +1,5 @@
+.album_card_item {
+    border-radius: 10px !important;
+    box-shadow: 4px 4px 3px 3px gray !important;
+    width: 100%;
+}

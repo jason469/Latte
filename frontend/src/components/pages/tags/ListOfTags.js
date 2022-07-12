@@ -12,7 +12,7 @@ import {ManageItems} from "../../../utils/ManageItems";
 import EmptyPage from "../website/EmptyPage";
 import {filterData, inputHandler} from "../../../utils/searchBarFunctions"
 import TagCard from "../../ui/tags/TagCard";
-import {ModalBoxStyle} from "../../../utils/ModalBoxStyles";
+import {ModalBoxStyle, TagModalBoxStyle} from "../../../utils/ModalBoxStyles";
 import AddTag from "./AddTag";
 import RangeSelector from "../../ui/RangeSelector";
 
@@ -90,7 +90,7 @@ function ListOfTags() {
                         }}
                     >
                         <Fade in={showAddForm}>
-                            <Box sx={ModalBoxStyle}>
+                            <Box sx={TagModalBoxStyle}>
                                 <AddTag/>
                             </Box>
                         </Fade>

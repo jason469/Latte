@@ -11,7 +11,7 @@ import {ImageList} from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import Fade from "@mui/material/Fade";
 import Box from "@mui/material/Box";
-import {ModalBoxStyle} from "../../../utils/ModalBoxStyles";
+import {ModalBoxStyle, TagModalBoxStyle} from "../../../utils/ModalBoxStyles";
 import Modal from "@mui/material/Modal";
 import AddAlbum from "./AddAlbum";
 import UpdateContext from "../../../contexts/UpdateContext";
@@ -84,12 +84,12 @@ function ListOfAlbums() {
                         }}
                     >
                         <Fade in={showAddForm}>
-                            <Box sx={ModalBoxStyle}>
+                            <Box sx={TagModalBoxStyle}>
                                 <AddAlbum/>
                             </Box>
                         </Fade>
                     </Modal>
-                    <ImageList variant="quilted" cols={5} gap={8}>
+                    <ImageList variant="quilted" cols={5} gap={15}>
                         {inputText !== ""
                             ? filteredData.map(item =>
                                 <AlbumCard key={item.id} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>

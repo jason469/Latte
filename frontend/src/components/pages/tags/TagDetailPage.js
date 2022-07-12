@@ -5,7 +5,7 @@ import TagForm from "../../../utils/FormikForms/TagForm";
 import ImageLabel from "../../ui/images/ImageLabel";
 import {useParams} from "react-router-dom";
 import '../../../App.css'
-import {ImageList} from "@mui/material";
+import {Divider, ImageList} from "@mui/material";
 
 
 function TagDetailPage(props) {
@@ -34,6 +34,7 @@ function TagDetailPage(props) {
                 method='PATCH'
                 endpoint={`/tags/${currentTag.tag_data.id}`}
             />
+            <Divider variant="middle"/>
 
             <div className="subtitle">Images</div>
             <ImageList variant="masonry" cols={4} gap={0}>

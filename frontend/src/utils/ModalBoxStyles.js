@@ -20,7 +20,21 @@ export const ModalBoxStyle = {
     p: 4,
     overflow: "auto",
     height: "90%",
-    width: "75%"
+    width: "75%",
+    borderRadius: "30px"
+};
+
+export const TagModalBoxStyle = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    bgcolor: 'background.paper',
+    p: 4,
+    overflow: "auto",
+    height: "60%",
+    width: "60%",
+    borderRadius: "30px"
 };
 
 export const ExpandedImageStyle = {

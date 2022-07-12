@@ -5,7 +5,7 @@ import AlbumForm from "../../../utils/FormikForms/AlbumForm";
 import ImageLabel from "../../ui/images/ImageLabel";
 import {useParams} from "react-router-dom";
 import '../../../App.css'
-import {ImageList} from "@mui/material";
+import {Divider, ImageList} from "@mui/material";
 
 
 function AlbumDetailPage(props) {
@@ -34,6 +34,7 @@ function AlbumDetailPage(props) {
                 method='PATCH'
                 endpoint={`/albums/${currentAlbum.album_data.id}/`}
             />
+            <Divider variant="middle"/>
 
             <div className="subtitle">Images</div>
             <ImageList variant="masonry" cols={4} gap={0}>

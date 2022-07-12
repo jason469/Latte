@@ -1,6 +1,6 @@
 import {Formik, Form, Field} from 'formik';
 import * as Yup from "yup"
-import {Button, CircularProgress, LinearProgress} from '@mui/material';
+import {Button, Divider, LinearProgress} from '@mui/material';
 import {TextField} from 'formik-mui';
 import {useState, useEffect, useContext, useRef} from "react";
 import AuthContext from "../../contexts/AuthContext";
@@ -152,6 +152,7 @@ function ImageForm() {
                                 multiple
                                 onChange={event => props.setFieldValue("file", event.currentTarget.files)}
                             />
+                            <Divider variant="middle"/>
                             <div className="subtitle">Tags</div>
                             <MultiSelect
                                 options={tagOptions}

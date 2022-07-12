@@ -8,7 +8,7 @@ import {AiFillPlusCircle} from "react-icons/ai";
 import ImageModal from "../../ui/ImageModal";
 import ImageDetailForm from "../../../utils/FormikForms/ImageDetailForm";
 import UpdateContext from "../../../contexts/UpdateContext";
-import {ImageList} from "@mui/material";
+import {Divider, ImageList} from "@mui/material";
 import '../../../App.css'
 import './ImageDetailPage.css'
 
@@ -54,6 +54,7 @@ function ImageDetailPage(props) {
                     endpoint={`/images/${currentImage[0].pk}/`}
                 />
             </div>
+            <Divider variant="middle"/>
             <div className="add_categories">
                 <div className="subtitle">Tags</div>
                 <AiFillPlusCircle className="click" onClick={handleTagOpen}/>
@@ -83,8 +84,11 @@ function ImageDetailPage(props) {
                 {currentImage[0].fields.album ?
                     currentImage[0].fields.album.map(album => {
                         return (
-                            <AlbumLabel data={album} key={album.id} image_id={imageId}
-                                        setDeletedItem={setDeletedItem}/>
+                            <AlbumLabel
+                                data={album}
+                                key={album.id}
+                                image_id={imageId}
+                                setDeletedItem={setDeletedItem}/>
                         )
                     }) :
                     <p>No Albums</p>
