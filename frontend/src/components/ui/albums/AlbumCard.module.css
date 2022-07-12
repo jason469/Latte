@@ -1,5 +1,24 @@
+.album_card {
+    height: 100%;
+}
+
 .album_card_item {
     border-radius: 10px !important;
-    box-shadow: 4px 4px 3px 3px gray !important;
-    width: 100%;
+    box-shadow: 3px 3px 3px 3px lightgray !important;
+    max-width: 20rem;
+    height: 100%;
+}
+
+.card_title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.content {
+    height: 100%;
+}
+
+.description {
+    word-break: break-word;
 }

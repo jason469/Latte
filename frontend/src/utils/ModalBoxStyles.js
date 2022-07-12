@@ -21,7 +21,9 @@ export const ModalBoxStyle = {
     overflow: "auto",
     height: "90%",
     width: "75%",
-    borderRadius: "30px"
+    borderRadius: "30px",
+    border: "0",
+    boxShadow: "3px 3px 3px 3px #63666A"
 };
 
 export const TagModalBoxStyle = {
@@ -32,9 +34,10 @@ export const TagModalBoxStyle = {
     bgcolor: 'background.paper',
     p: 4,
     overflow: "auto",
-    height: "60%",
+    height: "65%",
     width: "60%",
-    borderRadius: "30px"
+    borderRadius: "30px",
+    boxShadow: "3px 3px 3px 3px #63666A"
 };
 
 export const ExpandedImageStyle = {
@@ -43,4 +46,8 @@ export const ExpandedImageStyle = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
 };
+
+export const DialogStyle = {
+    borderRadius: "30px",
+}
 
