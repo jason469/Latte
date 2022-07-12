@@ -65,7 +65,7 @@ export default function ImageModal({open, handleClose, endpoint, image_id}) {
                             formOutcome={formOutcome}
                             setFormOutcome={setFormOutcome}
                         />
-                        <ImageList cols={3} gap={5}>
+                        <ImageList cols={6} gap={10}>
                             {inputText !== ""
                                 ? filteredItems.map(item => <ImageModalCard data={item}
                                                                             item_name={endpoint}

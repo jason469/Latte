@@ -95,7 +95,7 @@ function ListOfTags() {
                             </Box>
                         </Fade>
                     </Modal>
-                    <ImageList cols={5} gap={20}>
+                    <ImageList cols={12} gap={20}>
                         {inputText !== ""
                             ? filteredData.map(item =>
                                 <TagCard key={item.id} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>)

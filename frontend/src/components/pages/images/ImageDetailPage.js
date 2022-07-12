@@ -11,6 +11,7 @@ import UpdateContext from "../../../contexts/UpdateContext";
 import {Divider, ImageList} from "@mui/material";
 import '../../../App.css'
 import './ImageDetailPage.css'
+import classes from "../../ui/tags/TagCard.module.css"
 
 
 function ImageDetailPage(props) {
@@ -60,7 +61,7 @@ function ImageDetailPage(props) {
                 <AiFillPlusCircle className="click" onClick={handleTagOpen}/>
             </div>
             <ImageModal open={tagOpen} handleClose={handleTagClose} endpoint="tags" image_id={imageId}/>
-            <ImageList cols={4}>
+            <ImageList cols={10}>
                 {currentImage[0].fields.tag ?
                     currentImage[0].fields.tag.map(tag => {
                         return (
@@ -80,7 +81,7 @@ function ImageDetailPage(props) {
                 <AiFillPlusCircle className="click" onClick={handleAlbumOpen}/>
             </div>
             <ImageModal open={albumOpen} handleClose={handleAlbumClose} endpoint="albums" image_id={imageId}/>
-            <ImageList cols={4}>
+            <ImageList cols={10}>
                 {currentImage[0].fields.album ?
                     currentImage[0].fields.album.map(album => {
                         return (

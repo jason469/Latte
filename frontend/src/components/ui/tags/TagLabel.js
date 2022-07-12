@@ -5,6 +5,7 @@ import AuthContext from "../../../contexts/AuthContext";
 import {ManageItems} from "../../../utils/ManageItems";
 import ConfirmationDialog from "../ConfirmationDialog";
 import '../../../App.css'
+import classes from "./TagCard.module.css";
 
 
 function TagLabel({data, image_id, setDeletedItem = null}) {
@@ -28,10 +29,10 @@ function TagLabel({data, image_id, setDeletedItem = null}) {
 
     return (
         <div className="label">
-            <Card className="card">
-                <Card.Body className="body">
+            <Card className={classes.card}>
+                <Card.Body className="card-info">
                     <Nav.Link as={Link} to={`/tags/${data.id}`}>
-                        <Card.Title className="click" variant="primary">{data.name}</Card.Title>
+                        <Card.Title className={`click title ${classes.title}`} variant="primary">{data.name}</Card.Title>
                     </Nav.Link>
                     <ConfirmationDialog
                         deleteItem={removeTag}

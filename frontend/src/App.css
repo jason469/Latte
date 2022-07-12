@@ -58,9 +58,8 @@ ul li {
 }
 
 .click:hover {
-    color: #0a53be;
+    color: #0a53be !important;
 }
-
 
 .card-info {
     width: 100%;
@@ -79,7 +78,7 @@ ul li {
     padding: 0;
 }
 
-.card-info > .delete-button {
+.card-info > .delete {
     flex-basis: 10%;
 }
 
@@ -158,6 +157,8 @@ ul li {
     border-radius: 50% !important;
     margin: 1rem 0.2rem;
     padding: 0.2rem 0.2rem;
+    width: 10rem;
+    height: 10rem;
 }
 
 .MuiDivider-root {

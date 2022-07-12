@@ -5,6 +5,7 @@ import {ManageItems} from "../../../utils/ManageItems";
 import TagDetailModal from "../../pages/tags/TagDetailModal";
 import ConfirmationDialog from "../ConfirmationDialog";
 import '../../../App.css'
+import classes from './TagCard.module.css'
 
 
 function TagCard({data, ids, setDeletedItem = null}) {
@@ -26,9 +27,9 @@ function TagCard({data, ids, setDeletedItem = null}) {
 
     return (
         <div>
-            <Card onClick={handleModalOpen}>
+            <Card onClick={handleModalOpen} className={classes.card}>
                 <Card.Body className="card-info">
-                    <Card.Title variant="primary" className="click title">
+                    <Card.Title variant="primary" className={`click title ${classes.title}`}>
                         {data.name}
                     </Card.Title>
                     <ConfirmationDialog

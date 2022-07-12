@@ -11,9 +11,21 @@ import '../../../App.css'
 
 export default function ImageDetailModal({open, handleClose, image, images, expandedImage}) {
     const [currentImage, setCurrentImage] = useState(image);
-    const showPreviousImage = () => setCurrentImage(images[images.indexOf(currentImage) -1])
-    const showAfterImage = () => setCurrentImage(images[images.indexOf(currentImage) +1])
+    const showPreviousImage = () => {
+        if ((images[images.indexOf(currentImage) - 1]) === undefined) {
+            setCurrentImage(images[images.length])
+        } else {
+            setCurrentImage(images[images.indexOf(currentImage) - 1])
+        }
+    }
 
+    const showAfterImage = () => {
+        if ((images[images.indexOf(currentImage) - 1]) === undefined) {
+            setCurrentImage(images[1])
+        } else {
+            setCurrentImage(images[images.indexOf(currentImage) + 1])
+        }
+    }
     return (
         <div>
             <Modal
@@ -32,20 +44,20 @@ export default function ImageDetailModal({open, handleClose, image, images, expa
                         <IoIosArrowBack onClick={showPreviousImage} className="click arrow" size={50}
                                         id="back_arrow"/>
                         {(expandedImage
-                            ? <Box sx={ModalBoxStyle}>
-                                <ImageDetailPage
-                                    imageId={currentImage.pk}
-                                    key={currentImage.pk}
-                                />
-                            </Box>
-                            : <Box sx={ExpandedImageStyle}>
-                                <img
-                                    src={`http://localhost:9000/media/${currentImage.fields.image}`}
-                                    alt={"Image not found"}
-                                    loading="lazy"
-                                    className="click expanded-image"
-                                />
-                            </Box>
+                                ? <Box sx={ModalBoxStyle}>
+                                    <ImageDetailPage
+                                        imageId={currentImage.pk}
+                                        key={currentImage.pk}
+                                    />
+                                </Box>
+                                : <Box sx={ExpandedImageStyle}>
+                                    <img
+                                        src={`http://localhost:9000/media/${currentImage.fields.image}`}
+                                        alt={"Image not found"}
+                                        loading="lazy"
+                                        className="click expanded-image"
+                                    />
+                                </Box>
                         )}
                         <IoIosArrowForward onClick={showAfterImage} className="click arrow" size={50}
                                            id="forward_arrow"/>

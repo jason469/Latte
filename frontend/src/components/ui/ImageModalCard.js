@@ -8,6 +8,7 @@ import UpdateContext from "../../contexts/UpdateContext";
 import {CheckFormOutcome} from "../../utils/CheckFormOutcome";
 
 import '../../App.css'
+import classes from "./tags/TagCard.module.css";
 
 
 function ImageModalCard({data, item_name, image_id, setFormOutcome}) {
@@ -33,14 +34,14 @@ function ImageModalCard({data, item_name, image_id, setFormOutcome}) {
     }
     return (
         <div>
-            <Card>
+            <Card className={classes.card}>
                 <Card.Body className="card-info">
-                    <Card.Title variant="primary">
+                    <Card.Title variant="primary" className={`click title ${classes.title}`}>
                         <Nav.Link as={Link} to={`/${item_name}/${data.id}`}>
                             {data.name}
                         </Nav.Link>
                     </Card.Title>
-                    <BiPlusMedical className="click" onClick={addItem}/>
+                    <BiPlusMedical className="click" onClick={addItem} size={10}/>
                 </Card.Body>
             </Card>
         </div>
