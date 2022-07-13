@@ -27,6 +27,7 @@ h2 {
 
 .brand-logo {
     font-family: "HallwayDemo", 'Karla' !important;
+    font-size: 1.5rem !important;
 }
 
 code {
@@ -177,7 +178,7 @@ img:hover {
     background-color: #faf2ea !important;
     border-radius: 10px !important;
     border: 0 !important;
-    box-shadow: 1px 1px #989BA4 ;
+    box-shadow: 1px 1px #989BA4;
 }
 
 .card:hover {

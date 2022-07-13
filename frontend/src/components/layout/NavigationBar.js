@@ -61,8 +61,7 @@ function NavigationBar() {
             <div className={classes.main}>
                 <div className={`click ${classes.brand}`}>
                     <SpeedDial
-                        ariaLabel="Profile"
-                        className={classes.main_icon}
+                        ariaLabel="Brand"
                         FabProps={{
                             sx: {
                                 bgcolor: 'transparent',
@@ -70,7 +69,12 @@ function NavigationBar() {
                                     bgcolor: 'transparent',
                                     animation: "none"
                                 },
-                                boxShadow: "0"
+                                '&:click': {
+                                    bgcolor: 'transparent',
+                                    animation: "none"
+                                },
+                                boxShadow: "0",
+                                textTransform: "capitalize",
                             }
                         }}
                         icon={
@@ -78,6 +82,7 @@ function NavigationBar() {
                                 as={Link}
                                 to="/"
                                 className="brand-logo"
+                                expand={"lg"}
                             >
                                 Latte
                             </Navbar.Brand>
