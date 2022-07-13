@@ -8,9 +8,11 @@ import FormSubmitMessage from "../../components/ui/FormSubmitMessage";
 import {CheckFormOutcome} from "../CheckFormOutcome";
 import {ManageItems} from "../ManageItems";
 import UpdateContext from "../../contexts/UpdateContext";
-import '../../App.css'
 import SendIcon from "@mui/icons-material/Send";
 import ConfirmationDialog from "../../components/ui/ConfirmationDialog";
+
+import '../../App.css'
+import classes from './TagForm.module.css'
 
 
 function TagForm({id, title, name, description, method, endpoint, setDeletedItem}) {
@@ -90,21 +92,23 @@ function TagForm({id, title, name, description, method, endpoint, setDeletedItem
                         className="field"
                     />
                     <br/>
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        endIcon={<SendIcon/>}
-                        color="success"
-                        className="button"
-                    >
-                        Submit
-                    </Button>
-                    <ConfirmationDialog
-                        deleteItem={deleteTag}
-                        title={`Are you sure you want to delete this tag?`}
-                        content={`This won't delete any images associated with this tag, but it will remove the tag`}
-                        className="delete-button"
-                    />
+                    <div className={classes.tag_form_buttons}>
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            endIcon={<SendIcon/>}
+                            color="success"
+                            className="button"
+                        >
+                            Submit
+                        </Button>
+                        <ConfirmationDialog
+                            deleteItem={deleteTag}
+                            title={`Are you sure you want to delete this tag?`}
+                            content={`This won't delete any images associated with this tag, but it will remove the tag`}
+                            className="delete-button"
+                        />
+                    </div>
                 </Form>
             < /Formik>
         </div>

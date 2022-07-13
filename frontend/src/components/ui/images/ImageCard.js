@@ -5,7 +5,9 @@ import ImageDetailModal from "../../pages/images/ImageDetailModal";
 import {ImageListItem, ImageListItemBar} from "@mui/material";
 import ConfirmationDialog from "../ConfirmationDialog";
 import '../../../App.css'
+import classes from './ImageCard.module.css'
 import ExpandedImage from "./ExpandedImage";
+import {CardActionArea} from "@mui/material"
 
 
 function ImageCard({data, images, setDeletedItem = null}) {
@@ -35,14 +37,16 @@ function ImageCard({data, images, setDeletedItem = null}) {
 
     return (
         <div>
-            <ImageListItem>
-                <img
-                    src={`http://localhost:9000/media/${data.fields.image}`}
-                    alt={"Image not found"}
-                    className="click card_image"
-                    loading="lazy"
-                    onClick={handleExpandedImage}
-                />
+            <ImageListItem className={classes.imageCard}>
+                <CardActionArea>
+                    <img
+                        src={`http://localhost:9000/media/${data.fields.image}`}
+                        alt={"Image not found"}
+                        className={`click ${classes.card_image}`}
+                        loading="lazy"
+                        onClick={handleExpandedImage}
+                    />
+                </CardActionArea>
                 <div className="card-info">
                     <ImageListItemBar
                         className="click title"
@@ -57,14 +61,14 @@ function ImageCard({data, images, setDeletedItem = null}) {
                         className="delete-button"
                     />
                 </div>
-                <ImageDetailModal
-                    open={modalOpen}
-                    handleClose={handleModalClose}
-                    image={data}
-                    images={images}
-                    expandedImage={expandedImage}
-                />
             </ImageListItem>
+            <ImageDetailModal
+                open={modalOpen}
+                handleClose={handleModalClose}
+                image={data}
+                images={images}
+                expandedImage={expandedImage}
+            />
         </div>
     )
         ;

@@ -39,12 +39,12 @@ function AlbumCard({data, ids, setDeletedItem = null}) {
                     }
                     <CardContent className={`click ${classes.content}`} onClick={handleModalOpen}>
                         <div className={classes.card_title}>
-                            <Typography gutterBottom variant="h5" component="div">
+                            <Typography gutterBottom variant="body" component="div">
                                 {data.name}
                             </Typography>
                         </div>
                         {data.description != null &&
-                            <Typography variant="body2" color="text.secondary" className={classes.description}>
+                            <Typography variant="body" color="text.secondary" className={classes.description}>
                                 {data.description}
                             </Typography>
                         }

@@ -1,9 +1,12 @@
-.card {
-    margin: 1rem 0.5rem;
-    max-height: 7rem;
-    width: auto;
+.tagCard {
+    display: flex;
+    justify-content: center;
 }
 
 .title {
-    font-size: 1rem;
+    font-size: 1.3rem;
+}
+
+.title:hover {
+    font-size: 1.7rem;
 }

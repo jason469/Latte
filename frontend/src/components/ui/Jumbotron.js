@@ -29,7 +29,7 @@ function Jumbrotron() {
         case true:
             return (
                 <Jumbotron>
-                    <div className="title">Our favourite moments</div>
+                    <h1 className="title">Our favourite moments</h1>
                     <Container className="jumbotron_container">
                         <Carousel
                             navButtonsProps={{

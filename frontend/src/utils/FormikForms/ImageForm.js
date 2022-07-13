@@ -39,9 +39,7 @@ function ImageForm() {
 
     const validationSchema = Yup.object({
         name: Yup.string()
-            .max(100, "Must be 100 characters or less")
-            .required("Image name Required"),
-        description: Yup.string(),
+            .required("Image name required"),
     })
 
 

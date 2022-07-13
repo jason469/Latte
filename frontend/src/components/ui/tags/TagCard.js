@@ -18,12 +18,14 @@ function TagCard({data, ids, setDeletedItem = null}) {
 
     return (
         <div>
-            <Typography variant="h5"
-                        component="div"
-                        className={`click title ${classes.title}`}
-                        onClick={handleModalOpen}>
-                {data.name}
-            </Typography>
+            <div className={classes.tagCard}>
+                <Typography variant="body"
+                            component="div"
+                            className={`click title ${classes.title}`}
+                            onClick={handleModalOpen}>
+                    {data.name}
+                </Typography>
+            </div>
             <TagDetailModal
                 open={modalOpen}
                 handleClose={handleModalClose}

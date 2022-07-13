@@ -33,7 +33,7 @@ function NavigationBar() {
     return (
         <Navbar bg="light" expand="lg" className={classes.navbar}>
             <div className={classes.main}>
-                <Navbar.Brand as={Link} to="/" className="brand">Latte</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/" className="brand"><h3>Latte</h3></Navbar.Brand>
                 <Nav.Item>
                     <Nav.Link id="image-dropdown" className="image" to="/images" as={Link}>
                         <IoMdImages size={35} color="black" className="click"/>
