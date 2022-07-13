@@ -29,10 +29,12 @@ function TagDetailPage(props) {
         <div>
             <TagForm
                 title="Update tags"
+                id={currentTag.tag_data.id}
                 name={currentTag.tag_data.name}
                 description={currentTag.tag_data.description}
                 method='PATCH'
                 endpoint={`/tags/${currentTag.tag_data.id}`}
+                setDeletedItem={props.setDeletedItem}
             />
             <Divider variant="middle"/>
 

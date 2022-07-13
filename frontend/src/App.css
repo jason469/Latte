@@ -6,7 +6,7 @@ html {
   display: none;
 }
 
-.css-rvv586-MuiImageList-root {
+.MuiImageList-root {
     overflow-y: visible !important;
 }
 
@@ -154,7 +154,6 @@ ul li {
 }
 
 .card {
-    border-radius: 50% !important;
     margin: 1rem 0.2rem;
     padding: 0.2rem 0.2rem;
     width: 10rem;

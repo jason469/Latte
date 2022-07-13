@@ -10,9 +10,10 @@ import {ManageItems} from "../ManageItems";
 import UpdateContext from "../../contexts/UpdateContext";
 import '../../App.css'
 import SendIcon from "@mui/icons-material/Send";
+import ConfirmationDialog from "../../components/ui/ConfirmationDialog";
 
 
-function TagForm({title, name, description, method, endpoint}) {
+function TagForm({id, title, name, description, method, endpoint, setDeletedItem}) {
     let {authTokens, logoutUser} = useContext(AuthContext)
     const [formOutcome, setFormOutcome] = useState(null);
 
@@ -29,6 +30,16 @@ function TagForm({title, name, description, method, endpoint}) {
             .required("Tag Name Required"),
         description: Yup.string(),
     })
+
+    const deleteTag = () => {
+        ManageItems({
+            endpoint: `tags/${id}`,
+            method: "DELETE",
+            authTokens: authTokens,
+            logoutUser: logoutUser,
+        })
+        setDeletedItem(id)
+    }
 
 
     const onSubmit = (values, {resetForm}) => {
@@ -88,6 +99,12 @@ function TagForm({title, name, description, method, endpoint}) {
                     >
                         Submit
                     </Button>
+                    <ConfirmationDialog
+                        deleteItem={deleteTag}
+                        title={`Are you sure you want to delete this tag?`}
+                        content={`This won't delete any images associated with this tag, but it will remove the tag`}
+                        className="delete-button"
+                    />
                 </Form>
             < /Formik>
         </div>

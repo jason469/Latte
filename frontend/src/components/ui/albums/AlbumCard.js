@@ -25,9 +25,9 @@ function AlbumCard({data, ids, setDeletedItem = null}) {
     }
 
     return (
-        <div>
-            <CardActionArea className={classes.album_card}>
-                <Card className={classes.album_card_item} raised={true} variant="elevation">
+        <div className={classes.album_card}>
+            <Card className={classes.album_card_item} raised={true} variant="elevation">
+                <CardActionArea>
                     {data.cover_image != null &&
                         <CardMedia
                             component="img"
@@ -42,11 +42,6 @@ function AlbumCard({data, ids, setDeletedItem = null}) {
                             <Typography gutterBottom variant="h5" component="div">
                                 {data.name}
                             </Typography>
-                            <ConfirmationDialog
-                                deleteItem={deleteItem}
-                                title={`Are you sure you want to delete this album?`}
-                                content={`This won't delete any images associated with this album, but it will remove the album`}
-                            />
                         </div>
                         {data.description != null &&
                             <Typography variant="body2" color="text.secondary" className={classes.description}>
@@ -54,8 +49,15 @@ function AlbumCard({data, ids, setDeletedItem = null}) {
                             </Typography>
                         }
                     </CardContent>
-                </Card>
-            </CardActionArea>
+                </CardActionArea>
+                <CardActions className={classes.card_action}>
+                    <ConfirmationDialog
+                        deleteItem={deleteItem}
+                        title={`Are you sure you want to delete this album?`}
+                        content={`This won't delete any images associated with this album, but it will remove the album`}
+                    />
+                </CardActions>
+            </Card>
             <AlbumDetailModal
                 open={modalOpen}
                 handleClose={handleModalClose}

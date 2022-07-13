@@ -9,7 +9,7 @@ import {IoIosArrowBack, IoIosArrowForward} from "react-icons/io"
 import '../../../App.css'
 
 
-export default function TagDetailModal({open, handleClose, tagId, ids}) {
+export default function TagDetailModal({open, handleClose, tagId, ids, setDeletedItem}) {
     const [currentTagId, setCurrentTagId] = useState(tagId);
     const showPreviousTag = () => {
         let prevId = ids[ids.indexOf(currentTagId) - 1]
@@ -38,7 +38,7 @@ export default function TagDetailModal({open, handleClose, tagId, ids}) {
                         <IoIosArrowBack onClick={showPreviousTag} className="click arrow" size={50}
                                         id="back_arrow"/>
                         <Box sx={TagModalBoxStyle}>
-                            <TagDetailPage tagId={currentTagId}/>
+                            <TagDetailPage tagId={currentTagId} setDeletedItem={setDeletedItem}/>
                         </Box>
                         <IoIosArrowForward onClick={showAfterTag} className="click arrow" size={50}
                                            id="forward_arrow"/>

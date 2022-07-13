@@ -89,7 +89,7 @@ function ListOfAlbums() {
                             </Box>
                         </Fade>
                     </Modal>
-                    <ImageList variant="quilted" cols={4} gap={15}>
+                    <ImageList variant="masonry" cols={4}>
                         {inputText !== ""
                             ? filteredData.map(item =>
                                 <AlbumCard key={item.id} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>

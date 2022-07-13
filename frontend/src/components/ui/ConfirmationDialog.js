@@ -1,6 +1,6 @@
 import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide} from "@mui/material";
 import {useState, forwardRef} from "react";
-import {ImCross} from "react-icons/im";
+import CancelIcon from '@mui/icons-material/Cancel';
 import {DialogStyle} from "../../utils/ModalBoxStyles";
 import '../../App.css'
 import classes from "./ConfirmationDialog.module.css"
@@ -17,7 +17,7 @@ function ConfirmationDialog({deleteItem, title, content}) {
 
     return (
         <div className="delete">
-            <ImCross className={`${classes.cross}`} onClick={handleDialogOpen} size={10}/>
+            <CancelIcon className={`${classes.cross}`} onClick={handleDialogOpen} size={10}/>
             <Dialog
                 open={dialogOpen}
                 onClose={handleDialogClose}

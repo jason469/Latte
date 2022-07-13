@@ -1,12 +1,15 @@
-.album_card {
-    height: 100%;
+.card_action {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }
 
 .album_card_item {
     border-radius: 10px !important;
     box-shadow: 3px 3px 3px 3px lightgray !important;
     max-width: 24rem;
-    height: 100%;
+    /*height: 100%;*/
+    overflow: auto !important;
 }
 
 .card_title {
@@ -21,4 +24,8 @@
 
 .description {
     word-break: break-word;
+}
+
+.album_card {
+    padding: 10px;
 }

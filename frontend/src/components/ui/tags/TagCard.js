@@ -6,6 +6,7 @@ import TagDetailModal from "../../pages/tags/TagDetailModal";
 import ConfirmationDialog from "../ConfirmationDialog";
 import '../../../App.css'
 import classes from './TagCard.module.css'
+import {Typography} from "@mui/material";
 
 
 function TagCard({data, ids, setDeletedItem = null}) {
@@ -15,36 +16,20 @@ function TagCard({data, ids, setDeletedItem = null}) {
     const handleModalOpen = () => setModalOpen(true);
     const handleModalClose = () => setModalOpen(false);
 
-    const deleteTag = () => {
-        ManageItems({
-            endpoint: `tags/${data.id}`,
-            method: "DELETE",
-            authTokens: authTokens,
-            logoutUser: logoutUser,
-        })
-        setDeletedItem(data.id)
-    }
-
     return (
         <div>
-            <Card onClick={handleModalOpen} className={classes.card}>
-                <Card.Body className="card-info">
-                    <Card.Title variant="primary" className={`click title ${classes.title}`}>
-                        {data.name}
-                    </Card.Title>
-                    <ConfirmationDialog
-                        deleteItem={deleteTag}
-                        title={`Are you sure you want to delete this tag?`}
-                        content={`This won't delete any images associated with this tag, but it will remove the tag`}
-                        className="delete-button"
-                    />
-                </Card.Body>
-            </Card>
+            <Typography variant="h5"
+                        component="div"
+                        className={`click title ${classes.title}`}
+                        onClick={handleModalOpen}>
+                {data.name}
+            </Typography>
             <TagDetailModal
                 open={modalOpen}
                 handleClose={handleModalClose}
                 tagId={data.id}
                 ids={ids}
+                setDeletedItem={setDeletedItem}
             />
         </div>
     );
