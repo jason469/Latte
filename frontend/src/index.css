@@ -1,1 +1,7 @@
 @import url("https://fonts.googleapis.com");
+
+@font-face {
+    font-family: 'HallwayDemo';
+    src: local('HallwayDemo'),
+    url('./fonts/HallwayDemo/HallwayDemoRegular400.ttf') format('truetype');
+}

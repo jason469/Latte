@@ -77,6 +77,7 @@ function NavigationBar() {
                             <Navbar.Brand
                                 as={Link}
                                 to="/"
+                                className="brand-logo"
                             >
                                 Latte
                             </Navbar.Brand>

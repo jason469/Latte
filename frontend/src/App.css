@@ -25,6 +25,10 @@ h2 {
     color: #5F6368;
 }
 
+.brand-logo {
+    font-family: "HallwayDemo", 'Karla' !important;
+}
+
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
