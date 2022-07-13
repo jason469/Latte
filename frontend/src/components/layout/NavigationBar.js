@@ -11,6 +11,7 @@ import classes from './NavigationBar.module.css'
 import RemoveIcon from '@mui/icons-material/Remove';
 import PersonIcon from '@mui/icons-material/Person';
 
+
 function NavigationBar() {
     let {logoutUser} = useContext(AuthContext)
     const actions = [
@@ -31,9 +32,9 @@ function NavigationBar() {
     ];
 
     return (
-        <Navbar bg="light" expand="lg" className={classes.navbar}>
+        <Navbar expand="lg" className={classes.navbar}>
             <div className={classes.main}>
-                <Navbar.Brand as={Link} to="/" className="brand"><h3>Latte</h3></Navbar.Brand>
+                <Navbar.Brand as={Link} to="/" className="brand click">Latte</Navbar.Brand>
                 <Nav.Item>
                     <Nav.Link id="image-dropdown" className="image" to="/images" as={Link}>
                         <IoMdImages size={35} color="black" className="click"/>
@@ -56,10 +57,12 @@ function NavigationBar() {
             <div className={classes.secondary}>
                 <SpeedDial
                     ariaLabel="Profile"
+                    style={{color: "#F2D4D1"}}
                     icon={
-                    <SpeedDialIcon
-                        openIcon={<RemoveIcon/>}
-                    />}
+                        <SpeedDialIcon
+                            openIcon={<RemoveIcon style={{backgroundColor: "#F2D4D1"}}/>}
+                            style={{backgroundColor: "#F2D4D1"}}
+                        />}
                     direction="left"
                 >
                     {actions.map((action) => (
@@ -72,16 +75,6 @@ function NavigationBar() {
                     <div className="outer-div"/>
                 </SpeedDial>
             </div>
-
-            {/*<NavDropdown title={<IoPersonSharp size={30} color="black" className="click"/>} id="profile-dropdown"*/}
-            {/*             className="ml-auto profile" alignRight={true}>*/}
-            {/*    <NavDropdown.Item as={Link} to="/profile">*/}
-            {/*        Profile*/}
-            {/*    </NavDropdown.Item>*/}
-            {/*    <NavDropdown.Item onClick={() => logoutUser()}>*/}
-            {/*        Logout*/}
-            {/*    </NavDropdown.Item>*/}
-            {/*</NavDropdown>*/}
         </Navbar>
     );
 }

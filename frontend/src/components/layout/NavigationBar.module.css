@@ -2,6 +2,10 @@
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
+    background-color: #F9F0E7;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 2;
 }
 
 .navbar > .main {
@@ -12,6 +16,11 @@
     align-self: center;
 }
 
+.speed_dial_icon {
+    color: #F2D4D1;
+}
+
 .secondary_icon:hover, .secondary_icon:focus {
     background-color: transparent !important;
 }
+

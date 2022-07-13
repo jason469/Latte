@@ -6,7 +6,7 @@ import {ManageItems} from "../../utils/ManageItems";
 import AuthContext from "../../contexts/AuthContext";
 import EmptyPage from "../pages/website/EmptyPage";
 import '../../App.css'
-import './Jumbotron.css'
+import classes from './Jumbotron.module.css'
 
 
 function Jumbrotron() {
@@ -28,13 +28,13 @@ function Jumbrotron() {
     switch (loading) {
         case true:
             return (
-                <Jumbotron>
-                    <h1 className="title">Our favourite moments</h1>
-                    <Container className="jumbotron_container">
+                <Jumbotron className={classes.jumbotron}>
+                    <h1>Our favourite moments</h1>
+                    <Container>
                         <Carousel
                             navButtonsProps={{
                                 style: {
-                                    backgroundColor: 'cornflowerblue',
+                                    backgroundColor: '#F2D4D1',
                                     borderRadius: 100
                                 }
                             }}
@@ -43,7 +43,7 @@ function Jumbrotron() {
                                 <img
                                     src={`http://localhost:9000/media/${data.fields.image}`}
                                     alt={"Image not found"}
-                                    className="jumbotron_image"
+                                    className={classes.jumbotron_image}
                                 />
                             )}
                         </Carousel>

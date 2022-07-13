@@ -1,9 +1,11 @@
-body, input, button {
+body, input, button, span {
     margin: 0;
     font-family: "Zilla Slab", serif !important;
     font-weight: 300 !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    color: #5F6368;
+    /*background-color: #F2D4D1;*/
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -11,6 +13,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 400 !important;
     text-transform: uppercase !important;
     letter-spacing: 0.5rem !important;
+    color: #5F6368;
 }
 
 code {
@@ -23,7 +26,7 @@ html {
 }
 
 .MuiBox-root::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 .MuiImageList-root {
@@ -32,6 +35,9 @@ html {
 
 .main {
     margin: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .title {
@@ -78,7 +84,7 @@ ul li {
 }
 
 .click:hover {
-    color: #0a53be !important;
+    color: #989BA4 !important;
 }
 
 .card-info {
@@ -94,7 +100,7 @@ ul li {
     margin: 0.25rem 0;
 }
 
-.card-info > .title >.MuiImageListItemBar-titleWrap {
+.card-info > .title > .MuiImageListItemBar-titleWrap {
     padding: 0;
 }
 

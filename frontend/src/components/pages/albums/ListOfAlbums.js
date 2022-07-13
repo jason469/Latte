@@ -67,7 +67,7 @@ function ListOfAlbums() {
                         />
                         <RangeSelector value={itemsPerPage} setFunction={setItemsPerPage}/>
                         <GrChapterAdd
-                            className="click add_form"
+                            className="add_form click"
                             onClick={() => setShowAddForm(true)}
                             size={50}
                         />
