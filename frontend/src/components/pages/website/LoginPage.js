@@ -25,6 +25,7 @@ function LoginPage() {
                 <Button
                     type="submit"
                     variant="contained"
+                    color="success"
                 >
                     Submit
                 </Button>

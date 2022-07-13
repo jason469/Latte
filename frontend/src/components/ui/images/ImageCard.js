@@ -47,9 +47,9 @@ function ImageCard({data, images, setDeletedItem = null}) {
                         onClick={handleExpandedImage}
                     />
                 </CardActionArea>
-                <div className="card-info">
+                <div className={`card-info ${classes.image_card_bar}`}>
                     <ImageListItemBar
-                        className="click title"
+                        className={`click title`}
                         subtitle={data.fields.name}
                         onClick={handleDetailForm}
                         position="below"

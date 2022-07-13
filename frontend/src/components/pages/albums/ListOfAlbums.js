@@ -6,7 +6,7 @@ import {ManageItems} from "../../../utils/ManageItems";
 import EmptyPage from "../website/EmptyPage";
 import TextField from "@mui/material/TextField";
 import {inputHandler, filterData} from "../../../utils/searchBarFunctions";
-import {GrChapterAdd} from "react-icons/gr";
+import PlaylistAddCircleIcon from '@mui/icons-material/PlaylistAddCircle';
 import {ImageList} from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import Fade from "@mui/material/Fade";
@@ -66,10 +66,10 @@ function ListOfAlbums() {
                             className="search"
                         />
                         <RangeSelector value={itemsPerPage} setFunction={setItemsPerPage}/>
-                        <GrChapterAdd
+                        <PlaylistAddCircleIcon
                             className="add_form click"
                             onClick={() => setShowAddForm(true)}
-                            size={50}
+                            sx={{ fontSize: 60 }}
                         />
                     </div>
                     <Modal

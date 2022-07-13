@@ -5,10 +5,9 @@
 }
 
 .jumbotron {
-    width: 80%;
-    padding: 2rem !important;
     background-color: #e5e6e8;
     text-align: center;
+    padding: 2rem !important;
 }
 
 .jumbotron > h1 {

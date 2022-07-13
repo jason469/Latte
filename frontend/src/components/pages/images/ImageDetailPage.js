@@ -61,7 +61,7 @@ function ImageDetailPage(props) {
                 <AiFillPlusCircle className="click" onClick={handleTagOpen}/>
             </div>
             <ImageModal open={tagOpen} handleClose={handleTagClose} endpoint="tags" image_id={imageId}/>
-            <ImageList cols={10}>
+            <ImageList cols={6} gap={15}>
                 {currentImage[0].fields.tag ?
                     currentImage[0].fields.tag.map(tag => {
                         return (
@@ -81,7 +81,7 @@ function ImageDetailPage(props) {
                 <AiFillPlusCircle className="click" onClick={handleAlbumOpen}/>
             </div>
             <ImageModal open={albumOpen} handleClose={handleAlbumClose} endpoint="albums" image_id={imageId}/>
-            <ImageList cols={10}>
+            <ImageList cols={6} gap={15}>
                 {currentImage[0].fields.album ?
                     currentImage[0].fields.album.map(album => {
                         return (

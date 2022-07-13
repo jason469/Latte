@@ -4,6 +4,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import {DialogStyle} from "../../utils/ModalBoxStyles";
 import '../../App.css'
 import classes from "./ConfirmationDialog.module.css"
+import tagClasses from "./tags/TagLabel.module.css"
 
 const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props}/>;
@@ -16,7 +17,7 @@ function ConfirmationDialog({deleteItem, title, content}) {
     const handleDialogClose = () => setDialogOpen(false);
 
     return (
-        <div className="delete">
+        <div className={tagClasses.delete}>
             <CancelIcon className={`${classes.cross}`} onClick={handleDialogOpen} size={10}/>
             <Dialog
                 open={dialogOpen}

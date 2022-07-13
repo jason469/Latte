@@ -30,7 +30,14 @@ function App() {
                 "Zilla Slab",
                 "Karla",
             ].join(",")
-        }
+        },
+        palette: {
+            success: {
+                main: '#F2D4D1',
+                contrastText: '#868d6f',
+                dark: '#ecc1bd'
+            },
+        },
     });
 
     return (

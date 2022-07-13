@@ -4,7 +4,7 @@ import UpdateContext from "../../../contexts/UpdateContext";
 import {ManageItems} from "../../../utils/ManageItems";
 import TextField from "@mui/material/TextField";
 import {filterData, inputHandler} from "../../../utils/searchBarFunctions";
-import {RiImageAddFill} from "react-icons/ri";
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import {ImageList} from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import Fade from "@mui/material/Fade";
@@ -86,10 +86,10 @@ function ListOfImages() {
                             value={itemsPerPage}
                             setFunction={setItemsPerPage}
                         />
-                        <RiImageAddFill
+                        <AddPhotoAlternateIcon
                             className="click add_form"
                             onClick={() => setShowAddForm(true)}
-                            size={50}
+                            sx={{ fontSize: 60 }}
                         />
                     </div>
                     <Modal

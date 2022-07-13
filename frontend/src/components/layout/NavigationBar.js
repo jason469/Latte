@@ -3,7 +3,9 @@ import {Nav, NavDropdown, Navbar} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {useContext} from "react";
 import AuthContext from "../../contexts/AuthContext";
-import {IoMdImages, IoMdPricetags, IoIosAlbums} from "react-icons/io";
+import ImageIcon from '@mui/icons-material/Image';
+import LocalOfferRoundedIcon from '@mui/icons-material/LocalOfferRounded';
+import PhotoLibraryRoundedIcon from '@mui/icons-material/PhotoLibraryRounded';
 import {FiLogOut} from "react-icons/fi";
 import {SpeedDial, SpeedDialAction, SpeedDialIcon} from "@mui/material";
 import '../../App.css'
@@ -14,7 +16,30 @@ import PersonIcon from '@mui/icons-material/Person';
 
 function NavigationBar() {
     let {logoutUser} = useContext(AuthContext)
-    const actions = [
+    const left_actions = [
+        {
+            icon:
+                <Nav.Link id="image-dropdown" className="image" to="/images" as={Link}>
+                    <ImageIcon className="click"/>
+                </Nav.Link>,
+            name: 'Images'
+        },
+        {
+            icon:
+                <Nav.Link id="tag-dropdown" className="tags" to="/tags" as={Link}>
+                    <LocalOfferRoundedIcon className="click"/>
+                </Nav.Link>,
+            name: 'Tags'
+        },
+        {
+            icon:
+                <Nav.Link id="album-dropdown" className="albums" as={Link} to="/albums">
+                    <PhotoLibraryRoundedIcon className="click"/>
+                </Nav.Link>,
+            name: 'Albums'
+        },
+    ]
+    const right_actions = [
         {
             icon:
                 <NavDropdown.Item as={Link} to="/profile" className={classes.secondary_icon}>
@@ -34,24 +59,40 @@ function NavigationBar() {
     return (
         <Navbar expand="lg" className={classes.navbar}>
             <div className={classes.main}>
-                <Navbar.Brand as={Link} to="/" className="brand click">Latte</Navbar.Brand>
-                <Nav.Item>
-                    <Nav.Link id="image-dropdown" className="image" to="/images" as={Link}>
-                        <IoMdImages size={35} color="black" className="click"/>
-                    </Nav.Link>
-                </Nav.Item>
-
-                <Nav.Item>
-                    <Nav.Link id="tag-dropdown" className="tags" to="/tags" as={Link}>
-                        <IoMdPricetags size={30} color="black" className="click"/>
-                    </Nav.Link>
-                </Nav.Item>
-
-                <Nav.Item>
-                    <Nav.Link id="album-dropdown" className="albums" as={Link} to="/albums">
-                        <IoIosAlbums size={30} color="black" className="click"/>
-                    </Nav.Link>
-                </Nav.Item>
+                <div className={`click ${classes.brand}`}>
+                    <SpeedDial
+                        ariaLabel="Profile"
+                        className={classes.main_icon}
+                        FabProps={{
+                            sx: {
+                                bgcolor: 'transparent',
+                                '&:hover': {
+                                    bgcolor: 'transparent',
+                                    animation: "none"
+                                },
+                                boxShadow: "0"
+                            }
+                        }}
+                        icon={
+                            <Navbar.Brand
+                                as={Link}
+                                to="/"
+                            >
+                                Latte
+                            </Navbar.Brand>
+                        }
+                        direction="right"
+                    >
+                        {left_actions.map((action) => (
+                            <SpeedDialAction
+                                key={action.name}
+                                icon={action.icon}
+                                tooltipTitle={action.name}
+                            />
+                        ))}
+                        <div className="outer-div"/>
+                    </SpeedDial>
+                </div>
             </div>
 
             <div className={classes.secondary}>
@@ -60,12 +101,21 @@ function NavigationBar() {
                     style={{color: "#F2D4D1"}}
                     icon={
                         <SpeedDialIcon
-                            openIcon={<RemoveIcon style={{backgroundColor: "#F2D4D1"}}/>}
-                            style={{backgroundColor: "#F2D4D1"}}
+                            openIcon={<RemoveIcon/>}
                         />}
                     direction="left"
+                    FabProps={{
+                        sx: {
+                            bgcolor: 'transparent',
+                            '&:hover': {
+                                bgcolor: 'transparent',
+                                animation: "none"
+                            },
+                            boxShadow: "0"
+                        }
+                    }}
                 >
-                    {actions.map((action) => (
+                    {right_actions.map((action) => (
                         <SpeedDialAction
                             key={action.name}
                             icon={action.icon}
