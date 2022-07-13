@@ -180,12 +180,14 @@ img:hover {
 .card {
     margin: 1rem 0.2rem;
     max-width: 15rem;
-    background-color: #f4f4f5 !important;
-    border-radius: 10px !important
+    background-color: #faf2ea !important;
+    border-radius: 10px !important;
+    border: 0 !important;
+    box-shadow: 1px 1px #989BA4 ;
 }
 
 .card:hover {
-    box-shadow: 3px 3px 6px 3px #d1d2d6;
+    box-shadow: 3px 3px 1px 2px #d1d2d6;
     cursor: pointer;
 }
 

@@ -34,7 +34,7 @@ function App() {
         palette: {
             success: {
                 main: '#F2D4D1',
-                contrastText: '#868d6f',
+                contrastText: '#5c614c',
                 dark: '#ecc1bd'
             },
         },

@@ -16,6 +16,7 @@ export const AuthProvider = props => {
             jwtDecode(localStorage.getItem('authTokens')) :
             null)
     let [loading, setLoading] = useState(true)
+    let [validUser, setValidUser] = useState(true)
 
     const navigate = useNavigate()
 
@@ -38,7 +39,7 @@ export const AuthProvider = props => {
             localStorage.setItem('authTokens', JSON.stringify(data))
             navigate('/')
         } else {
-            console.log("Invalid user")
+            setValidUser(false)
         }
     }
 
@@ -80,7 +81,8 @@ export const AuthProvider = props => {
         authTokens: authTokens,
         user: user,
         loginUser: loginUser,
-        logoutUser: logoutUser
+        logoutUser: logoutUser,
+        validUser: validUser
     }
 
     useEffect(() => {

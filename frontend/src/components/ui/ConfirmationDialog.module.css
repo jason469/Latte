@@ -6,6 +6,7 @@
     cursor: pointer;
     color: #F2D4D1;
     opacity: 100%;
+    border: black;
 }
 
 .dialog {

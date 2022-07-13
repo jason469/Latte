@@ -4,7 +4,7 @@ import {ManageItems} from "../../../utils/ManageItems";
 import AuthContext from "../../../contexts/AuthContext";
 import TagLabel from "../../ui/tags/TagLabel";
 import AlbumLabel from "../../ui/albums/AlbumLabel";
-import {AiFillPlusCircle} from "react-icons/ai";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ImageModal from "../../ui/ImageModal";
 import ImageDetailForm from "../../../utils/FormikForms/ImageDetailForm";
 import UpdateContext from "../../../contexts/UpdateContext";
@@ -58,9 +58,22 @@ function ImageDetailPage(props) {
             <Divider variant="middle"/>
             <div className="add_categories">
                 <div className="subtitle">Tags</div>
-                <AiFillPlusCircle className="click" onClick={handleTagOpen}/>
+                <AddCircleIcon
+                    className="click"
+                    onClick={handleTagOpen}
+                    sx={{
+                        fontSize: 15,
+                        color: "#5F6368",
+                        marginLeft: 3
+                    }}
+                />
             </div>
-            <ImageModal open={tagOpen} handleClose={handleTagClose} endpoint="tags" image_id={imageId}/>
+            <ImageModal
+                open={tagOpen}
+                handleClose={handleTagClose}
+                endpoint="tags"
+                image_id={imageId}
+            />
             <ImageList cols={6} gap={15}>
                 {currentImage[0].fields.tag ?
                     currentImage[0].fields.tag.map(tag => {
@@ -78,7 +91,15 @@ function ImageDetailPage(props) {
 
             <div className="add_categories">
                 <div className="subtitle">Albums</div>
-                <AiFillPlusCircle className="click" onClick={handleAlbumOpen}/>
+                <AddCircleIcon
+                    className="click"
+                    onClick={handleAlbumOpen}
+                    sx={{
+                        fontSize: 15,
+                        color: "#5F6368",
+                        marginLeft: 3
+                    }}
+                />
             </div>
             <ImageModal open={albumOpen} handleClose={handleAlbumClose} endpoint="albums" image_id={imageId}/>
             <ImageList cols={6} gap={15}>
