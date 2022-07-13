@@ -121,22 +121,12 @@ ul li {
     max-height: 40rem;
     object-fit: contain;
     border: none;
-}
-
-.image-preview {
-    width: 10%;
-    height: auto;
-}
-
-.form {
+    box-shadow: none !important;
 }
 
 .form > .title {
     margin: 10px;
     padding-bottom: 10px;
-    font-weight: bold;
-    font-size: 40px;
-    color: rgb(1, 1, 59);
 }
 
 .form > .field {

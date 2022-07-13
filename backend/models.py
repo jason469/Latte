@@ -15,6 +15,7 @@ class Tag(models.Model):
     name = models.CharField(max_length=255, blank=False, null=False, default='')
     description = models.TextField(max_length=255, blank=True, null=True)
     in_use = models.BooleanField(default=True)
+    date_created = models.DateTimeField(auto_now=True, blank=True, null=True)
 
     def __str__(self):
         return f'Tag - {self.name}'
@@ -38,6 +39,8 @@ class Album(models.Model):
     description = models.TextField(max_length=255, blank=True, null=True)
     in_use = models.BooleanField(default=True)
     cover_image = models.ImageField(upload_to='post_images', blank=True, null=True)
+    date_created = models.DateTimeField(auto_now=True, blank=True, null=True)
+
 
     def __str__(self):
         return f'Album - {self.name}'

@@ -25,7 +25,7 @@ function ExpandedImage({open, handleClose, image}) {
                             src={`http://localhost:9000/media/${image}`}
                             alt={"Image not found"}
                             loading="lazy"
-                            className="click expanded-image"
+                            className={`click expanded-image`}
                         />
                     </Box>
                 </Fade>

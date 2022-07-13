@@ -34,7 +34,7 @@ function Jumbrotron() {
                         <Carousel
                             navButtonsProps={{
                                 style: {
-                                    backgroundColor: '#F2D4D1',
+                                    backgroundColor: '#5F6368',
                                     borderRadius: 100
                                 }
                             }}

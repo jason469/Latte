@@ -11,6 +11,9 @@
     flex-basis: 40%;
     max-height: 16.5rem;
     object-fit: contain;
+    width: 10%;
+    height: auto;
+    box-shadow: none;
 }
 
 .form > .fields > .inputs > .field {

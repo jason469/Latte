@@ -18,4 +18,5 @@
     max-height: 25rem;
     object-fit: contain;
     border: none;
+    box-shadow: none !important;
 }
