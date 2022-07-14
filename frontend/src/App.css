@@ -200,3 +200,12 @@ img:hover {
 .MuiImageListItemBar-subtitle:hover {
     color: black !important;
 }
+
+.brand > button > span {
+    display: none;
+    box-shadow: none;
+}
+
+.brand > button:active {
+    box-shadow: none;
+}

@@ -88,6 +88,7 @@ function NavigationBar() {
                             </Navbar.Brand>
                         }
                         direction="right"
+                        className="brand"
                     >
                         {left_actions.map((action) => (
                             <SpeedDialAction
