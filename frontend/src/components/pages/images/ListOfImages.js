@@ -4,7 +4,7 @@ import UpdateContext from "../../../contexts/UpdateContext";
 import {ManageItems} from "../../../utils/ManageItems";
 import TextField from "@mui/material/TextField";
 import {filterData, inputHandler} from "../../../utils/searchBarFunctions";
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import AddPhotoAlternateRoundedIcon from '@mui/icons-material/AddPhotoAlternateRounded';
 import {ImageList} from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import Fade from "@mui/material/Fade";
@@ -87,7 +87,7 @@ function ListOfImages() {
                                 value={itemsPerPage}
                                 setFunction={setItemsPerPage}
                             />
-                            <AddPhotoAlternateIcon
+                            <AddPhotoAlternateRoundedIcon
                                 className="click add_form"
                                 onClick={() => setShowAddForm(true)}
                                 sx={{fontSize: 60}}
