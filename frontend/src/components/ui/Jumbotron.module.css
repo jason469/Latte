@@ -15,7 +15,7 @@
 }
 
 .jumbotron_image {
-    max-height: 25rem;
+    height: 25rem;
     object-fit: contain;
     border: none;
     box-shadow: none !important;

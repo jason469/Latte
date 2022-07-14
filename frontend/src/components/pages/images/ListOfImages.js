@@ -109,7 +109,7 @@ function ListOfImages() {
                             </Box>
                         </Fade>
                     </Modal>
-                    <ImageList variant="masonry" cols={6} gap={20}>
+                    <ImageList variant="masonry" cols={6} gap={10}>
                         {inputText !== ""
                             ? filteredData.map(item =>
                                 <ImageCard key={item.pk} data={item} images={currentItems}
