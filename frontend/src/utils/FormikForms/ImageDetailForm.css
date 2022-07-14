@@ -1,0 +1,23 @@
+.form > .fields {
+    display: flex;
+    height: 80%;
+}
+
+.form > .fields > .inputs {
+    flex-basis: 60%;
+}
+
+.form > .fields > .image-preview {
+    flex-basis: 40%;
+    max-height: 16.5rem;
+    object-fit: contain;
+    width: 10%;
+    height: auto;
+    box-shadow: none;
+}
+
+.form > .fields > .inputs > .field {
+    margin: 0.5rem 0;
+    width: 100%;
+
+}

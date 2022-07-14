@@ -4,7 +4,10 @@
     justify-content: center;
     align-items: center;
     font-size: 1.2rem;
-    align-self: flex-start;
+    margin-top: 1rem;
+    padding-bottom: 2rem;
+    width: 100%;
+    flex-basis: 10%;
 }
 
 .page_num{
@@ -15,11 +18,11 @@
 }
 
 .page_num:hover{
-    background-color: #61dafb;
+    background-color: #F2D4D1;
     color: white;
 }
 
 .active{
-    background-color: #61dafb;
+    background-color: #F2D4D1;
     color: white;
 }

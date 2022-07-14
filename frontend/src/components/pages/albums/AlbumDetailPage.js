@@ -1,33 +1,50 @@
 import {useEffect, useState, useContext} from "react";
-import {useParams} from "react-router-dom";
 import AuthContext from "../../../contexts/AuthContext";
-import {GetItems} from "../../../utils/GetItems";
+import {ManageItems} from "../../../utils/ManageItems";
+import AlbumForm from "../../../utils/FormikForms/AlbumForm";
+import ImageLabel from "../../ui/images/ImageLabel";
+import {useParams} from "react-router-dom";
+import '../../../App.css'
+import {Divider, ImageList} from "@mui/material";
 
-function AlbumDetailPage() {
-    const albumId = useParams().albumId
-    const [currentAlbum, setCurrentAlbum] = useState({})
+
+function AlbumDetailPage(props) {
+    const [currentAlbum, setCurrentAlbum] = useState({images: [], album_data: {}})
     let {authTokens, logoutUser} = useContext(AuthContext)
 
+    let {albumId} = useParams();
+    if (!albumId) albumId = props.albumId;
+
     useEffect(() => {
-        GetItems({
-            endpoint: `${albumId}`,
+        ManageItems({
+            endpoint: `/albums/${albumId}`,
+            method: "GET",
             setFunction: setCurrentAlbum,
             authTokens: authTokens,
             logoutUser: logoutUser
         })
-    }, [])
+    }, [albumId])
 
     return (
-        <div>
-            <img
-                src={currentAlbum.cover_image}
-                key={currentAlbum.image_id}
-                alt={currentAlbum.name}
+        <>
+            <AlbumForm
+                title="Update Albums"
+                name={currentAlbum.album_data.name}
+                description={currentAlbum.album_data.description}
+                method='PATCH'
+                endpoint={`/albums/${currentAlbum.album_data.id}/`}
             />
-            <h3>{currentAlbum.name}</h3>
-            <p>{currentAlbum.description}</p>
+            <Divider variant="middle"/>
 
-        </div>
+            <div className="subtitle">Images</div>
+            <ImageList variant="masonry" cols={4} gap={0}>
+                {currentAlbum.images.map(image => {
+                    return (
+                        <ImageLabel data={image} key={image.id}/>
+                    )
+                })}
+            </ImageList>
+        < />
     )
 }
 

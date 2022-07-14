@@ -5,6 +5,7 @@ image_app/__pycache__/
 backend/migrations/__pycache__/__init__.cpython-39.pyc
 backend/migrations/__pycache__/
 
+
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 ################ FRONT END ################
@@ -33,4 +34,3 @@ frontend/yarn-error.log*
 ################ PROJECT ################
 media
 node_modules
-db.sqlite3

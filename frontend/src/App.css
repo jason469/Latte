@@ -1,18 +1,215 @@
+body, input, button, span {
+    margin: 0;
+    font-family: "Zilla Slab", serif !important;
+    font-weight: 300 !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #5F6368;
+    transition-duration: 0.4s !important;
+    /*background-color: #F2D4D1;*/
+}
+
+h1, h3, h4, h5, h6 {
+    font-family: 'Karla', sans-serif !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5rem !important;
+    color: #5F6368;
+}
+
+h2 {
+    font-family: 'Karla', sans-serif !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.25rem !important;
+    color: #5F6368;
+}
+
+.brand-logo {
+    font-family: "HallwayDemo", 'Karla' !important;
+    font-size: 1.5rem !important;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+html {
+    font-size: calc(60% + 0.8vmin);
+}
+
+.MuiBox-root::-webkit-scrollbar {
+    display: none;
+}
+
+.MuiImageList-root {
+    overflow-y: visible !important;
+}
+
 .main {
-    margin-top: 3rem;
+    margin: 2rem;
+    height: 95vh;
+    padding-bottom: 65px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
-.list-of-items {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(2, 100px);
-    justify-items: center;
-    justify-content: center;
-    height: 75vh;
-    width: 90%;
+.main > .list_of_items {
+    width: 95%;
+    flex-basis: 90%;
 }
 
-.card-img {
-    max-width: 1fr;
+
+.title {
+    font-size: 50px;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-size: 2rem;
+    color: #A5AA93;
+    margin: 0.5rem;
+}
+
+.list_actions {
+    display: flex;
+    padding: 0.75rem 2.5rem 1.5rem 2.5rem;
+    width: 100%;
+    gap: 10px;
+}
+
+.list_actions > .search {
+    flex-basis: 80%;
+}
+
+.list_actions > .range_selector {
+    flex-basis: 10%;
+}
+
+.list_actions > .add_form {
+    flex-basis: 10%;
+}
+
+form > .button {
+    margin-top: 2rem;
+}
+
+ul li {
+    font-size: 20px;
+}
+
+.click {
+    cursor: pointer;
+}
+
+.click:hover {
+    color: #989BA4 !important;
+}
+
+.card-info {
+    width: 100%;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.card-info > .title {
+    flex-basis: 90%;
+    margin: 0.25rem 0;
+}
+
+.card-info > .title > .MuiImageListItemBar-titleWrap {
+    padding: 0;
+}
+
+.card-info > .delete {
+    flex-basis: 10%;
+}
+
+.expanded-image {
+    max-height: 40rem;
+    object-fit: contain;
+    border: none;
+    box-shadow: none !important;
+}
+
+.form > .title {
+    margin: 10px;
+    padding-bottom: 10px;
+}
+
+.form > .field {
+    margin: 0.5rem 0;
+    width: 100%;
+}
+
+
+img {
+    width: 100% !important;
     height: auto;
+}
+
+img:hover {
+    box-shadow: 3px 3px 6px 3px #d1d2d6;
+}
+
+.arrow {
+    color: #7F7F7F;
+}
+
+.arrow:hover {
+    color: #ffffff;
+}
+
+.detail_modal_box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.loader {
+    margin-bottom: 0.5rem;
+}
+
+.card {
+    margin: 1rem 0.2rem;
+    max-width: 15rem;
+    background-color: #faf2ea !important;
+    border-radius: 10px !important;
+    border: 0 !important;
+    box-shadow: 1px 1px #989BA4;
+}
+
+.card:hover {
+    box-shadow: 3px 3px 1px 2px #d1d2d6;
+    cursor: pointer;
+}
+
+.MuiDivider-root {
+    margin: 2rem 0 !important;
+}
+
+.dropdown-item {
+    padding: 0 !important;
+}
+
+.nav-link {
+    color: black !important;
+}
+
+.MuiImageListItemBar-subtitle:hover {
+    color: black !important;
+}
+
+.brand > button > span {
+    display: none;
+    box-shadow: none;
+}
+
+.brand > button:active {
+    box-shadow: none;
 }

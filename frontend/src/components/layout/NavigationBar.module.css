@@ -1,20 +1,28 @@
 .navbar {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    background-color: #F9F0E7;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 2;
+}
+
+.brand {
+    margin-left: 2.5rem;
+    margin-top: 0.4rem;
+    pointer-events: none;
+}
+
+
+.navbar > .main {
     display: flex;
 }
 
-.navbar > .brand {
+.navbar > .secondary {
+    align-self: center;
 }
 
-.navbar > .image {
-    color: black !important;
-}
-
-.navbar > .tag {
-    color: black !important;
-}
-
-.navbar > .albums {
-}
-
-.navbar > .profile {
+.secondary_icon:hover, .secondary_icon:focus {
+    background-color: transparent !important;
 }

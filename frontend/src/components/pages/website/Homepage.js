@@ -1,4 +1,5 @@
 import Jumbotron from "../../ui/Jumbotron";
+import '../../../App.css'
 
 
 function HomePage() {

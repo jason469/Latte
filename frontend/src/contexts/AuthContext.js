@@ -16,12 +16,13 @@ export const AuthProvider = props => {
             jwtDecode(localStorage.getItem('authTokens')) :
             null)
     let [loading, setLoading] = useState(true)
+    let [validUser, setValidUser] = useState(true)
 
     const navigate = useNavigate()
 
     let loginUser = async (e) => {
         e.preventDefault()
-        let response = await fetch(`auth/token/`, {
+        let response = await fetch(`/auth/token/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -38,7 +39,7 @@ export const AuthProvider = props => {
             localStorage.setItem('authTokens', JSON.stringify(data))
             navigate('/')
         } else {
-            console.log("Invalid user")
+            setValidUser(false)
         }
     }
 
@@ -51,7 +52,7 @@ export const AuthProvider = props => {
 
     let updateToken = async () => {
         if (authTokens !== null) {
-            let response = await fetch(`auth/token/refresh/`, {
+            let response = await fetch(`/auth/token/refresh/`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -68,21 +69,20 @@ export const AuthProvider = props => {
                 localStorage.setItem('authTokens', JSON.stringify(data))
             }
         } else {
-            console.log('failed')
             logoutUser()
         }
 
         if (loading) {
             setLoading(false)
         }
-
     }
 
     let contextData = {
         authTokens: authTokens,
         user: user,
         loginUser: loginUser,
-        logoutUser: logoutUser
+        logoutUser: logoutUser,
+        validUser: validUser
     }
 
     useEffect(() => {

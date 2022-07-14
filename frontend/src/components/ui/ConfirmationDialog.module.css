@@ -1,0 +1,14 @@
+.cross {
+    opacity: 0;
+}
+
+.cross:hover {
+    cursor: pointer;
+    color: #F2D4D1;
+    opacity: 100%;
+    border: black;
+}
+
+.dialog {
+
+}

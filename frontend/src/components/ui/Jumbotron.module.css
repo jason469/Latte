@@ -1,0 +1,22 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.jumbotron {
+    background-color: #e5e6e8;
+    text-align: center;
+    padding: 2rem !important;
+}
+
+.jumbotron > h1 {
+    text-align: center;
+}
+
+.jumbotron_image {
+    height: 25rem;
+    object-fit: contain;
+    border: none;
+    box-shadow: none !important;
+}

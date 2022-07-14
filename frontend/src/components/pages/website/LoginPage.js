@@ -1,11 +1,18 @@
 import {useContext} from "react";
 import AuthContext from "../../../contexts/AuthContext";
-import {Box, Button, TextField} from "@mui/material";
+import {Alert, Box, Button, TextField} from "@mui/material";
+import '../../../App.css'
+import SendIcon from "@mui/icons-material/Send";
 
 function LoginPage() {
-    let {loginUser} = useContext(AuthContext)
+    let {loginUser, validUser} = useContext(AuthContext)
     return (
         <>
+            {validUser===false &&
+                <Alert variant="outlined" severity="error">
+                    Invalid user :(
+                </Alert>
+            }
             <form onSubmit={loginUser}>
                 <Box margin={2}>
                     <TextField
@@ -20,7 +27,13 @@ function LoginPage() {
                         type="password"
                     />
                 </Box>
-                <Button type="submit">Submit</Button>
+                <Button
+                    type="submit"
+                    variant="contained"
+                    color="success"
+                >
+                    Submit
+                </Button>
             </form>
         </>
     );

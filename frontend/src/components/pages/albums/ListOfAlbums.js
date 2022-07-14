@@ -1,48 +1,118 @@
 import Pagination from "../../layout/Pagination";
 import {useEffect, useState, useContext} from "react";
-import AlbumCard from "../../ui/AlbumCard";
+import AlbumCard from "../../ui/albums/AlbumCard";
 import AuthContext from "../../../contexts/AuthContext";
-import {GetItems} from "../../../utils/GetItems";
-import addImage from "../images/AddImage";
+import {ManageItems} from "../../../utils/ManageItems";
 import EmptyPage from "../website/EmptyPage";
+import TextField from "@mui/material/TextField";
+import {inputHandler, filterData} from "../../../utils/searchBarFunctions";
+import PlaylistAddCircleIcon from '@mui/icons-material/PlaylistAddCircle';
+import {ImageList} from "@mui/material";
+import Backdrop from "@mui/material/Backdrop";
+import Fade from "@mui/material/Fade";
+import Box from "@mui/material/Box";
+import {ModalBoxStyle, TagModalBoxStyle} from "../../../utils/ModalBoxStyles";
+import Modal from "@mui/material/Modal";
+import AddAlbum from "./AddAlbum";
+import UpdateContext from "../../../contexts/UpdateContext";
+import '../../../App.css'
+import RangeSelector from "../../ui/RangeSelector";
+
 
 function ListOfAlbums() {
     const [albumData, setAlbumData] = useState([])
+    const [deletedItem, setDeletedItem] = useState(0)
     const [currentItems, setCurrentItems] = useState([]);
+    const [inputText, setInputText] = useState("");
+    const [showAddForm, setShowAddForm] = useState(false)
+    const [loading, setLoading] = useState(false)
+    const [itemIDs, setItemIDs] = useState([])
+    const [itemsPerPage, setItemsPerPage] = useState(10)
+
     let {authTokens, logoutUser} = useContext(AuthContext)
+    let {updatedItem} = useContext(UpdateContext)
 
-    // Fetch current items
-    const pull_albums = (albums) => {
+    const pull_albums = albums => {
         setCurrentItems(albums);
+        setItemIDs(albums.map(item => item.id));
     }
+    const filteredData = filterData(inputText, albumData)
 
-    //Fetch Images
+    //Fetch Albums
     useEffect(() => {
-        GetItems({
+        ManageItems({
             endpoint: 'albums',
+            method: "GET",
             setFunction: setAlbumData,
             authTokens: authTokens,
             logoutUser: logoutUser
         })
-    }, [])
+        setLoading(true)
+    }, [deletedItem, updatedItem])
 
-    switch (albumData.length !== 0) {
+    switch (loading) {
         case true:
             return (
-                <div>
-                    <div className="list-of-items">
-                        {currentItems.map(item => <AlbumCard data={item}/>)}
+                <>
+                    <div className="list_of_items">
+                        <div className="list_actions">
+                            <TextField
+                                id="album_search"
+                                onChange={(e) => {
+                                    inputHandler(e, setInputText)
+                                }}
+                                variant="outlined"
+                                fullWidth
+                                label="Search"
+                                className="search"
+                            />
+                            <RangeSelector value={itemsPerPage} setFunction={setItemsPerPage}/>
+                            <PlaylistAddCircleIcon
+                                className="add_form click"
+                                onClick={() => setShowAddForm(true)}
+                                sx={{fontSize: 60}}
+                            />
+                        </div>
+                        <Modal
+                            aria-labelledby="transition-modal-title"
+                            aria-describedby="transition-modal-description"
+                            open={showAddForm}
+                            onClose={() => setShowAddForm(false)}
+                            closeAfterTransition
+                            BackdropComponent={Backdrop}
+                            BackdropProps={{
+                                timeout: 500,
+                            }}
+                        >
+                            <Fade in={showAddForm}>
+                                <Box sx={TagModalBoxStyle}>
+                                    <AddAlbum/>
+                                </Box>
+                            </Fade>
+                        </Modal>
+                        <ImageList variant="masonry" cols={4} gap={4}>
+                            {inputText !== ""
+                                ? filteredData.map(item =>
+                                    <AlbumCard key={item.id} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>
+                                )
+                                : currentItems.map(item =>
+                                    <AlbumCard key={item.id} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>
+                                )
+                            }
+                        </ImageList>
                     </div>
-                    <Pagination
-                        itemsPerPage={12}
-                        data={albumData}
-                        pull_function={pull_albums}
-                    />
-                </div>
+                    {inputText === ""
+                        && <Pagination
+                            itemsPerPage={itemsPerPage}
+                            data={albumData}
+                            pull_function={pull_albums}
+                        />
+                    }
+                </>
             )
         case false:
             return (
-                <EmptyPage item="Albums" />
+                <EmptyPage item="Albums"/>
             )
     }
 }

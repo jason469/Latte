@@ -1,0 +1,12 @@
+.imageCard {
+    max-width: 15rem;
+}
+
+.card_image {
+    max-width: 15rem;
+}
+
+.image_card_bar:hover {
+    background-color: #fafafa;
+    box-shadow: 1px 1px 7px 1px #efeff1;
+}

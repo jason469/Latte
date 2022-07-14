@@ -1,7 +1,10 @@
-function EmptyPage(props) {
+import {Skeleton} from "@mui/material";
+import '../../../App.css'
+
+function EmptyPage() {
     return (
         <div>
-            <h1>No {props.item}</h1>
+            <Skeleton variant="rectangular" width={210} height={118} />
         </div>
     )
 }

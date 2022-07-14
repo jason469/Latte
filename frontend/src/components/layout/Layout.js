@@ -1,4 +1,6 @@
 import NavigationBar from './NavigationBar';
+import '../../App.css'
+
 
 function Layout(props) {
     return (
