@@ -56,71 +56,73 @@ function ListOfImages() {
     switch (loading) {
         case true:
             return (
-                <div className="list_of_items">
-                    <div className="list_actions">
-                        <TextField
-                            id="image_search"
-                            onChange={(e) => {
-                                inputHandler(e, setInputText)
+                <>
+                    <div className="list_of_items">
+                        <div className="list_actions">
+                            <TextField
+                                id="image_search"
+                                onChange={(e) => {
+                                    inputHandler(e, setInputText)
+                                }}
+                                variant="outlined"
+                                fullWidth
+                                label="Search"
+                                className={classes.search}
+                            />
+                            <TextField
+                                className={classes.search_criteria}
+                                label="Search Criteria"
+                                onChange={e => {
+                                    setSearchCriteria(e.target.value)
+                                }}
+                                select
+                                value={searchCriteria}
+                            >
+                                <MenuItem value={"album"}>Album</MenuItem>
+                                <MenuItem value={"tag"}>Tag</MenuItem>
+                                <MenuItem value={"name"}>Name</MenuItem>
+                                <MenuItem value={"desc"}>Description</MenuItem>
+                            </TextField>
+                            <RangeSelector
+                                value={itemsPerPage}
+                                setFunction={setItemsPerPage}
+                            />
+                            <AddPhotoAlternateIcon
+                                className="click add_form"
+                                onClick={() => setShowAddForm(true)}
+                                sx={{fontSize: 60}}
+                            />
+                        </div>
+                        <Modal
+                            aria-labelledby="transition-modal-title"
+                            aria-describedby="transition-modal-description"
+                            open={showAddForm}
+                            onClose={() => setShowAddForm(false)}
+                            closeAfterTransition
+                            BackdropComponent={Backdrop}
+                            BackdropProps={{
+                                timeout: 500,
                             }}
-                            variant="outlined"
-                            fullWidth
-                            label="Search"
-                            className={classes.search}
-                        />
-                        <TextField
-                            className={classes.search_criteria}
-                            label="Search Criteria"
-                            onChange={e => {
-                                setSearchCriteria(e.target.value)
-                            }}
-                            select
-                            value={searchCriteria}
                         >
-                            <MenuItem value={"album"}>Album</MenuItem>
-                            <MenuItem value={"tag"}>Tag</MenuItem>
-                            <MenuItem value={"name"}>Name</MenuItem>
-                            <MenuItem value={"desc"}>Description</MenuItem>
-                        </TextField>
-                        <RangeSelector
-                            value={itemsPerPage}
-                            setFunction={setItemsPerPage}
-                        />
-                        <AddPhotoAlternateIcon
-                            className="click add_form"
-                            onClick={() => setShowAddForm(true)}
-                            sx={{ fontSize: 60 }}
-                        />
+                            <Fade in={showAddForm}>
+                                <Box sx={ModalBoxStyle}>
+                                    <AddImage/>
+                                </Box>
+                            </Fade>
+                        </Modal>
+                        <ImageList variant="masonry" cols={6} gap={10}>
+                            {inputText !== ""
+                                ? filteredData.map(item =>
+                                    <ImageCard key={item.pk} data={item} images={currentItems}
+                                               setDeletedItem={setDeletedItem}/>
+                                )
+                                : currentItems.map(item =>
+                                    <ImageCard key={item.pk} data={item} images={currentItems}
+                                               setDeletedItem={setDeletedItem}/>
+                                )
+                            }
+                        </ImageList>
                     </div>
-                    <Modal
-                        aria-labelledby="transition-modal-title"
-                        aria-describedby="transition-modal-description"
-                        open={showAddForm}
-                        onClose={() => setShowAddForm(false)}
-                        closeAfterTransition
-                        BackdropComponent={Backdrop}
-                        BackdropProps={{
-                            timeout: 500,
-                        }}
-                    >
-                        <Fade in={showAddForm}>
-                            <Box sx={ModalBoxStyle}>
-                                <AddImage/>
-                            </Box>
-                        </Fade>
-                    </Modal>
-                    <ImageList variant="masonry" cols={6} gap={10}>
-                        {inputText !== ""
-                            ? filteredData.map(item =>
-                                <ImageCard key={item.pk} data={item} images={currentItems}
-                                           setDeletedItem={setDeletedItem}/>
-                            )
-                            : currentItems.map(item =>
-                                <ImageCard key={item.pk} data={item} images={currentItems}
-                                           setDeletedItem={setDeletedItem}/>
-                            )
-                        }
-                    </ImageList>
                     {inputText === ""
                         && <Pagination
                             itemsPerPage={itemsPerPage}
@@ -128,7 +130,7 @@ function ListOfImages() {
                             pull_function={pull_images}
                         />
                     }
-                </div>
+                </>
             )
         case false:
             return (

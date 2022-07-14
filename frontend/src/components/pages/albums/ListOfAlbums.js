@@ -53,52 +53,54 @@ function ListOfAlbums() {
     switch (loading) {
         case true:
             return (
-                <div className="list_of_items">
-                    <div className="list_actions">
-                        <TextField
-                            id="album_search"
-                            onChange={(e) => {
-                                inputHandler(e, setInputText)
+                <>
+                    <div className="list_of_items">
+                        <div className="list_actions">
+                            <TextField
+                                id="album_search"
+                                onChange={(e) => {
+                                    inputHandler(e, setInputText)
+                                }}
+                                variant="outlined"
+                                fullWidth
+                                label="Search"
+                                className="search"
+                            />
+                            <RangeSelector value={itemsPerPage} setFunction={setItemsPerPage}/>
+                            <PlaylistAddCircleIcon
+                                className="add_form click"
+                                onClick={() => setShowAddForm(true)}
+                                sx={{fontSize: 60}}
+                            />
+                        </div>
+                        <Modal
+                            aria-labelledby="transition-modal-title"
+                            aria-describedby="transition-modal-description"
+                            open={showAddForm}
+                            onClose={() => setShowAddForm(false)}
+                            closeAfterTransition
+                            BackdropComponent={Backdrop}
+                            BackdropProps={{
+                                timeout: 500,
                             }}
-                            variant="outlined"
-                            fullWidth
-                            label="Search"
-                            className="search"
-                        />
-                        <RangeSelector value={itemsPerPage} setFunction={setItemsPerPage}/>
-                        <PlaylistAddCircleIcon
-                            className="add_form click"
-                            onClick={() => setShowAddForm(true)}
-                            sx={{ fontSize: 60 }}
-                        />
+                        >
+                            <Fade in={showAddForm}>
+                                <Box sx={TagModalBoxStyle}>
+                                    <AddAlbum/>
+                                </Box>
+                            </Fade>
+                        </Modal>
+                        <ImageList variant="masonry" cols={4} gap={4}>
+                            {inputText !== ""
+                                ? filteredData.map(item =>
+                                    <AlbumCard key={item.id} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>
+                                )
+                                : currentItems.map(item =>
+                                    <AlbumCard key={item.id} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>
+                                )
+                            }
+                        </ImageList>
                     </div>
-                    <Modal
-                        aria-labelledby="transition-modal-title"
-                        aria-describedby="transition-modal-description"
-                        open={showAddForm}
-                        onClose={() => setShowAddForm(false)}
-                        closeAfterTransition
-                        BackdropComponent={Backdrop}
-                        BackdropProps={{
-                            timeout: 500,
-                        }}
-                    >
-                        <Fade in={showAddForm}>
-                            <Box sx={TagModalBoxStyle}>
-                                <AddAlbum/>
-                            </Box>
-                        </Fade>
-                    </Modal>
-                    <ImageList variant="masonry" cols={4}>
-                        {inputText !== ""
-                            ? filteredData.map(item =>
-                                <AlbumCard key={item.id} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>
-                            )
-                            : currentItems.map(item =>
-                                <AlbumCard key={item.id} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>
-                            )
-                        }
-                    </ImageList>
                     {inputText === ""
                         && <Pagination
                             itemsPerPage={itemsPerPage}
@@ -106,7 +108,7 @@ function ListOfAlbums() {
                             pull_function={pull_albums}
                         />
                     }
-                </div>
+                </>
             )
         case false:
             return (

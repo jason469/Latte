@@ -49,10 +49,18 @@ html {
 
 .main {
     margin: 2rem;
+    height: 95vh;
+    padding-bottom: 65px;
+    position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
+
+.main > .list_of_items {
+    width: 95%;
+    flex-basis: 90%;
+}
+
 
 .title {
     font-size: 50px;
@@ -161,10 +169,6 @@ img:hover {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-}
-
-.list_of_items {
-    width: 95%;
 }
 
 .loader {

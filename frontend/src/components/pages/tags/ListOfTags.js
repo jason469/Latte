@@ -59,57 +59,59 @@ function ListOfTags() {
     switch (loading) {
         case true:
             return (
-                <div className="list_of_items">
-                    <div className="list_actions">
-                        <TextField
-                            id="tag_search"
-                            onChange={(e) => {
-                                inputHandler(e, setInputText)
+                <>
+                    <div className="list_of_items">
+                        <div className="list_actions">
+                            <TextField
+                                id="tag_search"
+                                onChange={(e) => {
+                                    inputHandler(e, setInputText)
+                                }}
+                                variant="outlined"
+                                fullWidth
+                                label="Search"
+                                className="search"
+                            />
+                            <RangeSelector value={itemsPerPage} setFunction={setItemsPerPage}/>
+                            <AddCommentIcon
+                                className="click add_form"
+                                onClick={() => setShowAddForm(true)}
+                                sx={{fontSize: 50}}
+                            />
+                        </div>
+                        <Modal
+                            aria-labelledby="transition-modal-title"
+                            aria-describedby="transition-modal-description"
+                            open={showAddForm}
+                            onClose={() => setShowAddForm(false)}
+                            closeAfterTransition
+                            BackdropComponent={Backdrop}
+                            BackdropProps={{
+                                timeout: 500,
                             }}
-                            variant="outlined"
-                            fullWidth
-                            label="Search"
-                            className="search"
-                        />
-                        <RangeSelector value={itemsPerPage} setFunction={setItemsPerPage}/>
-                        <AddCommentIcon
-                            className="click add_form"
-                            onClick={() => setShowAddForm(true)}
-                            sx={{ fontSize: 50 }}
-                        />
+                        >
+                            <Fade in={showAddForm}>
+                                <Box sx={TagModalBoxStyle}>
+                                    <AddTag/>
+                                </Box>
+                            </Fade>
+                        </Modal>
+                        <ImageList cols={12} gap={20}>
+                            {inputText !== ""
+                                ? filteredData.map(item =>
+                                    <TagCard key={item.id} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>)
+                                : currentItems.map(item =>
+                                    <TagCard key={item.id} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>)
+                            }
+                        </ImageList>
                     </div>
-                    <Modal
-                        aria-labelledby="transition-modal-title"
-                        aria-describedby="transition-modal-description"
-                        open={showAddForm}
-                        onClose={() => setShowAddForm(false)}
-                        closeAfterTransition
-                        BackdropComponent={Backdrop}
-                        BackdropProps={{
-                            timeout: 500,
-                        }}
-                    >
-                        <Fade in={showAddForm}>
-                            <Box sx={TagModalBoxStyle}>
-                                <AddTag/>
-                            </Box>
-                        </Fade>
-                    </Modal>
-                    <ImageList cols={12} gap={20}>
-                        {inputText !== ""
-                            ? filteredData.map(item =>
-                                <TagCard key={item.id} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>)
-                            : currentItems.map(item =>
-                                <TagCard key={item.id} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>)
-                        }
-                    </ImageList>
                     {inputText === ""
                         && <Pagination
                             itemsPerPage={itemsPerPage}
                             data={tagData}
                             pull_function={pull_tags}
                         />}
-                </div>
+                </>
             )
         case false:
             return (
