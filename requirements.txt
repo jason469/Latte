@@ -11,3 +11,6 @@ PyJWT==2.4.0
 pytz==2022.1
 sqlparse==0.4.2
 tzdata==2022.1
+django-imagekit
+django-db-signals
+psycopg2-binary
