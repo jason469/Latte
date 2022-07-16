@@ -35,3 +35,4 @@ frontend/yarn-error.log*
 media
 node_modules
 __pycache__/
+#image_app/local_settings.py

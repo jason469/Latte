@@ -74,17 +74,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'image_app.wsgi.application'
 
-DATABASES = {
-    "default": {
-        "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.postgresql"),
-        "NAME": os.environ.get("SQL_DATABASE", "image_app"),
-        "USER": os.environ.get("SQL_USER", "image_app_user"),
-        "PASSWORD": os.environ.get("SQL_PASSWORD", "postgres"),
-        "HOST": os.environ.get("SQL_HOST", "localhost"),
-        "PORT": os.environ.get("SQL_PORT", "5432"),
-    }
-}
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -174,3 +163,8 @@ SIMPLE_JWT = {
     # 'AUTH_COOKIE_SAMESITE': 'Lax',
     # Whether to set the flag restricting cookie leaks on cross-site requests. This can be 'Lax', 'Strict', or None to disable the flag.
 }
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
