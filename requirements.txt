@@ -18,3 +18,4 @@ django-heroku
 psycopg2
 gunicorn
 whitenoise
+django-filter
