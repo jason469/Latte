@@ -14,7 +14,6 @@
     height: 100%;
 }
 
-
 .album_card > .album_card_item::-webkit-scrollbar {
     display: none !important;
 }
@@ -43,6 +42,7 @@
 
 .album_card > .album_card_item > .card_action_area {
     height: 35%;
+    background-color: white;
 }
 
 .album_card > .album_card_item > .card_action_area:hover {
@@ -58,6 +58,7 @@
 
 .album_card > .album_card_item > .card_action_area > .content > .card_title {
     font-size: 1.4rem;
+    color: #8DD7DF;
 }
 
 .album_card > .album_card_item > .card_action_area > .content > .description {
