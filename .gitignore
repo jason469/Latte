@@ -34,3 +34,4 @@ frontend/yarn-error.log*
 ################ PROJECT ################
 media
 node_modules
+__pycache__/

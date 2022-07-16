@@ -28,6 +28,7 @@ h2 {
 .brand-logo {
     font-family: "HallwayDemo", 'Karla' !important;
     font-size: 1.5rem !important;
+    color: #592a0f !important;
 }
 
 code {
@@ -40,7 +41,7 @@ html {
 }
 
 .MuiBox-root::-webkit-scrollbar {
-    display: none;
+    display: none !important;
 }
 
 .MuiImageList-root {
@@ -105,7 +106,7 @@ ul li {
 }
 
 .click:hover {
-    color: #989BA4 !important;
+    color: #8A624A !important;
 }
 
 .card-info {
@@ -153,7 +154,7 @@ img {
 }
 
 img:hover {
-    box-shadow: 3px 3px 6px 3px #d1d2d6;
+    box-shadow: 3px 3px 6px 3px #989BA4;
 }
 
 .arrow {

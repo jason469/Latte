@@ -70,7 +70,10 @@ function ListOfAlbums() {
                             <PlaylistAddCircleIcon
                                 className="add_form click"
                                 onClick={() => setShowAddForm(true)}
-                                sx={{fontSize: 60}}
+                                sx={{
+                                    fontSize: 60,
+                                    color: "#592a0f"
+                            }}
                             />
                         </div>
                         <Modal
@@ -90,7 +93,7 @@ function ListOfAlbums() {
                                 </Box>
                             </Fade>
                         </Modal>
-                        <ImageList variant="masonry" cols={4} gap={4}>
+                        <ImageList variant="masonry" cols={3}>
                             {inputText !== ""
                                 ? filteredData.map(item =>
                                     <AlbumCard key={item.id} data={item} ids={itemIDs} setDeletedItem={setDeletedItem}/>

@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import TagDetailPage from "./TagDetailPage";
-import {ArrowBoxStyle, ModalBoxStyle, TagModalBoxStyle} from "../../../utils/ModalBoxStyles";
+import {ArrowBoxStyle, TagModalBoxStyle} from "../../../utils/ModalBoxStyles";
 import {useState} from "react";
 import {IoIosArrowBack, IoIosArrowForward} from "react-icons/io"
 import '../../../App.css'

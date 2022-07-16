@@ -90,7 +90,10 @@ function ListOfImages() {
                             <AddPhotoAlternateRoundedIcon
                                 className="click add_form"
                                 onClick={() => setShowAddForm(true)}
-                                sx={{fontSize: 60}}
+                                sx={{
+                                    fontSize: 60,
+                                    color: "#592a0f"
+                            }}
                             />
                         </div>
                         <Modal

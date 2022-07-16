@@ -1,32 +1,73 @@
-.card_action {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+.album_card {
+    padding: 10px;
+    width: 100%;
+    height: 25rem;
+    overflow: hidden;
 }
 
-.album_card_item {
-    border-radius: 10px !important;
+.album_card > .album_card_item {
+    border-radius: 7% !important;
     box-shadow: 3px 3px 3px 3px lightgray !important;
-    max-width: 24rem;
-    /*height: 100%;*/
-    overflow: auto !important;
-}
-
-.card_title {
+    overflow: hidden !important;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    font-size: 1.2rem;
-}
-
-.content {
+    flex-direction: column;
     height: 100%;
 }
 
-.description {
-    word-break: break-word;
+
+.album_card > .album_card_item::-webkit-scrollbar {
+    display: none !important;
 }
 
-.album_card {
-    padding: 10px;
+.album_card > .album_card_item > .albumImageDiv {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to top right, white, #F2D4D1);
+    transition: 0.5s ease !important;
+}
+
+.album_card > .album_card_item > .albumImageDiv:hover, .album_card > .album_card_item > .albumImageDiv:focus {
+    height: 80%;
+}
+
+.album_card > .album_card_item > .albumImageDiv > img {
+    object-fit: contain;
+    max-height: 100%;
+    width: auto;
+    box-shadow: none !important;
+}
+
+
+.album_card > .album_card_item > .card_action_area {
+    height: 35%;
+}
+
+.album_card > .album_card_item > .card_action_area:hover {
+    /*background-color: #E7F7F8;*/
+}
+
+.album_card > .album_card_item > .card_action_area > .content {
+    height: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.album_card > .album_card_item > .card_action_area > .content > .card_title {
+    font-size: 1.4rem;
+}
+
+.album_card > .album_card_item > .card_action_area > .content > .description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.album_card > .album_card_item > .card_action {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }
