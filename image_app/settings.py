@@ -17,7 +17,7 @@ from rest_framework.settings import api_settings
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-z%=b22*lu4j)g74-l$-tziz!yeulyroe8f&o1so5&ft)@z8#j5'
+SECRET_KEY = 'ar4vijpn=l-$fpf+zb=m&qf(6-6x@knnsnq2fj8joqa0*mz3='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
