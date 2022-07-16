@@ -16,7 +16,7 @@ from rest_framework.settings import api_settings
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'rid-5mjwx$wtmw8o*2z7!r6&d8r-*$a#0dyq^!*=b1n$3q=p'
+SECRET_KEY = '-!!^v*(y47-hi@d!j-_x_9%c2pn5zo(v!ywo4xhxw4_6l2%t7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
