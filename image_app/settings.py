@@ -74,6 +74,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'image_app.wsgi.application'
 
+DATABASES = {}
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
