@@ -39,7 +39,7 @@ function TagDetailPage(props) {
             <Divider variant="middle"/>
 
             <div className="subtitle">Images</div>
-            <ImageList variant="masonry" cols={4} gap={0}>
+            <ImageList variant="masonry" cols={5} gap={0}>
                 {currentTag.images.map(image => {
                     return (
                         <ImageLabel data={image} key={image.id}/>

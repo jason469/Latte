@@ -1,0 +1,17 @@
+.nav_link {
+    padding: 10px !important;
+    margin: 0 !important;
+}
+
+.image {
+    max-height: 16.5rem;
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+    box-shadow: none;
+    transition: 0.5s ease !important;
+}
+
+.image:hover {
+    transform: scale(1.05);
+}
