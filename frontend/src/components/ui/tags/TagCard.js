@@ -1,12 +1,11 @@
-import {Card} from "react-bootstrap";
 import {useState, useContext} from "react";
 import AuthContext from "../../../contexts/AuthContext";
-import {ManageItems} from "../../../utils/ManageItems";
 import TagDetailModal from "../../pages/tags/TagDetailModal";
-import ConfirmationDialog from "../ConfirmationDialog";
+import {Typography} from "@mui/material";
+import SellRoundedIcon from '@mui/icons-material/SellRounded';
+
 import '../../../App.css'
 import classes from './TagCard.module.css'
-import {Typography} from "@mui/material";
 
 
 function TagCard({data, ids, setDeletedItem = null}) {
@@ -18,11 +17,19 @@ function TagCard({data, ids, setDeletedItem = null}) {
 
     return (
         <div>
-            <div className={classes.tagCard}>
+            <div
+                onClick={handleModalOpen}
+                className={`click ${classes.tagCard}`}
+            >
+                <SellRoundedIcon
+                    className={classes.tagIcon}
+                    sx={{fontSize: "40px",
+                        color: "#592a0f"
+                    }}
+                />
                 <Typography variant="body"
                             component="div"
-                            className={`click title ${classes.title}`}
-                            onClick={handleModalOpen}>
+                            className={`title ${classes.title}`}>
                     {data.name}
                 </Typography>
             </div>

@@ -5,8 +5,8 @@ import AuthContext from "../../../contexts/AuthContext";
 import {ManageItems} from "../../../utils/ManageItems";
 import ConfirmationDialog from "../ConfirmationDialog";
 import '../../../App.css'
-import classes from "../tags/TagLabel.module.css";
-
+import classes from "../label.module.css";
+import PhotoLibraryRoundedIcon from '@mui/icons-material/PhotoLibraryRounded';
 
 function AlbumLabel({data, image_id, setDeletedItem = null}) {
     let {authTokens, logoutUser} = useContext(AuthContext)
@@ -30,27 +30,34 @@ function AlbumLabel({data, image_id, setDeletedItem = null}) {
 
     return (
         <div>
-            <Card className={classes.card}>
-                <Card.Body className={classes.card_body}>
-                    <Nav.Link
-                        as={Link}
-                        to={`/albums/${data.id}`}
+            <div className={classes.label}>
+                <PhotoLibraryRoundedIcon
+                    className={classes.icon}
+                    sx={{
+                        fontSize: "60px",
+                        color: "#592a0f"
+                    }}
+                />
+                <Nav.Link
+                    as={Link}
+                    to={`/albums/${data.id}`}
+                    className={classes.title}
+                >
+                    <Card.Title
+                        className={`click title ${classes.titleText}`}
+                        variant="primary"
                     >
-                        <Card.Title
-                            className="click title"
-                            variant="primary"
-                        >
-                            {data.name}
-                        </Card.Title>
-                    </Nav.Link>
+                        {data.name}
+                    </Card.Title>
+                </Nav.Link>
+                <div className={classes.delete}>
                     <ConfirmationDialog
                         deleteItem={removeAlbum}
                         title={`Are you sure you want to delete this album?`}
                         content={`This will unassign the image from the album`}
-                        className={`${classes.delete}`}
                     />
-                </Card.Body>
-            </Card>
+                </div>
+            </div>
         </div>
     );
 }

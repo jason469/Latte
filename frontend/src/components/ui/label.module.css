@@ -7,7 +7,7 @@
     padding-bottom: 0 !important;
 }
 
-.label > .tagIcon {
+.label > .icon {
     grid-column: 1 / span 1;
     grid-row: 1 / -1;
 
@@ -30,20 +30,3 @@
     align-self: center;
     justify-self: flex-end;
 }
-
-/*.card > .card_body {*/
-/*    display: grid;*/
-/*    grid-template-columns: 4fr 1fr;*/
-/*    grid-template-rows: 4fr 1fr;*/
-/*    padding: 0.5rem;*/
-/*    margin-bottom: 0 !important;*/
-/*    padding-bottom: 0 !important;*/
-/*}*/
-
-/*.card > .card_body > .nav-link {*/
-/*    grid-column: 1 / -1;*/
-/*    grid-row: 1 / span 1;*/
-/*    text-align: center;*/
-/*    padding: 0 !important;*/
-/*    margin-bottom: 0 !important;*/
-/*}*/

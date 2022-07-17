@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {useContext} from "react";
 import AuthContext from "../../contexts/AuthContext";
 import ImageIcon from '@mui/icons-material/Image';
-import LocalOfferRoundedIcon from '@mui/icons-material/LocalOfferRounded';
+import LoyaltyRoundedIcon from '@mui/icons-material/LoyaltyRounded';
 import PhotoLibraryRoundedIcon from '@mui/icons-material/PhotoLibraryRounded';
 import {FiLogOut} from "react-icons/fi";
 import {SpeedDial, SpeedDialAction, SpeedDialIcon} from "@mui/material";
@@ -27,7 +27,7 @@ function NavigationBar() {
         {
             icon:
                 <Nav.Link id="tag-dropdown" className="tags" to="/tags" as={Link}>
-                    <LocalOfferRoundedIcon className="click"/>
+                    <LoyaltyRoundedIcon className="click"/>
                 </Nav.Link>,
             name: 'Tags'
         },

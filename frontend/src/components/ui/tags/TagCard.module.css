@@ -1,13 +1,18 @@
 .tagCard {
     display: flex;
     justify-content: center;
-}
-
-.title {
-    font-size: 1.3rem;
     transition: 0.3s ease !important;
+    margin: 10px !important;
 }
 
-.title:hover {
-    font-size: 2rem;
+.tagCard:hover {
+    transform: scale(1.5);
 }
+
+.tagCard > .tagIcon {
+}
+
+.tagCard > .title {
+    font-size: 0.8rem;
+}
+
