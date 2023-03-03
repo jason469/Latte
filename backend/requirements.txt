@@ -20,3 +20,4 @@ gunicorn
 whitenoise
 django-filter
 image
+dj-database-url==1.2.0
