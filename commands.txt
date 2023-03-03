@@ -1,1 +1,0 @@
-python manage.py loaddata backend/fixtures/album.json image.json image_album.json image_tag.json tag.json auth_user.json

@@ -4,8 +4,9 @@ backend/__pycache__/
 backend/migrations/__pycache__/__init__.cpython-39.pyc
 backend/migrations/__pycache__/
 backend/staticfiles
-backend/.env
-backend/.env.db
+backend/env/.env
+backend/env/.env.db
+backend/env/
 
 
 ################ FRONTEND ################
