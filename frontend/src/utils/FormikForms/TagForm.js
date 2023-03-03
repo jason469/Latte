@@ -35,7 +35,7 @@ function TagForm({id, title, name, description, method, endpoint, setDeletedItem
 
     const deleteTag = () => {
         ManageItems({
-            endpoint: `tags/${id}`,
+            endpoint: `/api/tags/${id}`,
             method: "DELETE",
             authTokens: authTokens,
             logoutUser: logoutUser,

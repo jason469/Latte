@@ -61,11 +61,11 @@ function AlbumForm({title, name, description, method, endpoint}) {
             >
                 {(props) => {
                     const {
-                        values,
-                        handleChange,
-                        handleBlur,
-                        handleSubmit,
-                        errors
+                        // values,
+                        // handleChange,
+                        // handleBlur,
+                        // handleSubmit,
+                        // errors
                     } = props;
                     return (
                         <Form className="form">

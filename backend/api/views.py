@@ -1,23 +1,21 @@
 import json
 import random
-import PIL
+# import PIL
 
-from PIL import Image as PIL_Image
+# from PIL import Image as PIL_Image
 import os
 import glob
 
-from django.http import Http404, QueryDict
+from django.http import QueryDict, HttpResponse
+from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .serializers import *
 from .models import *
-from image_app.settings import MEDIA_ROOT
 
 from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.parsers import MultiPartParser, FormParser
-from rest_framework.mixins import RetrieveModelMixin
-from rest_framework.decorators import api_view
 
 from django.core import serializers
 

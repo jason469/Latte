@@ -16,7 +16,7 @@ function AlbumCard({data, ids, setDeletedItem = null}) {
 
     const deleteItem = () => {
         ManageItems({
-            endpoint: `albums/${data.id}`,
+            endpoint: `/api/albums/${data.id}`,
             method: "DELETE",
             authTokens: authTokens,
             logoutUser: logoutUser,

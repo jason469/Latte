@@ -35,7 +35,7 @@ function ImageDetailPage(props) {
 
     useEffect(() => {
         ManageItems({
-            endpoint: `/images/${imageId}`,
+            endpoint: `/api/images/${imageId}`,
             method: "GET",
             setFunction: setCurrentImage,
             authTokens: authTokens,

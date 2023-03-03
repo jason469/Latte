@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+  psql:
+    container_name: db
+    image: "postgres:14.1-alpine"
+    env_file:
+      - ./backend/.env.db
+    expose:
+      - 5432
+  django:
+    container_name: backend
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile
+    env_file:
+      - ./backend/.env
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./backend:/backend
+    depends_on:
+      - psql
+  react:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: ./Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src:/app/src
+
+

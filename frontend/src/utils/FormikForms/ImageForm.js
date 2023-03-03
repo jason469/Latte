@@ -58,7 +58,7 @@ function ImageForm() {
             }
         }
         ManageItems({
-            endpoint: 'images/',
+            endpoint: '/api/images/',
             method: 'POST',
             authTokens: authTokens,
             logoutUser: logoutUser,
@@ -74,7 +74,7 @@ function ImageForm() {
 
     useEffect(() => {
         ManageItems({
-            endpoint: 'tags',
+            endpoint: '/api/tags',
             method: "GET",
             setFunction: setTagOptions,
             authTokens: authTokens,
@@ -84,7 +84,7 @@ function ImageForm() {
 
     useEffect(() => {
         ManageItems({
-            endpoint: 'albums',
+            endpoint: '/api/albums',
             method: "GET",
             setFunction: setAlbumOptions,
             authTokens: authTokens,
@@ -101,11 +101,11 @@ function ImageForm() {
             >
                 {(props) => {
                     const {
-                        values,
-                        handleChange,
-                        handleBlur,
-                        handleSubmit,
-                        errors
+                        // values,
+                        // handleChange,
+                        // handleBlur,
+                        // handleSubmit,
+                        // errors
                     } = props;
                     return (
                         <Form className="form">

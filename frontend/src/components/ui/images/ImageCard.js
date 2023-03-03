@@ -27,7 +27,7 @@ function ImageCard({data, images, setDeletedItem = null}) {
 
     const deleteImage = () => {
         ManageItems({
-            endpoint: `/images/${data.pk}`,
+            endpoint: `/api/images/${data.pk}`,
             method: "DELETE",
             authTokens: authTokens,
             logoutUser: logoutUser,
@@ -40,7 +40,7 @@ function ImageCard({data, images, setDeletedItem = null}) {
             <ImageListItem className={classes.imageCard}>
                 <CardActionArea>
                     <img
-                        src={`http://localhost:9000/media/${data.fields.image}`}
+                        src={`/media/${data.fields.image}`}
                         alt={"Image not found"}
                         className={`click ${classes.card_image}`}
                         loading="lazy"

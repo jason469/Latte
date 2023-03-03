@@ -45,7 +45,7 @@ function ListOfImages() {
     //Fetch Images
     useEffect(() => {
         ManageItems({
-            endpoint: '/images',
+            endpoint: '/api/images',
             method: "GET",
             setFunction: setImageData,
             authTokens: authTokens,

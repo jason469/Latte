@@ -5,7 +5,7 @@ Django==4.0.5
 django-cors-headers==3.13.0
 djangorestframework==3.13.1
 djangorestframework-simplejwt==5.2.0
-Pillow==9.1.1
+Pillow
 pycparser==2.21
 PyJWT==2.4.0
 pytz==2022.1
@@ -19,3 +19,4 @@ psycopg2
 gunicorn
 whitenoise
 django-filter
+image

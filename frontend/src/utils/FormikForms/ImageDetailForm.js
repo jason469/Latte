@@ -63,11 +63,11 @@ function ImageDetailForm({title, name, description, image, method, endpoint}) {
             >
                 {(props) => {
                     const {
-                        values,
-                        handleChange,
-                        handleBlur,
-                        handleSubmit,
-                        errors
+                        // values,
+                        // handleChange,
+                        // handleBlur,
+                        // handleSubmit,
+                        // errors
                     } = props;
                     return (
                         <Form className="form">
@@ -107,7 +107,7 @@ function ImageDetailForm({title, name, description, image, method, endpoint}) {
                                     />
                                 </div>
                                 <img
-                                    src={`http://localhost:9000/media/${image}`}
+                                    src={`/media/${image}`}
                                     alt={"Image not found"}
                                     className="click image-preview"
                                     loading="lazy"

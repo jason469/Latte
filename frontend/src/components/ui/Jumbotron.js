@@ -16,7 +16,7 @@ function Jumbrotron() {
 
     useEffect(() => {
         ManageItems({
-            endpoint: '/get-random-images/',
+            endpoint: '/api/get-random-images/',
             method: "GET",
             setFunction: setImages,
             authTokens: authTokens,
@@ -41,7 +41,7 @@ function Jumbrotron() {
                         >
                             {images.map(data =>
                                 <img
-                                    src={`http://localhost:9000/media/${data.fields.image}`}
+                                    src={`/media/${data.fields.image}`}
                                     alt={"Image not found"}
                                     className={classes.jumbotron_image}
                                 />

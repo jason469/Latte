@@ -23,7 +23,7 @@ function ImageModalCard({data, item_name, image_id, setFormOutcome}) {
             image_id: `${image_id}`
         };
         ManageItems({
-            endpoint: `/images/${data.id}`,
+            endpoint: `/api/images/${data.id}`,
             method: "PATCH",
             authTokens: authTokens,
             logoutUser: logoutUser,

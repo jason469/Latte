@@ -3,7 +3,7 @@ from django.conf.urls.static import static
 from rest_framework import routers
 from rest_framework_simplejwt.views import TokenRefreshView
 
-from image_app import settings
+from backend.config import settings
 from . import views
 
 router = routers.SimpleRouter()

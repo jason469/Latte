@@ -52,7 +52,7 @@ export default function ImageDetailModal({open, handleClose, image, images, expa
                                 </Box>
                                 : <Box sx={ExpandedImageStyle}>
                                     <img
-                                        src={`http://localhost:9000/media/${currentImage.fields.image}`}
+                                        src={`/media/${currentImage.fields.image}`}
                                         alt={"Image not found"}
                                         loading="lazy"
                                         className="click expanded-image"

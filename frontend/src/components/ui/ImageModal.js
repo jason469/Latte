@@ -28,7 +28,7 @@ export default function ImageModal({open, handleClose, endpoint, image_id}) {
 
     useEffect(() => {
         ManageItems({
-            endpoint: `/${endpoint}`,
+            endpoint: `/api/${endpoint}`,
             method: "GET",
             setFunction: setAllItems,
             authTokens: authTokens,

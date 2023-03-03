@@ -1,5 +1,5 @@
 from django.contrib import admin
-from backend import models
+from backend.api import models
 
 
 @admin.register(models.Image)

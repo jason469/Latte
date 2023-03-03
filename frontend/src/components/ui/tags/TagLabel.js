@@ -19,7 +19,7 @@ function TagLabel({data, image_id, setDeletedItem = null}) {
             image_id: `${image_id}`
         };
         ManageItems({
-            endpoint: `/images/${data.id}`,
+            endpoint: `/api/images/${data.id}`,
             method: "PATCH",
             authTokens: authTokens,
             logoutUser: logoutUser,

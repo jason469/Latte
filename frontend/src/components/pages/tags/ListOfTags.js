@@ -46,7 +46,7 @@ function ListOfTags() {
     //Fetch tags
     useEffect(() => {
         ManageItems({
-            endpoint: 'tags',
+            endpoint: '/api/tags',
             method: "GET",
             setFunction: setTagData,
             authTokens: authTokens,

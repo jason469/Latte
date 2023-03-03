@@ -41,7 +41,7 @@ function ListOfAlbums() {
     //Fetch Albums
     useEffect(() => {
         ManageItems({
-            endpoint: 'albums',
+            endpoint: '/api/albums',
             method: "GET",
             setFunction: setAlbumData,
             authTokens: authTokens,
