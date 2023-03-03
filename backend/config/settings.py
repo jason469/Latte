@@ -8,6 +8,8 @@ import os
 
 from pathlib import Path
 
+import dj_database_url
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', "default secret key")
@@ -69,15 +71,19 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend.config.wsgi.application'
 
 DATABASES = {
-    "default": {
-        "ENGINE": os.environ.get("PSQL_ENGINE", "django.db.backends.postgresql"),
-        "NAME": os.environ.get("PSQL_DATABASE", "latte_db"),
-        "USER": os.environ.get("PSQL_USER", "latte_user"),
-        "PASSWORD": os.environ.get("PSQL_PASSWORD", "postgres"),
-        "HOST": os.environ.get("PSQL_HOST", "localhost"),
-        "PORT": os.environ.get("PSQL_PORT", "5432"),
-    }
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'), conn_max_age=600),
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": os.environ.get("PSQL_ENGINE", "django.db.backends.postgresql"),
+#         "NAME": os.environ.get("PSQL_DATABASE", "latte_db"),
+#         "USER": os.environ.get("PSQL_USER", "latte_user"),
+#         "PASSWORD": os.environ.get("PSQL_PASSWORD", "postgres"),
+#         "HOST": os.environ.get("PSQL_HOST", "localhost"),
+#         "PORT": os.environ.get("PSQL_PORT", "5432"),
+#     }
+# }
 
 # DATABASES = {
 #     "default": {
