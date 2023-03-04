@@ -32,6 +32,7 @@ export const AuthProvider = props => {
                 "password": e.target.elements.password.value
             })
         })
+        await console.log(response)
         let data = await response.json()
         if (response.status >= 200 && response.status <= 300) {
             setAuthTokens(data)
