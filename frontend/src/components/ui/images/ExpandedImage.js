@@ -22,7 +22,7 @@ function ExpandedImage({open, handleClose, image}) {
                 <Fade in={open}>
                     <Box sx={ExpandedImageStyle}>
                         <img
-                            src={`/media/${image}`}
+                            src={`${process.env.BACKEND_API_URL}/media/${image}`}
                             alt={"Image not found"}
                             loading="lazy"
                             className={`click expanded-image`}

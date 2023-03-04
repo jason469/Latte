@@ -41,7 +41,7 @@ function Jumbrotron() {
                         >
                             {images.map(data =>
                                 <img
-                                    src={`/media/${data.fields.image}`}
+                                    src={`${process.env.BACKEND_API_URL}/media/${data.fields.image}`}
                                     alt={"Image not found"}
                                     className={classes.jumbotron_image}
                                 />
