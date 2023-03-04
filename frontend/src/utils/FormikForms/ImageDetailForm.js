@@ -107,7 +107,7 @@ function ImageDetailForm({title, name, description, image, method, endpoint}) {
                                     />
                                 </div>
                                 <img
-                                    src={`${process.env.BACKEND_API_URL}/media/${image}`}
+                                    src={`${process.env.REACT_APP_BACKEND_API_URL}/media/${image}`}
                                     alt={"Image not found"}
                                     className="click image-preview"
                                     loading="lazy"

@@ -8,7 +8,7 @@ function ImageLabel({data}) {
         <div>
             <Nav.Link as={Link} to={`/images/${data.id}`} className={classes.nav_link}>
                 <img
-                    src={`${process.env.BACKEND_API_URL}/media/${data.image}`}
+                    src={`${process.env.REACT_APP_BACKEND_API_URL}/media/${data.image}`}
                     alt={data.name}
                     loading="lazy"
                     className={classes.image}

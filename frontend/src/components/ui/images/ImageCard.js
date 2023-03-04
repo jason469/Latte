@@ -40,7 +40,7 @@ function ImageCard({data, images, setDeletedItem = null}) {
             <ImageListItem className={classes.imageCard}>
                 <CardActionArea>
                     <img
-                        src={`${process.env.BACKEND_API_URL}/media/${data.fields.image}`}
+                        src={`${process.env.REACT_APP_BACKEND_API_URL}/media/${data.fields.image}`}
                         alt={"Image not found"}
                         className={`click ${classes.card_image}`}
                         loading="lazy"

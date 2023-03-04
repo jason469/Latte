@@ -22,7 +22,7 @@ export const AuthProvider = props => {
 
     let loginUser = async (e) => {
         e.preventDefault()
-        let response = await fetch(`${process.env.BACKEND_API_URL}/api/auth/token/`, {
+        let response = await fetch(`${process.env.REACT_APP_BACKEND_API_URL}/api/auth/token/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -32,7 +32,6 @@ export const AuthProvider = props => {
                 "password": e.target.elements.password.value
             })
         })
-        await console.log(response.json())
         let data = await response.json()
         if (response.status >= 200 && response.status <= 300) {
             setAuthTokens(data)
@@ -53,7 +52,7 @@ export const AuthProvider = props => {
 
     let updateToken = async () => {
         if (authTokens !== null) {
-            let response = await fetch(`${process.env.BACKEND_API_URL}/api/auth/token/refresh/`, {
+            let response = await fetch(`${process.env.REACT_APP_BACKEND_API_URL}/api/auth/token/refresh/`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

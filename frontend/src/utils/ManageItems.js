@@ -7,7 +7,7 @@ export const ManageItems = async ({
                                       body = null,
                                       content_type = "application/json"
                                   }) => {
-    let url = `${process.env.BACKEND_API_URL}${endpoint}/`;
+    let url = `${process.env.REACT_APP_BACKEND_API_URL}${endpoint}/`;
     if (content_type != null) {
         var response = await fetch(url, {
             method: `${method}`,
