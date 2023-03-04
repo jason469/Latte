@@ -1,6 +1,6 @@
 # Latte
 > Created by Jason Liu <br>
-> This app has been deployed, but the server is currently offline due to inactivity
+> This app has been deployed as version 1.0
 
 ### What is Latte?
 Latte is an image categorisation application created for a small audience. <br>
