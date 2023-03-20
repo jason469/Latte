@@ -70,20 +70,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.config.wsgi.application'
 
-# DATABASES = {
-#     'default': dj_database_url.parse(os.environ.get('DATABASE_URL')),
-# }
-
 DATABASES = {
-    "default": {
-        "ENGINE": os.environ.get("PSQL_ENGINE", "django.db.backends.postgresql"),
-        "NAME": os.environ.get("PSQL_DATABASE", "latte_db"),
-        "USER": os.environ.get("PSQL_USER", "latte_user"),
-        "PASSWORD": os.environ.get("PSQL_PASSWORD", "postgres"),
-        "HOST": os.environ.get("PSQL_HOST", "localhost"),
-        "PORT": os.environ.get("PSQL_PORT", "5432"),
-    }
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL')),
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": os.environ.get("PSQL_ENGINE", "django.db.backends.postgresql"),
+#         "NAME": os.environ.get("PSQL_DATABASE", "latte_db"),
+#         "USER": os.environ.get("PSQL_USER", "latte_user"),
+#         "PASSWORD": os.environ.get("PSQL_PASSWORD", "postgres"),
+#         "HOST": os.environ.get("PSQL_HOST", "localhost"),
+#         "PORT": os.environ.get("PSQL_PORT", "5432"),
+#     }
+# }
 
 # DATABASES = {
 #     "default": {
