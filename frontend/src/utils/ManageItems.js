@@ -8,11 +8,18 @@ export const ManageItems = async ({
                                       content_type = "application/json"
                                   }) => {
     let finalEndpoint;
+
+    // Clean endpoint so it starts with /, but doesnt end with /
     if (endpoint.startsWith("/") === false) {
         finalEndpoint = "/" + endpoint
     } else {
         finalEndpoint = endpoint
     }
+
+    if (finalEndpoint.endsWith("/") === true) {
+        finalEndpoint = finalEndpoint.slice(0, -1)
+    }
+
     let url = `${process.env.REACT_APP_BACKEND_API_URL}${finalEndpoint}/`;
     if (content_type != null) {
         var response = await fetch(url, {
