@@ -33,7 +33,7 @@ function TagDetailPage(props) {
                 name={currentTag.tag_data.name}
                 description={currentTag.tag_data.description}
                 method='PATCH'
-                endpoint={`/tags/${currentTag.tag_data.id}`}
+                endpoint={`/api/tags/${currentTag.tag_data.id}`}
                 setDeletedItem={props.setDeletedItem}
             />
             <Divider variant="middle"/>

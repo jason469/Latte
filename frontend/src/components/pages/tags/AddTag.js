@@ -10,7 +10,7 @@ function AddTag() {
                 name=''
                 description=''
                 method='POST'
-                endpoint='tags/'
+                endpoint='api/tags/'
             />
         </div>
     );

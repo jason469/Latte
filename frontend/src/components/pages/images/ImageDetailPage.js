@@ -52,7 +52,7 @@ function ImageDetailPage(props) {
                     description={currentImage[0].fields.description}
                     image={currentImage[0].fields.image}
                     method='PATCH'
-                    endpoint={`/images/${currentImage[0].pk}/`}
+                    endpoint={`/api/images/${currentImage[0].pk}/`}
                 />
             </div>
             <Divider variant="middle"/>
@@ -71,7 +71,7 @@ function ImageDetailPage(props) {
             <ImageModal
                 open={tagOpen}
                 handleClose={handleTagClose}
-                endpoint="tags"
+                endpoint="api/tags"
                 image_id={imageId}
             />
             <ImageList cols={6} gap={15}>
@@ -101,7 +101,7 @@ function ImageDetailPage(props) {
                     }}
                 />
             </div>
-            <ImageModal open={albumOpen} handleClose={handleAlbumClose} endpoint="albums" image_id={imageId}/>
+            <ImageModal open={albumOpen} handleClose={handleAlbumClose} endpoint="api/albums" image_id={imageId}/>
             <ImageList cols={6} gap={15}>
                 {currentImage[0].fields.album ?
                     currentImage[0].fields.album.map(album => {
