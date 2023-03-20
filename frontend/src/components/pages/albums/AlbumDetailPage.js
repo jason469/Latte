@@ -32,7 +32,7 @@ function AlbumDetailPage(props) {
                 name={currentAlbum.album_data.name}
                 description={currentAlbum.album_data.description}
                 method='PATCH'
-                endpoint={`/albums/${currentAlbum.album_data.id}/`}
+                endpoint={`/api/albums/${currentAlbum.album_data.id}/`}
             />
             <Divider variant="middle"/>
 

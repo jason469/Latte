@@ -10,7 +10,7 @@ function AddAlbum() {
                 name=''
                 description=''
                 method='POST'
-                endpoint='albums'
+                endpoint='api/albums'
             />
         </div>
     );
